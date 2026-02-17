@@ -504,6 +504,64 @@
             background: linear-gradient(135deg, rgba(46, 204, 113, 0.4), rgba(46, 204, 113, 0.2));
         }
 
+        /* SmartDocDZ Card */
+        .app-card.smartdocdz {
+            background: linear-gradient(180deg, rgba(37, 211, 102, 0.12) 0%, rgba(37, 211, 102, 0.02) 100%);
+            border-color: rgba(37, 211, 102, 0.2);
+        }
+        .app-card.smartdocdz:hover {
+            box-shadow: 0 30px 60px rgba(37, 211, 102, 0.2), 0 0 100px rgba(37, 211, 102, 0.1);
+            border-color: rgba(37, 211, 102, 0.4);
+        }
+        .app-card.smartdocdz .app-name {
+            background: linear-gradient(135deg, #25d366, #20b858);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .download-btn.visit-site-smartdocdz {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.3), rgba(37, 211, 102, 0.1));
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+
+        .download-btn.visit-site-smartdocdz:hover {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.5), rgba(37, 211, 102, 0.2));
+        }
+
+        .app-icon.website-icon.smartdocdz-icon {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.4), rgba(37, 211, 102, 0.2));
+        }
+
+        /* AlBabor Card */
+        .app-card.albabor {
+            background: linear-gradient(180deg, rgba(30, 144, 200, 0.12) 0%, rgba(30, 144, 200, 0.02) 100%);
+            border-color: rgba(30, 144, 200, 0.2);
+        }
+        .app-card.albabor:hover {
+            box-shadow: 0 30px 60px rgba(30, 144, 200, 0.2), 0 0 100px rgba(30, 144, 200, 0.1);
+            border-color: rgba(30, 144, 200, 0.4);
+        }
+        .app-card.albabor .app-name {
+            background: linear-gradient(135deg, #1e90c8, #1a7db0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .download-btn.visit-site-albabor {
+            background: linear-gradient(135deg, rgba(30, 144, 200, 0.3), rgba(30, 144, 200, 0.1));
+            border-color: rgba(30, 144, 200, 0.3);
+        }
+
+        .download-btn.visit-site-albabor:hover {
+            background: linear-gradient(135deg, rgba(30, 144, 200, 0.5), rgba(30, 144, 200, 0.2));
+        }
+
+        .app-icon.website-icon.albabor-icon {
+            background: linear-gradient(135deg, rgba(30, 144, 200, 0.4), rgba(30, 144, 200, 0.2));
+        }
+
         .app-icon {
             width: 110px;
             height: 110px;
@@ -949,7 +1007,43 @@
                     </div>
                 </div>
 
-                <!-- 4. Radiant Body -->
+                <!-- 4. SmartDocDZ -->
+                <div class="app-card smartdocdz">
+                    <div class="app-icon website-icon smartdocdz-icon">
+                        <span>S</span>
+                    </div>
+                    <h2 class="app-name">SmartDocDZ</h2>
+                    <span class="badge">Healthcare</span>
+                    <p class="app-description">Medical appointment booking platform for Algeria. Find doctors, check availability & book appointments in a few clicks.</p>
+                    <div class="download-buttons">
+                        <a href="https://smartdocdz.com/" target="_blank" class="download-btn visit-site-smartdocdz">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. AlBabor -->
+                <div class="app-card albabor">
+                    <div class="app-icon website-icon albabor-icon">
+                        <span>A</span>
+                    </div>
+                    <h2 class="app-name">AlBabor</h2>
+                    <span class="badge">Nautical Marketplace</span>
+                    <p class="app-description">Algeria's #1 nautical marketplace. Buy & sell boats, jet-skis, engines and marine parts with confidence.</p>
+                    <div class="download-buttons">
+                        <a href="https://albabor.com/" target="_blank" class="download-btn visit-site-albabor">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Radiant Body -->
                 <div class="app-card radiant-body">
                     <div class="app-icon">
                         <img src="radiant-body-logo.png" alt="Radiant Body">
@@ -967,7 +1061,7 @@
                     </div>
                 </div>
 
-                <!-- 4. Softy -->
+                <!-- 7. Softy -->
                 <div class="app-card softy">
                     <div class="app-icon">
                         <img src="softy-logo.png" alt="Softy">
@@ -985,7 +1079,7 @@
                     </div>
                 </div>
 
-                <!-- 5. ISRAA Collections -->
+                <!-- 8. ISRAA Collections -->
                 <div class="app-card client-work">
                     <div class="app-icon">
                         <img src="israa-logo.jpg" alt="ISRAA Collections">
@@ -1003,7 +1097,7 @@
                     </div>
                 </div>
 
-                <!-- 6. ChangeDinar.online -->
+                <!-- 9. ChangeDinar.online -->
                 <div class="app-card changedinar-online">
                     <div class="app-icon">
                         <img src="changedinar-online-logo.png" alt="ChangeDinar.online">
@@ -1021,7 +1115,7 @@
                     </div>
                 </div>
 
-                <!-- 7. Polo Boissons -->
+                <!-- 10. Polo Boissons -->
                 <div class="app-card polo">
                     <div class="app-icon">
                         <img src="polo-logo.png" alt="Polo Boissons">
