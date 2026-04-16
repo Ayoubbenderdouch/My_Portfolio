@@ -339,29 +339,34 @@
             background: linear-gradient(135deg, rgba(0, 206, 201, 0.5), rgba(0, 206, 201, 0.2));
         }
 
-        /* Softy Card */
-        .app-card.softy {
-            background: linear-gradient(180deg, rgba(210, 105, 30, 0.12) 0%, rgba(210, 105, 30, 0.02) 100%);
-            border-color: rgba(210, 105, 30, 0.2);
+        /* Yachtei Card */
+        .app-card.yachtei {
+            background: linear-gradient(180deg, rgba(13, 148, 136, 0.12) 0%, rgba(13, 148, 136, 0.02) 100%);
+            border-color: rgba(13, 148, 136, 0.2);
         }
-        .app-card.softy:hover {
-            box-shadow: 0 30px 60px rgba(210, 105, 30, 0.2), 0 0 100px rgba(210, 105, 30, 0.1);
-            border-color: rgba(210, 105, 30, 0.4);
+        .app-card.yachtei:hover {
+            box-shadow: 0 30px 60px rgba(13, 148, 136, 0.25), 0 0 100px rgba(13, 148, 136, 0.12);
+            border-color: rgba(13, 148, 136, 0.45);
         }
-        .app-card.softy .app-name {
-            background: linear-gradient(135deg, #d2691e, #8b4513);
+        .app-card.yachtei .app-name {
+            background: linear-gradient(135deg, #2dd4bf, #0d9488);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .download-btn.visit-site-softy {
-            background: linear-gradient(135deg, rgba(210, 105, 30, 0.3), rgba(210, 105, 30, 0.1));
-            border-color: rgba(210, 105, 30, 0.3);
+        .download-btn.visit-site-yachtei {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.3), rgba(13, 148, 136, 0.1));
+            border-color: rgba(13, 148, 136, 0.4);
         }
 
-        .download-btn.visit-site-softy:hover {
-            background: linear-gradient(135deg, rgba(210, 105, 30, 0.5), rgba(210, 105, 30, 0.2));
+        .download-btn.visit-site-yachtei:hover {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.5), rgba(13, 148, 136, 0.25));
+        }
+
+        .app-icon.yachtei-icon {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.35), rgba(6, 78, 59, 0.2));
+            border: 1px solid rgba(45, 212, 191, 0.2);
         }
 
         /* Fitrigi Ride Card */
@@ -1272,19 +1277,25 @@
                     </div>
                 </div>
 
-                <!-- 7. Softy -->
-                <div class="app-card softy">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="softy-logo.webp" type="image/webp">
-                        <img src="softy-logo.png" alt="Softy">
-                    </picture>
+                <!-- Yachtei -->
+                <div class="app-card yachtei">
+                    <div class="app-icon yachtei-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:62px;height:62px;">
+                            <!-- Sail -->
+                            <path d="M32 8 L32 42 L14 42 Z" fill="rgba(45,212,191,0.9)"/>
+                            <!-- Second sail -->
+                            <path d="M32 14 L32 42 L48 42 Z" fill="rgba(255,255,255,0.35)"/>
+                            <!-- Hull -->
+                            <path d="M10 44 Q32 52 54 44 L50 48 Q32 56 14 48 Z" fill="rgba(45,212,191,0.85)"/>
+                            <!-- Water line -->
+                            <path d="M8 50 Q20 47 32 50 Q44 53 56 50" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        </svg>
                     </div>
-                    <h2 class="app-name">Softy</h2>
-                    <span class="badge">Dessert Café</span>
-                    <p class="app-description">Luxury chocolate experience. Premium desserts, artisanal drinks & gourmet frozen treats.</p>
+                    <h2 class="app-name">Yachtei</h2>
+                    <span class="badge">Marine Rentals</span>
+                    <p class="app-description">Premium yacht, boat & jet ski rentals in Algeria. Book luxury marine experiences with trusted operators, all in one platform.</p>
                     <div class="download-buttons">
-                        <a href="https://www.softyyogurt.com/" target="_blank" class="download-btn visit-site-softy">
+                        <a href="https://yachtei.com/" target="_blank" class="download-btn visit-site-yachtei">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
                             </svg>
