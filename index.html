@@ -490,6 +490,52 @@
             background: linear-gradient(135deg, rgba(52, 152, 219, 0.5), rgba(52, 152, 219, 0.2));
         }
 
+        /* Diline Academy Card */
+        .app-card.dilin {
+            background: linear-gradient(180deg, rgba(220, 53, 69, 0.12) 0%, rgba(220, 53, 69, 0.02) 100%);
+            border-color: rgba(220, 53, 69, 0.2);
+        }
+        .app-card.dilin:hover {
+            box-shadow: 0 30px 60px rgba(220, 53, 69, 0.2), 0 0 100px rgba(220, 53, 69, 0.1);
+            border-color: rgba(220, 53, 69, 0.4);
+        }
+        .app-card.dilin .app-name {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .download-btn.visit-site-dilin {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.3), rgba(220, 53, 69, 0.1));
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+        .download-btn.visit-site-dilin:hover {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.5), rgba(220, 53, 69, 0.2));
+        }
+
+        /* Mido Froid Card */
+        .app-card.midoufroid {
+            background: linear-gradient(180deg, rgba(0, 188, 212, 0.12) 0%, rgba(0, 188, 212, 0.02) 100%);
+            border-color: rgba(0, 188, 212, 0.2);
+        }
+        .app-card.midoufroid:hover {
+            box-shadow: 0 30px 60px rgba(0, 188, 212, 0.2), 0 0 100px rgba(0, 188, 212, 0.1);
+            border-color: rgba(0, 188, 212, 0.4);
+        }
+        .app-card.midoufroid .app-name {
+            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .download-btn.visit-site-midoufroid {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.3), rgba(0, 188, 212, 0.1));
+            border-color: rgba(0, 188, 212, 0.3);
+        }
+        .download-btn.visit-site-midoufroid:hover {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.5), rgba(0, 188, 212, 0.2));
+        }
+
         /* Thinkxie Card */
         .app-card.thinkxie {
             background: linear-gradient(180deg, rgba(155, 89, 182, 0.12) 0%, rgba(155, 89, 182, 0.02) 100%);
@@ -672,6 +718,14 @@
 
         .app-icon.website-icon.polo-icon {
             background: linear-gradient(135deg, rgba(52, 152, 219, 0.4), rgba(52, 152, 219, 0.2));
+        }
+
+        .app-icon.website-icon.dilin-icon {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.4), rgba(220, 53, 69, 0.2));
+        }
+
+        .app-icon.website-icon.midoufroid-icon {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.4), rgba(0, 188, 212, 0.2));
         }
 
         .app-icon.website-icon.thinkxie-icon {
@@ -1351,6 +1405,42 @@
                     <p class="app-description">Premium beverage company website. Modern bilingual design serving diverse markets.</p>
                     <div class="download-buttons">
                         <a href="https://www.poloboissons.com/" target="_blank" class="download-btn visit-site-polo">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 11. Diline Academy -->
+                <div class="app-card dilin">
+                    <div class="app-icon website-icon dilin-icon">
+                        <img src="dilin-logo.png" alt="Diline Academy">
+                    </div>
+                    <h2 class="app-name">Diline Academy</h2>
+                    <span class="badge">E-Learning</span>
+                    <p class="app-description">Online Turkish language learning platform for Algerian students. A1 to C2 with live sessions, quizzes & PDF materials.</p>
+                    <div class="download-buttons">
+                        <a href="https://dilin.academy/" target="_blank" class="download-btn visit-site-dilin">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 12. Mido Froid -->
+                <div class="app-card midoufroid">
+                    <div class="app-icon website-icon midoufroid-icon">
+                        <img src="midoufroid-logo.png" alt="Mido Froid">
+                    </div>
+                    <h2 class="app-name">Mido Froid</h2>
+                    <span class="badge">E-Commerce</span>
+                    <p class="app-description">Algerian online store for home appliances & spare parts. Delivery across all 58 wilayas with cash on delivery.</p>
+                    <div class="download-buttons">
+                        <a href="https://midoufroid.com/" target="_blank" class="download-btn visit-site-midoufroid">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
                             </svg>
