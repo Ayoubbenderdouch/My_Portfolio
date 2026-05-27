@@ -1,1493 +1,1612 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Apps & Websites - Portfolio of Ayoub Benderdouch">
-    <title>My Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a0f;
-            min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Classic Elegant Background */
-        .bg-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        /* Elegant gradient base */
-        .bg-gradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(ellipse at 20% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 100%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
-        }
-
-        /* Subtle ambient glow */
-        .glow {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.5;
-        }
-
-        .glow-1 {
-            width: 600px;
-            height: 600px;
-            background: rgba(99, 102, 241, 0.15);
-            top: -200px;
-            left: -200px;
-            animation: breathe 20s ease-in-out infinite;
-        }
-
-        .glow-2 {
-            width: 500px;
-            height: 500px;
-            background: rgba(168, 85, 247, 0.1);
-            bottom: -150px;
-            right: -150px;
-            animation: breathe 20s ease-in-out infinite 10s;
-        }
-
-        @keyframes breathe {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.05); }
-        }
-
-        /* Subtle noise for texture */
-        .noise {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .glow-1 { width: 400px; height: 400px; }
-            .glow-2 { width: 350px; height: 350px; }
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 80px 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .header-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -2px;
-        }
-
-        .subtitle {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.2rem;
-            font-weight: 400;
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Tab Navigation */
-        .tab-navigation {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 60px;
-        }
-
-        .tab-btn {
-            padding: 16px 40px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.9);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(116, 185, 255, 0.3));
-            color: #fff;
-            border-color: rgba(167, 139, 250, 0.5);
-            box-shadow: 0 10px 40px rgba(167, 139, 250, 0.2);
-        }
-
-        /* Tab Content */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .app-card {
-            background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-            border-radius: 32px;
-            padding: 45px 35px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .app-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .app-card:hover::before {
-            opacity: 1;
-        }
-
-        .app-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* ChangeDinar Card */
-        .app-card.changedinar {
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.02) 100%);
-            border-color: rgba(212, 175, 55, 0.2);
-        }
-        .app-card.changedinar:hover {
-            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.2), 0 0 100px rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        .app-card.changedinar .app-name {
-            background: linear-gradient(135deg, #f9d423, #d4af37);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Rain Sounds Card */
-        .app-card.rain-sounds {
-            background: linear-gradient(180deg, rgba(116, 185, 255, 0.12) 0%, rgba(116, 185, 255, 0.02) 100%);
-            border-color: rgba(116, 185, 255, 0.2);
-        }
-        .app-card.rain-sounds:hover {
-            box-shadow: 0 30px 60px rgba(116, 185, 255, 0.2), 0 0 100px rgba(116, 185, 255, 0.1);
-            border-color: rgba(116, 185, 255, 0.4);
-        }
-        .app-card.rain-sounds .app-name {
-            background: linear-gradient(135deg, #74b9ff, #a29bfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Athani Pro Card */
-        .app-card.athani-pro {
-            background: linear-gradient(180deg, rgba(167, 139, 250, 0.12) 0%, rgba(167, 139, 250, 0.02) 100%);
-            border-color: rgba(167, 139, 250, 0.2);
-        }
-        .app-card.athani-pro:hover {
-            box-shadow: 0 30px 60px rgba(167, 139, 250, 0.2), 0 0 100px rgba(167, 139, 250, 0.1);
-            border-color: rgba(167, 139, 250, 0.4);
-        }
-        .app-card.athani-pro .app-name {
-            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Saf9ty Card */
-        .app-card.saf9ty {
-            background: linear-gradient(180deg, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.02) 100%);
-            border-color: rgba(59, 130, 246, 0.2);
-        }
-        .app-card.saf9ty:hover {
-            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2), 0 0 100px rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-        .app-card.saf9ty .app-name {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-saf9ty {
-            background: rgba(59, 130, 246, 0.15);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-        .download-btn.visit-site-saf9ty:hover {
-            background: rgba(59, 130, 246, 0.25);
-            border-color: rgba(59, 130, 246, 0.5);
-        }
-
-        /* Client Work Card */
-        .app-card.client-work {
-            background: linear-gradient(180deg, rgba(255, 107, 129, 0.12) 0%, rgba(255, 107, 129, 0.02) 100%);
-            border-color: rgba(255, 107, 129, 0.2);
-        }
-        .app-card.client-work:hover {
-            box-shadow: 0 30px 60px rgba(255, 107, 129, 0.2), 0 0 100px rgba(255, 107, 129, 0.1);
-            border-color: rgba(255, 107, 129, 0.4);
-        }
-        .app-card.client-work .app-name {
-            background: linear-gradient(135deg, #ff6b81, #ee5a70);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* ReloadX Card */
-        .app-card.reloadx {
-            background: linear-gradient(180deg, rgba(0, 206, 201, 0.12) 0%, rgba(0, 206, 201, 0.02) 100%);
-            border-color: rgba(0, 206, 201, 0.2);
-        }
-        .app-card.reloadx:hover {
-            box-shadow: 0 30px 60px rgba(0, 206, 201, 0.2), 0 0 100px rgba(0, 206, 201, 0.1);
-            border-color: rgba(0, 206, 201, 0.4);
-        }
-        .app-card.reloadx .app-name {
-            background: linear-gradient(135deg, #00cec9, #00b894);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-reloadx {
-            background: linear-gradient(135deg, rgba(0, 206, 201, 0.3), rgba(0, 206, 201, 0.1));
-            border-color: rgba(0, 206, 201, 0.3);
-        }
-
-        .download-btn.visit-site-reloadx:hover {
-            background: linear-gradient(135deg, rgba(0, 206, 201, 0.5), rgba(0, 206, 201, 0.2));
-        }
-
-        /* Yachtei Card */
-        .app-card.yachtei {
-            background: linear-gradient(180deg, rgba(13, 148, 136, 0.12) 0%, rgba(13, 148, 136, 0.02) 100%);
-            border-color: rgba(13, 148, 136, 0.2);
-        }
-        .app-card.yachtei:hover {
-            box-shadow: 0 30px 60px rgba(13, 148, 136, 0.25), 0 0 100px rgba(13, 148, 136, 0.12);
-            border-color: rgba(13, 148, 136, 0.45);
-        }
-        .app-card.yachtei .app-name {
-            background: linear-gradient(135deg, #2dd4bf, #0d9488);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-yachtei {
-            background: linear-gradient(135deg, rgba(13, 148, 136, 0.3), rgba(13, 148, 136, 0.1));
-            border-color: rgba(13, 148, 136, 0.4);
-        }
-
-        .download-btn.visit-site-yachtei:hover {
-            background: linear-gradient(135deg, rgba(13, 148, 136, 0.5), rgba(13, 148, 136, 0.25));
-        }
-
-        .app-icon.yachtei-icon {
-            background: linear-gradient(135deg, rgba(13, 148, 136, 0.35), rgba(6, 78, 59, 0.2));
-            border: 1px solid rgba(45, 212, 191, 0.2);
-        }
-
-        /* Fitrigi Ride Card */
-        .app-card.fitrigi-ride {
-            background: linear-gradient(180deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 215, 0, 0.02) 100%);
-            border-color: rgba(255, 215, 0, 0.2);
-        }
-        .app-card.fitrigi-ride:hover {
-            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.2), 0 0 100px rgba(255, 215, 0, 0.1);
-            border-color: rgba(255, 215, 0, 0.4);
-        }
-        .app-card.fitrigi-ride .app-name {
-            background: linear-gradient(135deg, #ffd700, #ffcc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Fitrigi Chauffeur Card */
-        .app-card.fitrigi-chauffeur {
-            background: linear-gradient(180deg, rgba(255, 165, 0, 0.12) 0%, rgba(255, 165, 0, 0.02) 100%);
-            border-color: rgba(255, 165, 0, 0.2);
-        }
-        .app-card.fitrigi-chauffeur:hover {
-            box-shadow: 0 30px 60px rgba(255, 165, 0, 0.2), 0 0 100px rgba(255, 165, 0, 0.1);
-            border-color: rgba(255, 165, 0, 0.4);
-        }
-        .app-card.fitrigi-chauffeur .app-name {
-            background: linear-gradient(135deg, #ffa500, #ff8c00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* FaydaLik Card */
-        .app-card.faydalik {
-            background: linear-gradient(180deg, rgba(236, 72, 153, 0.12) 0%, rgba(236, 72, 153, 0.02) 100%);
-            border-color: rgba(236, 72, 153, 0.2);
-        }
-        .app-card.faydalik:hover {
-            box-shadow: 0 30px 60px rgba(236, 72, 153, 0.2), 0 0 100px rgba(236, 72, 153, 0.1);
-            border-color: rgba(236, 72, 153, 0.4);
-        }
-        .app-card.faydalik .app-name {
-            background: linear-gradient(135deg, #ec4899, #db2777);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Yasfir App Card */
-        .app-card.yasfir-app {
-            background: linear-gradient(180deg, rgba(6, 182, 212, 0.12) 0%, rgba(6, 182, 212, 0.02) 100%);
-            border-color: rgba(6, 182, 212, 0.2);
-        }
-        .app-card.yasfir-app:hover {
-            box-shadow: 0 30px 60px rgba(6, 182, 212, 0.2), 0 0 100px rgba(6, 182, 212, 0.1);
-            border-color: rgba(6, 182, 212, 0.4);
-        }
-        .app-card.yasfir-app .app-name {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Yasfir Agency App Card */
-        .app-card.yasfir-agency-app {
-            background: linear-gradient(180deg, rgba(14, 165, 233, 0.12) 0%, rgba(14, 165, 233, 0.02) 100%);
-            border-color: rgba(14, 165, 233, 0.2);
-        }
-        .app-card.yasfir-agency-app:hover {
-            box-shadow: 0 30px 60px rgba(14, 165, 233, 0.2), 0 0 100px rgba(14, 165, 233, 0.1);
-            border-color: rgba(14, 165, 233, 0.4);
-        }
-        .app-card.yasfir-agency-app .app-name {
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* SmartDoc App Card */
-        .app-card.smartdoc-app {
-            background: linear-gradient(180deg, rgba(79, 209, 197, 0.12) 0%, rgba(79, 209, 197, 0.02) 100%);
-            border-color: rgba(79, 209, 197, 0.2);
-        }
-        .app-card.smartdoc-app:hover {
-            box-shadow: 0 30px 60px rgba(79, 209, 197, 0.2), 0 0 100px rgba(79, 209, 197, 0.1);
-            border-color: rgba(79, 209, 197, 0.4);
-        }
-        .app-card.smartdoc-app .app-name {
-            background: linear-gradient(135deg, #4FD1C5, #38b2ac);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Polo Boissons Card */
-        .app-card.polo {
-            background: linear-gradient(180deg, rgba(52, 152, 219, 0.12) 0%, rgba(52, 152, 219, 0.02) 100%);
-            border-color: rgba(52, 152, 219, 0.2);
-        }
-        .app-card.polo:hover {
-            box-shadow: 0 30px 60px rgba(52, 152, 219, 0.2), 0 0 100px rgba(52, 152, 219, 0.1);
-            border-color: rgba(52, 152, 219, 0.4);
-        }
-        .app-card.polo .app-name {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-polo {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.3), rgba(52, 152, 219, 0.1));
-            border-color: rgba(52, 152, 219, 0.3);
-        }
-
-        .download-btn.visit-site-polo:hover {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.5), rgba(52, 152, 219, 0.2));
-        }
-
-        /* Diline Academy Card */
-        .app-card.dilin {
-            background: linear-gradient(180deg, rgba(220, 53, 69, 0.12) 0%, rgba(220, 53, 69, 0.02) 100%);
-            border-color: rgba(220, 53, 69, 0.2);
-        }
-        .app-card.dilin:hover {
-            box-shadow: 0 30px 60px rgba(220, 53, 69, 0.2), 0 0 100px rgba(220, 53, 69, 0.1);
-            border-color: rgba(220, 53, 69, 0.4);
-        }
-        .app-card.dilin .app-name {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .download-btn.visit-site-dilin {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.3), rgba(220, 53, 69, 0.1));
-            border-color: rgba(220, 53, 69, 0.3);
-        }
-        .download-btn.visit-site-dilin:hover {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.5), rgba(220, 53, 69, 0.2));
-        }
-
-        /* Mido Froid Card */
-        .app-card.midoufroid {
-            background: linear-gradient(180deg, rgba(0, 188, 212, 0.12) 0%, rgba(0, 188, 212, 0.02) 100%);
-            border-color: rgba(0, 188, 212, 0.2);
-        }
-        .app-card.midoufroid:hover {
-            box-shadow: 0 30px 60px rgba(0, 188, 212, 0.2), 0 0 100px rgba(0, 188, 212, 0.1);
-            border-color: rgba(0, 188, 212, 0.4);
-        }
-        .app-card.midoufroid .app-name {
-            background: linear-gradient(135deg, #00bcd4, #0097a7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .download-btn.visit-site-midoufroid {
-            background: linear-gradient(135deg, rgba(0, 188, 212, 0.3), rgba(0, 188, 212, 0.1));
-            border-color: rgba(0, 188, 212, 0.3);
-        }
-        .download-btn.visit-site-midoufroid:hover {
-            background: linear-gradient(135deg, rgba(0, 188, 212, 0.5), rgba(0, 188, 212, 0.2));
-        }
-
-        /* Thinkxie Card */
-        .app-card.thinkxie {
-            background: linear-gradient(180deg, rgba(155, 89, 182, 0.12) 0%, rgba(155, 89, 182, 0.02) 100%);
-            border-color: rgba(155, 89, 182, 0.2);
-        }
-        .app-card.thinkxie:hover {
-            box-shadow: 0 30px 60px rgba(155, 89, 182, 0.2), 0 0 100px rgba(155, 89, 182, 0.1);
-            border-color: rgba(155, 89, 182, 0.4);
-        }
-        .app-card.thinkxie .app-name {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-thinkxie {
-            background: linear-gradient(135deg, rgba(155, 89, 182, 0.3), rgba(155, 89, 182, 0.1));
-            border-color: rgba(155, 89, 182, 0.3);
-        }
-
-        .download-btn.visit-site-thinkxie:hover {
-            background: linear-gradient(135deg, rgba(155, 89, 182, 0.5), rgba(155, 89, 182, 0.2));
-        }
-
-        /* Ysafer Card */
-        .app-card.ysafer {
-            background: linear-gradient(180deg, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.02) 100%);
-            border-color: rgba(37, 99, 235, 0.2);
-        }
-        .app-card.ysafer:hover {
-            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.2), 0 0 100px rgba(37, 99, 235, 0.1);
-            border-color: rgba(37, 99, 235, 0.4);
-        }
-        .app-card.ysafer .app-name {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-ysafer {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(37, 99, 235, 0.1));
-            border-color: rgba(37, 99, 235, 0.3);
-        }
-
-        .download-btn.visit-site-ysafer:hover {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.5), rgba(37, 99, 235, 0.2));
-        }
-
-
-        /* Radiant Body Card */
-        .app-card.radiant-body {
-            background: linear-gradient(180deg, rgba(46, 204, 113, 0.12) 0%, rgba(46, 204, 113, 0.02) 100%);
-            border-color: rgba(46, 204, 113, 0.2);
-        }
-        .app-card.radiant-body:hover {
-            box-shadow: 0 30px 60px rgba(46, 204, 113, 0.2), 0 0 100px rgba(46, 204, 113, 0.1);
-            border-color: rgba(46, 204, 113, 0.4);
-        }
-        .app-card.radiant-body .app-name {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-radiant-body {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(46, 204, 113, 0.1));
-            border-color: rgba(46, 204, 113, 0.3);
-        }
-
-        .download-btn.visit-site-radiant-body:hover {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.5), rgba(46, 204, 113, 0.2));
-        }
-
-
-        .app-icon.website-icon.radiant-body-icon {
-            background: linear-gradient(135deg, rgba(46, 204, 113, 0.4), rgba(46, 204, 113, 0.2));
-        }
-
-        /* SmartDocDZ Card */
-        .app-card.smartdocdz {
-            background: linear-gradient(180deg, rgba(37, 211, 102, 0.12) 0%, rgba(37, 211, 102, 0.02) 100%);
-            border-color: rgba(37, 211, 102, 0.2);
-        }
-        .app-card.smartdocdz:hover {
-            box-shadow: 0 30px 60px rgba(37, 211, 102, 0.2), 0 0 100px rgba(37, 211, 102, 0.1);
-            border-color: rgba(37, 211, 102, 0.4);
-        }
-        .app-card.smartdocdz .app-name {
-            background: linear-gradient(135deg, #25d366, #20b858);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-smartdocdz {
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.3), rgba(37, 211, 102, 0.1));
-            border-color: rgba(37, 211, 102, 0.3);
-        }
-
-        .download-btn.visit-site-smartdocdz:hover {
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.5), rgba(37, 211, 102, 0.2));
-        }
-
-        .app-icon.website-icon.smartdocdz-icon {
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.4), rgba(37, 211, 102, 0.2));
-        }
-
-        /* AlBabor Card */
-        .app-card.albabor {
-            background: linear-gradient(180deg, rgba(30, 144, 200, 0.12) 0%, rgba(30, 144, 200, 0.02) 100%);
-            border-color: rgba(30, 144, 200, 0.2);
-        }
-        .app-card.albabor:hover {
-            box-shadow: 0 30px 60px rgba(30, 144, 200, 0.2), 0 0 100px rgba(30, 144, 200, 0.1);
-            border-color: rgba(30, 144, 200, 0.4);
-        }
-        .app-card.albabor .app-name {
-            background: linear-gradient(135deg, #1e90c8, #1a7db0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .download-btn.visit-site-albabor {
-            background: linear-gradient(135deg, rgba(30, 144, 200, 0.3), rgba(30, 144, 200, 0.1));
-            border-color: rgba(30, 144, 200, 0.3);
-        }
-
-        .download-btn.visit-site-albabor:hover {
-            background: linear-gradient(135deg, rgba(30, 144, 200, 0.5), rgba(30, 144, 200, 0.2));
-        }
-
-        .app-icon.website-icon.albabor-icon {
-            background: linear-gradient(135deg, rgba(30, 144, 200, 0.4), rgba(30, 144, 200, 0.2));
-        }
-
-        .app-icon {
-            width: 110px;
-            height: 110px;
-            border-radius: 28px;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .app-icon img {
-            width: 100%;
-            height: 100%;
-            border-radius: 28px;
-            object-fit: cover;
-        }
-
-        .app-icon.website-icon {
-            background: linear-gradient(135deg, rgba(255, 107, 129, 0.3), rgba(255, 107, 129, 0.1));
-            font-size: 50px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .app-icon.website-icon.israa {
-            background: linear-gradient(135deg, rgba(255, 107, 129, 0.4), rgba(255, 107, 129, 0.2));
-        }
-
-        .app-icon.website-icon.reloadx-icon {
-            background: linear-gradient(135deg, rgba(0, 206, 201, 0.4), rgba(0, 206, 201, 0.2));
-        }
-
-        .app-icon.website-icon.softy-icon {
-            background: linear-gradient(135deg, rgba(210, 105, 30, 0.4), rgba(210, 105, 30, 0.2));
-        }
-
-        .app-icon.website-icon.polo-icon {
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.4), rgba(52, 152, 219, 0.2));
-        }
-
-        .app-icon.website-icon.dilin-icon {
-            background: linear-gradient(135deg, rgba(220, 53, 69, 0.4), rgba(220, 53, 69, 0.2));
-        }
-
-        .app-icon.website-icon.midoufroid-icon {
-            background: linear-gradient(135deg, rgba(0, 188, 212, 0.4), rgba(0, 188, 212, 0.2));
-        }
-
-        .app-icon.website-icon.thinkxie-icon {
-            background: linear-gradient(135deg, rgba(155, 89, 182, 0.4), rgba(155, 89, 182, 0.2));
-        }
-
-        .app-icon.website-icon.ysafer-icon {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(37, 99, 235, 0.2));
-        }
-
-        .app-icon::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 28px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-
-        .app-name {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            margin-bottom: 18px;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .app-description {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-
-        .download-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .download-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 22px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .download-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .download-btn.ios {
-            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
-        }
-
-
-        .download-btn.coming-soon {
-            opacity: 0.4;
-            cursor: default;
-        }
-
-        .download-btn.coming-soon:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .download-btn.visit-site {
-            background: linear-gradient(135deg, rgba(255, 107, 129, 0.3), rgba(255, 107, 129, 0.1));
-            border-color: rgba(255, 107, 129, 0.3);
-        }
-
-        .download-btn.visit-site:hover {
-            background: linear-gradient(135deg, rgba(255, 107, 129, 0.5), rgba(255, 107, 129, 0.2));
-        }
-
-        .download-btn svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 100px;
-            padding: 40px;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .apps-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-                letter-spacing: -1px;
-            }
-
-            .apps-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .app-card {
-                padding: 35px 25px;
-            }
-
-            .container {
-                padding: 50px 20px;
-            }
-
-            header {
-                margin-bottom: 30px;
-            }
-
-            .tab-navigation {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .tab-btn {
-                width: 100%;
-                max-width: 280px;
-            }
-        }
-
-        /* Entrance Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .app-card {
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
-        }
-
-        .app-card:nth-child(1) { animation-delay: 0.1s; }
-        .app-card:nth-child(2) { animation-delay: 0.2s; }
-        .app-card:nth-child(3) { animation-delay: 0.3s; }
-        .app-card:nth-child(4) { animation-delay: 0.4s; }
-
-        header {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayoub Benderdouch — Freelance Mobile Developer · iOS, Android, Laravel · Berlin</title>
+<meta name="description" content="Native iOS in SwiftUI, Android in Kotlin & Flutter, Laravel backends — designed, built and shipped end-to-end. 30+ apps in production. Booking new projects from Berlin.">
+<meta name="theme-color" content="#F2EDE3">
+<meta property="og:title" content="Ayoub Benderdouch — Freelance Mobile Developer">
+<meta property="og:description" content="Native iOS, Android & Laravel APIs — built, shipped and supported from Berlin.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ayoubportfolio.site">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EDE3;
+    --paper-2:#EBE3D2;
+    --paper-3:#E2D8BF;
+    --ink:#15110B;
+    --ink-2:#2A241B;
+    --muted:#6C6356;
+    --muted-2:#928876;
+    --rule:#D6CCB6;
+    --rule-soft:#E6DEC9;
+    --accent:#C73D1A;
+    --accent-2:#9F2F11;
+    --good:#3F7A35;
+
+    --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+    --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,system-ui,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+    --pad:clamp(20px,4vw,56px);
+    --max:1400px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  /* Subtle paper grain */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.04 0 0 0 0 0.02 0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:.5;
+    mix-blend-mode:multiply;
+  }
+
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%;height:auto}
+  button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+  /* Typography helpers */
+  .display{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-variation-settings:"opsz" 144,"SOFT" 50;
+    letter-spacing:-0.025em;
+    line-height:0.98;
+  }
+  .display em{
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+    color:var(--accent);
+  }
+  .serif{
+    font-family:var(--font-display);
+    font-weight:400;
+    font-variation-settings:"opsz" 18;
+    letter-spacing:-0.005em;
+  }
+  .mono{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .roman{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+    font-weight:400;
+    color:var(--accent);
+  }
+
+  /* Layout */
+  .container{
+    max-width:var(--max);
+    margin:0 auto;
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+  }
+
+  hr.rule{
+    border:0;
+    border-top:1px solid var(--rule);
+    margin:0;
+  }
+  hr.rule-soft{
+    border:0;
+    border-top:1px solid var(--rule-soft);
+    margin:0;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(242,237,227,0.82);
+    backdrop-filter:saturate(140%) blur(14px);
+    -webkit-backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:1px solid var(--rule);
+  }
+  .topbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding-top:16px;
+    padding-bottom:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+  }
+  .brand-mark{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper);
+    display:grid;
+    place-items:center;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+    font-size:18px;
+    line-height:1;
+    letter-spacing:-0.02em;
+  }
+  .brand-name{
+    font-family:var(--font-display);
+    font-size:15px;
+    font-variation-settings:"opsz" 18;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .brand-name span{color:var(--muted);font-style:italic}
+
+  .status{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 14px;
+    border:1px solid var(--rule);
+    border-radius:999px;
+    background:rgba(255,255,255,0.4);
+  }
+  .status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--good);
+    box-shadow:0 0 0 0 rgba(63,122,53,0.6);
+    animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(63,122,53,0.55)}
+    70%{box-shadow:0 0 0 10px rgba(63,122,53,0)}
+    100%{box-shadow:0 0 0 0 rgba(63,122,53,0)}
+  }
+
+  .topnav{display:flex;gap:28px;align-items:center}
+  .topnav a{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-2);
+    position:relative;
+    padding:6px 0;
+  }
+  .topnav a::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:1px;
+    background:var(--ink);
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform .35s ease;
+  }
+  .topnav a:hover::after{transform:scaleX(1)}
+  .topnav a.cta{
+    color:var(--accent);
+  }
+
+  @media (max-width:880px){
+    .status{display:none}
+    .topnav{gap:18px}
+    .topnav a:not(.cta){display:none}
+  }
+
+  /* ---------- META STRIP (under hero) ---------- */
+  .meta-strip{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding-top:18px;
+    padding-bottom:18px;
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .meta-strip span:nth-child(2){color:var(--ink-2)}
+  @media (max-width:640px){
+    .meta-strip{flex-direction:column;gap:6px;align-items:flex-start}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:clamp(48px,8vw,120px);
+    padding-bottom:clamp(40px,6vw,80px);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+  }
+  .hero-eyebrow{
+    display:flex;
+    gap:14px;
+    align-items:center;
+    margin-bottom:32px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:42px;
+    height:1px;
+    background:var(--ink);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(56px,11vw,180px);
+    margin:0 0 36px;
+  }
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line span{
+    display:inline-block;
+    animation:rise 1s cubic-bezier(.2,.7,.1,1) both;
+  }
+  .hero h1 .l1 span{animation-delay:.06s}
+  .hero h1 .l2 span{animation-delay:.16s}
+  .hero h1 .l3 span{animation-delay:.26s}
+  @keyframes rise{
+    from{transform:translateY(105%);opacity:0}
+    to{transform:translateY(0);opacity:1}
+  }
+
+  .hero-sub{
+    max-width:640px;
+    font-size:clamp(17px,1.5vw,21px);
+    line-height:1.55;
+    color:var(--ink-2);
+    margin:0 0 40px;
+  }
+  .hero-sub strong{
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  .hero-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    align-items:center;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 24px;
+    border-radius:999px;
+    font-family:var(--font-body);
+    font-size:15px;
+    font-weight:500;
+    letter-spacing:-0.005em;
+    transition:transform .2s ease,background .25s ease,color .25s ease,border-color .25s ease;
+    border:1px solid transparent;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn-primary:hover{background:var(--accent)}
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--ink);
+  }
+  .btn-secondary:hover{background:var(--ink);color:var(--paper)}
+  .btn .arrow{
+    transition:transform .25s ease;
+  }
+  .btn:hover .arrow{transform:translate(2px,-2px)}
+
+  .hero-aside{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding:24px 26px;
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    border-radius:18px;
+    max-width:520px;
+  }
+  .hero-aside-q{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+    font-style:italic;
+    font-size:clamp(20px,2.2vw,26px);
+    line-height:1.3;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .hero-aside-q::before{
+    content:"\201C";
+    color:var(--accent);
+    margin-right:.05em;
+  }
+  .hero-aside-q::after{content:"\201D";color:var(--accent)}
+  .hero-aside-cite{font-family:var(--font-mono);font-size:.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+
+  /* Stat strip */
+  .stat-strip{
+    margin-top:clamp(56px,8vw,112px);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .stat{
+    padding:28px 24px;
+    border-right:1px solid var(--rule);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .stat:last-child{border-right:0}
+  .stat-n{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 30;
+    font-size:clamp(40px,5vw,72px);
+    line-height:1;
+    letter-spacing:-0.03em;
+    color:var(--ink);
+  }
+  .stat-n em{
+    font-style:italic;
+    color:var(--accent);
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+  }
+  .stat-l{
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    max-width:200px;
+  }
+  @media (max-width:880px){
+    .stat-strip{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--rule)}
+  }
+
+  /* ---------- SECTION HEAD ---------- */
+  .section{
+    padding-top:clamp(88px,10vw,160px);
+    padding-bottom:clamp(48px,6vw,80px);
+  }
+  .section-head{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:end;
+    gap:28px;
+    padding-bottom:32px;
+    margin-bottom:56px;
+    border-bottom:1px solid var(--rule);
+  }
+  .section-head .roman{
+    font-size:clamp(64px,8vw,128px);
+    line-height:0.8;
+    letter-spacing:-0.04em;
+  }
+  .section-title{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 50;
+    font-size:clamp(32px,4vw,56px);
+    line-height:1;
+    letter-spacing:-0.02em;
+    margin:0;
+  }
+  .section-meta{
+    text-align:right;
+    max-width:280px;
+    color:var(--muted);
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    line-height:1.6;
+  }
+  @media (max-width:760px){
+    .section-head{grid-template-columns:1fr;gap:16px}
+    .section-meta{text-align:left;max-width:none}
+  }
+
+  /* ---------- WORK ---------- */
+  .filter{
+    display:flex;
+    align-items:center;
+    gap:0;
+    margin-bottom:48px;
+    border-bottom:1px solid var(--rule);
+  }
+  .filter button{
+    padding:14px 0;
+    margin-right:32px;
+    font-family:var(--font-mono);
+    font-size:.78rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    position:relative;
+    transition:color .25s ease;
+  }
+  .filter button .count{
+    color:var(--muted-2);
+    margin-left:8px;
+    font-size:.7em;
+  }
+  .filter button.active{color:var(--ink)}
+  .filter button.active::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:-1px;
+    height:2px;
+    background:var(--ink);
+  }
+  .filter button:hover{color:var(--ink)}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--rule);
+    border-left:1px solid var(--rule);
+  }
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:600px){.grid{grid-template-columns:1fr}}
+
+  .card{
+    background:var(--paper);
+    padding:32px 28px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    min-height:340px;
+    position:relative;
+    border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    transition:background .35s ease;
+  }
+  .card.hidden{display:none}
+  .card:hover{background:var(--paper-2)}
+  .card::after{
+    content:"";
+    position:absolute;
+    left:28px;right:28px;
+    bottom:0;
+    height:1px;
+    background:var(--accent);
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform .45s cubic-bezier(.2,.7,.1,1);
+  }
+  .card:hover::after{transform:scaleX(1)}
+
+  .card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted-2);
+  }
+  .card-head .idx{color:var(--ink-2)}
+
+  .card-body{display:flex;flex-direction:column;gap:14px;flex:1}
+  .card-row{display:flex;gap:18px;align-items:flex-start}
+  .card-icon{
+    width:64px;height:64px;
+    flex-shrink:0;
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--paper-3);
+    box-shadow:0 1px 0 rgba(0,0,0,0.04),inset 0 0 0 1px rgba(0,0,0,0.04);
+    display:grid;place-items:center;
+  }
+  .card-icon img{
+    width:100%;height:100%;
+    object-fit:cover;
+    border-radius:14px;
+  }
+  .card-icon.icon-contain img{
+    object-fit:contain;
+    padding:8px;
+  }
+  .card-title{flex:1;min-width:0}
+  .card-name{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 50;
+    font-weight:500;
+    font-size:24px;
+    line-height:1.1;
+    letter-spacing:-0.02em;
+    margin:0 0 4px;
+    color:var(--ink);
+  }
+  .card-cat{
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+  }
+  .card-desc{
+    margin:0;
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--ink-2);
+  }
+
+  .card-foot{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 16px;
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid var(--rule-soft);
+  }
+  .card-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-2);
+    padding:4px 0;
+    position:relative;
+    transition:color .2s ease;
+  }
+  .card-link::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:1px;
+    background:currentColor;
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform .3s ease;
+  }
+  .card-link:hover{color:var(--accent)}
+  .card-link:hover::after{transform:scaleX(1)}
+  .card-link.disabled{color:var(--muted-2);pointer-events:none}
+  .card-link .a{font-size:1.05em;line-height:1}
+
+  /* ---------- STACK ---------- */
+  .stack-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  @media (max-width:880px){.stack-grid{grid-template-columns:repeat(2,1fr)}}
+  .stack-col{
+    background:var(--paper);
+    padding:28px 24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .stack-col h4{
+    margin:0;
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    font-weight:600;
+  }
+  .stack-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .stack-col li{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 18;
+    font-size:18px;
+    color:var(--ink);
+    line-height:1.3;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .stack-col li::after{
+    content:attr(data-tag);
+    font-family:var(--font-mono);
+    font-size:.65rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted-2);
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+  }
+  @media (max-width:980px){.process-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.process-grid{grid-template-columns:1fr}}
+  .step{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    padding-top:24px;
+    border-top:1px solid var(--ink);
+    position:relative;
+  }
+  .step-n{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+    font-size:48px;
+    line-height:1;
+    color:var(--accent);
+    letter-spacing:-0.02em;
+  }
+  .step h3{
+    margin:0;
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 50;
+    font-size:24px;
+    line-height:1.1;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  .step p{
+    margin:0;
+    font-size:15px;
+    line-height:1.6;
+    color:var(--ink-2);
+  }
+  .step small{
+    margin-top:auto;
+    font-family:var(--font-mono);
+    font-size:.65rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    padding-top:clamp(80px,10vw,140px);
+    padding-bottom:clamp(80px,10vw,140px);
+    background:var(--ink);
+    color:var(--paper);
+    margin-top:120px;
+  }
+  .contact .container{position:relative}
+  .contact-eyebrow{
+    color:var(--paper-3);
+    margin-bottom:36px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .contact-eyebrow::before{
+    content:"";
+    width:42px;
+    height:1px;
+    background:var(--paper-3);
+  }
+  .contact h2{
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 50;
+    font-weight:400;
+    font-size:clamp(48px,8vw,120px);
+    line-height:1;
+    letter-spacing:-0.025em;
+    margin:0 0 48px;
+    color:var(--paper);
+  }
+  .contact h2 em{
+    font-style:italic;
+    color:#F5B49C;
+    font-variation-settings:"opsz" 144,"SOFT" 100;
+  }
+  .contact-email{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 144,"SOFT" 30;
+    font-size:clamp(22px,3vw,36px);
+    color:var(--paper);
+    padding-bottom:10px;
+    border-bottom:1px solid var(--paper-3);
+    letter-spacing:-0.01em;
+    transition:color .25s ease,border-color .25s ease;
+  }
+  .contact-email:hover{color:#F5B49C;border-color:#F5B49C}
+  .contact-meta{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    padding-top:32px;
+    border-top:1px solid rgba(242,237,227,0.18);
+  }
+  @media (max-width:760px){.contact-meta{grid-template-columns:1fr}}
+  .contact-block h5{
+    margin:0 0 8px;
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-3);
+    font-weight:500;
+  }
+  .contact-block p,.contact-block a{
+    margin:0;
+    font-family:var(--font-display);
+    font-variation-settings:"opsz" 18;
+    font-size:17px;
+    line-height:1.4;
+    color:var(--paper);
+  }
+  .contact-block a{display:inline-block;border-bottom:1px solid transparent;transition:border-color .25s ease}
+  .contact-block a:hover{border-color:var(--paper-3)}
+
+  /* ---------- FOOTER ---------- */
+  footer.colophon{
+    padding:32px 0 40px;
+    background:var(--ink);
+    color:var(--paper-3);
+  }
+  footer.colophon hr{border:0;border-top:1px solid rgba(242,237,227,0.12);margin-bottom:24px}
+  .col-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .col-grid .left,.col-grid .right{
+    font-family:var(--font-mono);
+    font-size:.68rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+  }
+  .col-grid .center{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-variation-settings:"opsz" 18,"SOFT" 100;
+    font-size:14px;
+    color:var(--paper);
+  }
+
+  /* Utility */
+  .ext{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  ::selection{background:var(--accent);color:var(--paper)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+  /* Stagger entrance for cards */
+  .card{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease,background .35s ease}
+  .card.in{opacity:1;transform:translateY(0)}
+</style>
 </head>
 <body>
-    <!-- Elegant Background -->
-    <div class="bg-wrapper">
-        <div class="bg-gradient"></div>
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-        <div class="noise"></div>
+
+<!-- ================= TOP BAR ================= -->
+<nav class="topbar" aria-label="Primary">
+  <div class="container topbar-inner">
+    <a href="#top" class="brand" aria-label="Ayoub Benderdouch — home">
+      <span class="brand-mark" aria-hidden="true">A</span>
+      <span class="brand-name">Ayoub Benderdouch <span>— Studio</span></span>
+    </a>
+
+    <div class="status" role="status" aria-live="polite">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span class="mono" style="color:var(--ink-2)">Available — Booking <span id="booking-window">June / July 2026</span></span>
     </div>
 
-    <div class="container">
-        <header>
-            <span class="header-badge">Fullstack Developer</span>
-            <h1>My Portfolio</h1>
-            <p class="subtitle">Beautiful apps and websites designed to make your life easier</p>
-        </header>
+    <div class="topnav">
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#process">Process</a>
+      <a href="#contact" class="cta">Hire</a>
+    </div>
+  </div>
+</nav>
 
-        <!-- Tab Navigation -->
-        <div class="tab-navigation">
-            <button class="tab-btn active" data-tab="apps">Apps</button>
-            <button class="tab-btn" data-tab="webseiten">Websites</button>
-        </div>
+<!-- ================= META STRIP ================= -->
+<div class="container">
+  <div class="meta-strip">
+    <span>Berlin, Germany &nbsp;·&nbsp; <span id="local-time">--:--</span> CET</span>
+    <span>The Folio &nbsp;·&nbsp; Vol. VI &nbsp;·&nbsp; Issue No. 01</span>
+    <span>Est. 2020 &nbsp;·&nbsp; ayoubportfolio.site</span>
+  </div>
+  <hr class="rule">
+</div>
 
-        <!-- Apps Section -->
-        <div id="apps" class="tab-content active">
-            <div class="apps-grid">
-                <!-- ChangeDinar -->
-                <div class="app-card changedinar">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="changedinaricon.webp" type="image/webp">
-                        <img src="changedinaricon.png" alt="Change Dinar">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Change Dinar</h2>
-                    <span class="badge">Currency Exchange</span>
-                    <p class="app-description">Real-time EUR/USD to DZD exchange rates. Track the Algerian Dinar with live updates.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/change-dinar/id6742030993" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.zaed.changedinar" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                        <a href="https://appgallery.huawei.com/#/app/C116572695" class="download-btn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M2.133 10.027a1.71 1.71 0 0 1-.073-.123c-.066-.123-.11-.24-.147-.357-.028-.086-.05-.172-.06-.261a1.63 1.63 0 0 1-.015-.222c0-.377.104-.748.29-1.072.118-.208.27-.399.436-.567a4.37 4.37 0 0 1 .623-.526c.258-.185.534-.352.813-.505a14.27 14.27 0 0 1 1.74-.816c.49-.19.991-.36 1.503-.503.67-.19 1.35-.339 2.038-.453.09-.015.18-.03.27-.042a23.32 23.32 0 0 1 3.43-.239c1.19 0 2.376.082 3.546.247.09.012.18.027.27.042a15.88 15.88 0 0 1 2.037.453c.512.144 1.014.314 1.503.503.602.227 1.182.503 1.74.816.28.153.555.32.814.505.224.161.432.338.623.526.165.168.317.36.435.567.187.324.291.695.291 1.072 0 .074-.005.148-.015.222a1.55 1.55 0 0 1-.06.261 1.88 1.88 0 0 1-.147.357 1.71 1.71 0 0 1-.073.123c-.02.031-.041.062-.063.091a2.66 2.66 0 0 1-.22.261l-.018.018a4.87 4.87 0 0 1-.548.47c-.259.194-.535.367-.82.526-.485.27-.999.496-1.528.686-.605.217-1.232.391-1.871.52-.848.172-1.715.281-2.59.324-.3.015-.601.023-.903.023-.302 0-.603-.008-.903-.023a17.54 17.54 0 0 1-2.59-.324 13.35 13.35 0 0 1-1.871-.52 10.03 10.03 0 0 1-1.528-.686 7.82 7.82 0 0 1-.82-.526 4.87 4.87 0 0 1-.548-.47l-.018-.018a2.66 2.66 0 0 1-.22-.261 1.06 1.06 0 0 1-.063-.091zm9.858 8.128c3.625 0 6.564-2.94 6.564-6.564 0-1.092-.267-2.122-.739-3.027-1.612.727-3.64 1.153-5.825 1.153-2.185 0-4.213-.426-5.825-1.153a6.53 6.53 0 0 0-.739 3.027c0 3.625 2.94 6.564 6.564 6.564z"/>
-                            </svg>
-                            AppGallery
-                        </a>
-                    </div>
-                </div>
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="hero-eyebrow eyebrow">
+      <span>Ayoub Benderdouch</span><span style="color:var(--ink-2)">— Freelance Mobile Developer</span>
+    </div>
 
-                <!-- Rain Sounds -->
-                <div class="app-card rain-sounds">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="rainsoundsicon.webp" type="image/webp">
-                        <img src="rainsoundsicon.png" alt="Rain Sounds">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Rain Sounds</h2>
-                    <span class="badge">Sleep & Relaxing</span>
-                    <p class="app-description">Fall asleep faster with calming nature sounds. Rain, ocean waves, fireplace and more.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+    <h1 class="display">
+      <span class="line l1"><span>Six years.</span></span>
+      <span class="line l2"><span>Thirty apps.</span></span>
+      <span class="line l3"><span><em>One pair of hands.</em></span></span>
+    </h1>
 
-                <!-- Saf9ty -->
-                <div class="app-card saf9ty">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="saf9ty-logo.webp" type="image/webp">
-                        <img src="saf9ty-logo.png" alt="Saf9ty">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Saf9ty - صفقتي</h2>
-                    <span class="badge">E-Commerce</span>
-                    <p class="app-description">Algeria's first e-commerce platform connecting merchants with affiliate marketers. Sell and promote products with ease.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.saf9ty.app" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+    <p class="hero-sub">
+      Native iOS in <strong>SwiftUI</strong>. Android in <strong>Kotlin & Flutter</strong>. <strong>Laravel</strong> backends and admin dashboards. Designed, coded, submitted to the stores and supported after launch — by one developer working out of Berlin for founders who want their app shipped, not promised.
+    </p>
 
-                <!-- Fitrigi Ride -->
-                <div class="app-card fitrigi-ride">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="fitrigi-ride-icon.webp" type="image/webp">
-                        <img src="fitrigi-ride-icon.png" alt="Fitrigi Ride">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Fitrigi Ride</h2>
-                    <span class="badge">Transportation</span>
-                    <p class="app-description">Ride sharing app for easy and affordable transportation.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/fitrigi/id6756182620" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.fitrigi.Ride" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+    <div class="hero-ctas">
+      <a href="mailto:ayoubbenderdouch@gmail.com?subject=New%20project%20%E2%80%94%20enquiry&body=Hi%20Ayoub%2C%0A%0AI%27m%20%5Bname%5D%20from%20%5Bcompany%5D.%20We%27re%20looking%20for%20%5Bplatform%2C%20short%20scope%5D.%0AOur%20rough%20budget%20is%20%5B%E2%82%AC%5D%20and%20we%27d%20like%20to%20start%20by%20%5Bdate%5D.%0A%0AThanks%2C%0A%5Bname%5D" class="btn btn-primary">
+        Start a project
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a href="#work" class="btn btn-secondary">
+        See selected work
+      </a>
+    </div>
 
-                <!-- Fitrigi Chauffeur -->
-                <div class="app-card fitrigi-chauffeur">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="fitrigi-driver-icon.webp" type="image/webp">
-                        <img src="fitrigi-driver-icon.png" alt="Fitrigi Chauffeur">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Fitrigi Chauffeur</h2>
-                    <span class="badge">Driver App</span>
-                    <p class="app-description">Driver app for Fitrigi. Manage city & intercity rides, drive safely and earn with ease across Algeria.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/fitrigi-chauffeur/id6756183013" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.fitrigi.driver" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+    <!-- Stat strip -->
+    <div class="stat-strip" role="list">
+      <div class="stat" role="listitem">
+        <div class="stat-n">30<em>+</em></div>
+        <div class="stat-l">Projects shipped<br>2020 – 2026</div>
+      </div>
+      <div class="stat" role="listitem">
+        <div class="stat-n">12</div>
+        <div class="stat-l">Apps live on App Store &amp; Play</div>
+      </div>
+      <div class="stat" role="listitem">
+        <div class="stat-n">6</div>
+        <div class="stat-l">Years writing production code</div>
+      </div>
+      <div class="stat" role="listitem">
+        <div class="stat-n">74<em>k</em></div>
+        <div class="stat-l">Community on Instagram<br>@ayoub_benderdouch</div>
+      </div>
+    </div>
+  </div>
+</header>
 
-                <!-- FaydaLik -->
-                <div class="app-card faydalik">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="faydalik-icon.webp" type="image/webp">
-                        <img src="faydalik-icon.png" alt="FaydaLik">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">FaydaLik</h2>
-                    <span class="badge">Affiliate Marketing</span>
-                    <p class="app-description">Algeria's first affiliate marketing app. Share products on social media and earn commissions on every sale.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/faydalik/id6753982539" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="#" class="download-btn android coming-soon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Coming Soon
-                        </a>
-                    </div>
-                </div>
-                <!-- Athani Pro -->
-                <div class="app-card athani-pro">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="athanologo.webp" type="image/webp">
-                        <img src="athanologo.png" alt="Athani Pro">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Athani Pro</h2>
-                    <span class="badge">Muslim Prayer</span>
-                    <p class="app-description">Accurate prayer times, Adhan notifications, Qibla finder and Hijri calendar.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="#" class="download-btn android coming-soon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Coming Soon
-                        </a>
-                    </div>
-                </div>
+<!-- ================= WORK ================= -->
+<section class="section" id="work">
+  <div class="container">
+    <header class="section-head">
+      <span class="roman">I.</span>
+      <h2 class="section-title">Selected work</h2>
+      <p class="section-meta">A working catalogue — <br>twenty-two projects, <br>2020 through 2026.</p>
+    </header>
 
-                <!-- Yasfir -->
-                <div class="app-card yasfir-app">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="ysafer-logo.webp" type="image/webp">
-                        <img src="ysafer-logo.png" alt="Yasfir">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Yasfir</h2>
-                    <span class="badge">Visa & Tickets</span>
-                    <p class="app-description">Connect with trusted agents in Algeria to buy visas, flight tickets and travel services with ease.</p>
-                    <div class="download-buttons">
-                        <a href="https://apps.apple.com/us/app/ysafer/id6761107182" class="download-btn ios">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.yasfir.customer" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+    <div class="filter" role="tablist" aria-label="Project type">
+      <button class="active" role="tab" aria-selected="true" data-filter="app">Apps <span class="count">10</span></button>
+      <button role="tab" aria-selected="false" data-filter="web">Websites &amp; Platforms <span class="count">12</span></button>
+      <button role="tab" aria-selected="false" data-filter="all">All <span class="count">22</span></button>
+    </div>
 
-                <!-- Yasfir Agency -->
-                <div class="app-card yasfir-agency-app">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="ysafer-logo.webp" type="image/webp">
-                        <img src="ysafer-logo.png" alt="Yasfir Agency">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Yasfir Agency</h2>
-                    <span class="badge">Agent Dashboard</span>
-                    <p class="app-description">The agent-side app for Yasfir — manage bookings, handle visa and ticket requests, and serve your customers efficiently.</p>
-                    <div class="download-buttons">
-                        <a href="https://play.google.com/store/apps/details?id=com.yasfir.agency" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+    <div class="grid" id="grid">
 
-                <!-- SmartDoc -->
-                <div class="app-card smartdoc-app">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="smartdocdz-logo.webp" type="image/webp">
-                        <img src="smartdocdz-logo.png" alt="SmartDoc">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">SmartDoc</h2>
-                    <span class="badge">Healthcare</span>
-                    <p class="app-description">Book doctor appointments online in Algeria. Find the right specialist, schedule consultations and manage your medical care with ease.</p>
-                    <div class="download-buttons">
-                        <a href="https://play.google.com/store/apps/details?id=com.tizi.client" class="download-btn android">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                            </svg>
-                            Google Play
-                        </a>
-                    </div>
-                </div>
+      <!-- ===== APPS ===== -->
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">001</span><span>2026 · iOS · Android · HarmonyOS</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="changedinaricon.webp" type="image/webp">
+                <img src="changedinaricon.png" alt="Change Dinar icon" loading="lazy">
+              </picture>
             </div>
-        </div>
-
-        <!-- Websites Section -->
-        <div id="webseiten" class="tab-content">
-            <div class="apps-grid">
-                <!-- 1. ReloadX -->
-                <div class="app-card reloadx">
-                    <div class="app-icon website-icon reloadx-icon">
-                        <picture>
-                        <source srcset="reloadx-logo.webp" type="image/webp">
-                        <img src="reloadx-logo.png" alt="ReloadX">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">ReloadX</h2>
-                    <span class="badge">Gaming & Gift Cards</span>
-                    <p class="app-description">Digital marketplace for game cards, gift cards, and premium gaming subscriptions.</p>
-                    <div class="download-buttons">
-                        <a href="https://reloadx.co/" target="_blank" class="download-btn visit-site-reloadx">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 2. Thinkxie -->
-                <div class="app-card thinkxie">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="thinkxie-logo.webp" type="image/webp">
-                        <img src="thinkxie-logo.png" alt="Thinkxie">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Thinkxie</h2>
-                    <span class="badge">Digital Agency</span>
-                    <p class="app-description">Creative digital solutions. Modern web presence for innovative businesses.</p>
-                    <div class="download-buttons">
-                        <a href="https://www.thinkxie.com/" target="_blank" class="download-btn visit-site-thinkxie">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 3. Ysafer -->
-                <div class="app-card ysafer">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="ysafer-logo.webp" type="image/webp">
-                        <img src="ysafer-logo.png" alt="Ysafer">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Ysafer</h2>
-                    <span class="badge">Travel Platform</span>
-                    <p class="app-description">Algeria's leading travel platform. Search and book Umrah, Hajj & tourism trips from verified agencies.</p>
-                    <div class="download-buttons">
-                        <a href="https://ysafer.com/" target="_blank" class="download-btn visit-site-ysafer">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 4. SmartDocDZ -->
-                <div class="app-card smartdocdz">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="smartdocdz-logo.webp" type="image/webp">
-                        <img src="smartdocdz-logo.png" alt="SmartDocDZ">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">SmartDocDZ</h2>
-                    <span class="badge">Healthcare</span>
-                    <p class="app-description">Medical appointment booking platform for Algeria. Find doctors, check availability & book appointments in a few clicks.</p>
-                    <div class="download-buttons">
-                        <a href="https://smartdocdz.com/" target="_blank" class="download-btn visit-site-smartdocdz">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 5. AlBabor -->
-                <div class="app-card albabor">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="albabor-logo.webp" type="image/webp">
-                        <img src="albabor-logo.png" alt="AlBabor">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">AlBabor</h2>
-                    <span class="badge">Nautical Marketplace</span>
-                    <p class="app-description">Algeria's #1 nautical marketplace. Buy & sell boats, jet-skis, engines and marine parts with confidence.</p>
-                    <div class="download-buttons">
-                        <a href="https://albabor.com/" target="_blank" class="download-btn visit-site-albabor">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Saf9ty Website -->
-                <div class="app-card saf9ty">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="saf9ty-logo.webp" type="image/webp">
-                        <img src="saf9ty-logo.png" alt="Saf9ty">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Saf9ty - صفقتي</h2>
-                    <span class="badge">E-Commerce Platform</span>
-                    <p class="app-description">Algeria's first e-commerce platform connecting merchants with affiliate marketers. Manage products, orders & commissions.</p>
-                    <div class="download-buttons">
-                        <a href="https://saf9ty.com/" target="_blank" class="download-btn visit-site-saf9ty">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Yachtei -->
-                <div class="app-card yachtei">
-                    <div class="app-icon yachtei-icon">
-                        <img src="yachtei-emblem.svg" alt="Yachtei" style="width:100%;height:100%;object-fit:contain;border-radius:0;padding:12px;">
-                    </div>
-                    <h2 class="app-name">Yachtei</h2>
-                    <span class="badge">Marine Rentals</span>
-                    <p class="app-description">Premium yacht, boat & jet ski rentals in Algeria. Book luxury marine experiences with trusted operators, all in one platform.</p>
-                    <div class="download-buttons">
-                        <a href="https://yachtei.com/" target="_blank" class="download-btn visit-site-yachtei">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 8. ISRAA Collections -->
-                <div class="app-card client-work">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="israa-logo.webp" type="image/webp">
-                        <img src="israa-logo.jpg" alt="ISRAA Collections">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">ISRAA Collections</h2>
-                    <span class="badge">E-Commerce</span>
-                    <p class="app-description">Online clothing store for women. Beautiful, modern design with a seamless shopping experience.</p>
-                    <div class="download-buttons">
-                        <a href="https://clothes-store-femme.vercel.app/" target="_blank" class="download-btn visit-site">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-
-                <!-- 6. Radiant Body -->
-                <div class="app-card radiant-body">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="radiant-body-logo.webp" type="image/webp">
-                        <img src="radiant-body-logo.png" alt="Radiant Body">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Radiant Body</h2>
-                    <span class="badge">Health & Wellness</span>
-                    <p class="app-description">Wellness and health platform. Helping you achieve your best self with modern solutions.</p>
-                    <div class="download-buttons">
-                        <a href="https://radiant-body.com/" target="_blank" class="download-btn visit-site-radiant-body">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 10. Polo Boissons -->
-                <div class="app-card polo">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="polo-logo.webp" type="image/webp">
-                        <img src="polo-logo.png" alt="Polo Boissons">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Polo Boissons</h2>
-                    <span class="badge">Beverages</span>
-                    <p class="app-description">Premium beverage company website. Modern bilingual design serving diverse markets.</p>
-                    <div class="download-buttons">
-                        <a href="https://www.poloboissons.com/" target="_blank" class="download-btn visit-site-polo">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 11. Diline Academy -->
-                <div class="app-card dilin">
-                    <div class="app-icon website-icon dilin-icon">
-                        <img src="dilin-logo.png" alt="Diline Academy">
-                    </div>
-                    <h2 class="app-name">Diline Academy</h2>
-                    <span class="badge">E-Learning</span>
-                    <p class="app-description">Online Turkish language learning platform for Algerian students. A1 to C2 with live sessions, quizzes & PDF materials.</p>
-                    <div class="download-buttons">
-                        <a href="https://dilin.academy/" target="_blank" class="download-btn visit-site-dilin">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 12. Mido Froid -->
-                <div class="app-card midoufroid">
-                    <div class="app-icon website-icon midoufroid-icon">
-                        <img src="midoufroid-logo.png" alt="Mido Froid">
-                    </div>
-                    <h2 class="app-name">Mido Froid</h2>
-                    <span class="badge">E-Commerce</span>
-                    <p class="app-description">Algerian online store for home appliances & spare parts. Delivery across all 58 wilayas with cash on delivery.</p>
-                    <div class="download-buttons">
-                        <a href="https://midoufroid.com/" target="_blank" class="download-btn visit-site-midoufroid">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
+            <div class="card-title">
+              <h3 class="card-name">Change Dinar</h3>
+              <p class="card-cat">Currency Exchange</p>
             </div>
+          </div>
+          <p class="card-desc">Real-time EUR / USD / GBP to DZD exchange rates with live updates, history charts and conversion shortcuts.</p>
         </div>
-
-        <footer>
-            <p>&copy; 2026 Ayoub Benderdouch. All rights reserved.</p>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/change-dinar/id6742030993" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.zaed.changedinar" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+          <a class="card-link" href="https://appgallery.huawei.com/#/app/C116572695" target="_blank" rel="noopener"><span class="a">↗</span> AppGallery</a>
         </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">002</span><span>2026 · iOS · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="rainsoundsicon.webp" type="image/webp">
+                <img src="rainsoundsicon.png" alt="Rain Sounds icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Rain Sounds</h3>
+              <p class="card-cat">Sleep &amp; Relaxation</p>
+            </div>
+          </div>
+          <p class="card-desc">Fall asleep faster with calming nature soundscapes — rain, ocean waves, fireplace, white noise and timed mixes.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">003</span><span>2026 · iOS · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="saf9ty-logo.webp" type="image/webp">
+                <img src="saf9ty-logo.png" alt="Saf9ty icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Saf9ty — صفقتي</h3>
+              <p class="card-cat">E-commerce · Affiliate</p>
+            </div>
+          </div>
+          <p class="card-desc">Algeria's first marketplace connecting merchants with affiliate marketers. Sell, promote and track commissions in one app.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.saf9ty.app" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">004</span><span>2026 · iOS · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="fitrigi-ride-icon.webp" type="image/webp">
+                <img src="fitrigi-ride-icon.png" alt="Fitrigi Ride icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Fitrigi Ride</h3>
+              <p class="card-cat">Ride-hailing · Passenger</p>
+            </div>
+          </div>
+          <p class="card-desc">Ride-sharing app with city &amp; intercity routes, real-time driver tracking, fare estimates and in-app payments.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/fitrigi/id6756182620" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.fitrigi.Ride" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">005</span><span>2026 · iOS · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="fitrigi-driver-icon.webp" type="image/webp">
+                <img src="fitrigi-driver-icon.png" alt="Fitrigi Chauffeur icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Fitrigi Chauffeur</h3>
+              <p class="card-cat">Ride-hailing · Driver</p>
+            </div>
+          </div>
+          <p class="card-desc">The driver-side companion to Fitrigi — accept rides, navigate, manage earnings and stay online across all 58 Algerian wilayas.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/fitrigi-chauffeur/id6756183013" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.fitrigi.driver" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">006</span><span>2026 · iOS</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="faydalik-icon.webp" type="image/webp">
+                <img src="faydalik-icon.png" alt="FaydaLik icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">FaydaLik</h3>
+              <p class="card-cat">Affiliate Marketing</p>
+            </div>
+          </div>
+          <p class="card-desc">Share products on social media and earn a commission on every sale — Algeria's first dedicated affiliate marketing app.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/faydalik/id6753982539" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <span class="card-link disabled">Android · Coming Soon</span>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">007</span><span>2026 · iOS</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="athanologo.webp" type="image/webp">
+                <img src="athanologo.png" alt="Athani Pro icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Athani Pro</h3>
+              <p class="card-cat">Prayer Times · Lifestyle</p>
+            </div>
+          </div>
+          <p class="card-desc">Accurate prayer times, Adhan notifications, Qibla finder and a Hijri calendar with widgets — built natively in SwiftUI.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <span class="card-link disabled">Android · Coming Soon</span>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">008</span><span>2026 · iOS · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="ysafer-logo.webp" type="image/webp">
+                <img src="ysafer-logo.png" alt="Yasfir icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Yasfir</h3>
+              <p class="card-cat">Travel · Visa &amp; Tickets</p>
+            </div>
+          </div>
+          <p class="card-desc">Connect with trusted agents in Algeria to buy visas, flight tickets and travel packages — bookings, payments and itinerary in one place.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://apps.apple.com/us/app/ysafer/id6761107182" target="_blank" rel="noopener"><span class="a">↗</span> App Store</a>
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.yasfir.customer" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">009</span><span>2026 · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="ysafer-logo.webp" type="image/webp">
+                <img src="ysafer-logo.png" alt="Yasfir Agency icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Yasfir Agency</h3>
+              <p class="card-cat">Operator Dashboard</p>
+            </div>
+          </div>
+          <p class="card-desc">The agent-side app for Yasfir — manage bookings, fulfill visa &amp; ticket requests and serve customers from the field.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.yasfir.agency" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="app">
+        <header class="card-head"><span class="idx">010</span><span>2025 · Android</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="smartdocdz-logo.webp" type="image/webp">
+                <img src="smartdocdz-logo.png" alt="SmartDoc icon" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">SmartDoc</h3>
+              <p class="card-cat">Healthcare · Booking</p>
+            </div>
+          </div>
+          <p class="card-desc">Find the right specialist, book consultations and manage your medical history — clinic-grade scheduling in your pocket.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.tizi.client" target="_blank" rel="noopener"><span class="a">↗</span> Google Play</a>
+        </footer>
+      </article>
+
+      <!-- ===== WEBSITES ===== -->
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">011</span><span>2025 · Laravel · Filament</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="reloadx-logo.webp" type="image/webp">
+                <img src="reloadx-logo.png" alt="ReloadX logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">ReloadX</h3>
+              <p class="card-cat">Gift Cards · Gaming</p>
+            </div>
+          </div>
+          <p class="card-desc">Digital marketplace for game cards, gift cards and premium gaming subscriptions — full storefront, admin and payments.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://reloadx.co/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">012</span><span>2024 · Vue · Tailwind</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="thinkxie-logo.webp" type="image/webp">
+                <img src="thinkxie-logo.png" alt="Thinkxie logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Thinkxie</h3>
+              <p class="card-cat">Digital Agency</p>
+            </div>
+          </div>
+          <p class="card-desc">Modern web presence and content platform for a creative digital agency — fast, multilingual and SEO-ready.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://www.thinkxie.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">013</span><span>2025 · Laravel · Vue</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="ysafer-logo.webp" type="image/webp">
+                <img src="ysafer-logo.png" alt="Ysafer logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Ysafer</h3>
+              <p class="card-cat">Travel Platform</p>
+            </div>
+          </div>
+          <p class="card-desc">Algeria's leading travel platform — search and book Umrah, Hajj and tourism trips from verified agencies in one place.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://ysafer.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">014</span><span>2024 · Laravel</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="smartdocdz-logo.webp" type="image/webp">
+                <img src="smartdocdz-logo.png" alt="SmartDocDZ logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">SmartDocDZ</h3>
+              <p class="card-cat">Healthcare Platform</p>
+            </div>
+          </div>
+          <p class="card-desc">Medical appointment booking platform — find doctors, check availability and book consultations in a few clicks.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://smartdocdz.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">015</span><span>2025 · Laravel · Filament</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="albabor-logo.webp" type="image/webp">
+                <img src="albabor-logo.png" alt="AlBabor logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">AlBabor</h3>
+              <p class="card-cat">Nautical Marketplace</p>
+            </div>
+          </div>
+          <p class="card-desc">Algeria's #1 nautical marketplace — buy and sell boats, jet-skis, engines and marine parts with verified listings.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://albabor.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">016</span><span>2026 · Laravel · Vue</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="saf9ty-logo.webp" type="image/webp">
+                <img src="saf9ty-logo.png" alt="Saf9ty logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Saf9ty — Dashboard</h3>
+              <p class="card-cat">Merchant Console</p>
+            </div>
+          </div>
+          <p class="card-desc">Companion web dashboard for Saf9ty merchants — manage products, orders, affiliates and commission payouts.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://saf9ty.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">017</span><span>2025 · Vue · TypeScript</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <img src="yachtei-emblem.svg" alt="Yachtei emblem" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:10px;">
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Yachtei</h3>
+              <p class="card-cat">Marine Rentals</p>
+            </div>
+          </div>
+          <p class="card-desc">Premium yacht, boat and jet-ski rentals in Algeria — book luxury marine experiences with trusted operators, end-to-end.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://yachtei.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">018</span><span>2024 · Next.js</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon">
+              <picture>
+                <source srcset="israa-logo.webp" type="image/webp">
+                <img src="israa-logo.jpg" alt="ISRAA Collections logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">ISRAA Collections</h3>
+              <p class="card-cat">Fashion E-commerce</p>
+            </div>
+          </div>
+          <p class="card-desc">Online clothing store for women — clean catalog, refined product detail pages and a seamless checkout experience.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://clothes-store-femme.vercel.app/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">019</span><span>2024 · Laravel</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="radiant-body-logo.webp" type="image/webp">
+                <img src="radiant-body-logo.png" alt="Radiant Body logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Radiant Body</h3>
+              <p class="card-cat">Health &amp; Wellness</p>
+            </div>
+          </div>
+          <p class="card-desc">Wellness platform with appointment flows, product catalogue and editorial content — a clinic-grade web presence.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://radiant-body.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">020</span><span>2023 · WordPress</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <picture>
+                <source srcset="polo-logo.webp" type="image/webp">
+                <img src="polo-logo.png" alt="Polo Boissons logo" loading="lazy">
+              </picture>
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Polo Boissons</h3>
+              <p class="card-cat">Beverage Brand</p>
+            </div>
+          </div>
+          <p class="card-desc">Premium beverage company website — modern bilingual design serving FR / AR markets with a fully editable catalogue.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://www.poloboissons.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">021</span><span>2026 · Laravel · Filament</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <img src="dilin-logo.png" alt="Diline Academy logo" loading="lazy">
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Diline Academy</h3>
+              <p class="card-cat">E-Learning · Languages</p>
+            </div>
+          </div>
+          <p class="card-desc">Online Turkish learning platform — A1 to C2, with live sessions, quizzes, PDF materials and student progress tracking.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://dilin.academy/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
+      <article class="card" data-cat="web">
+        <header class="card-head"><span class="idx">022</span><span>2025 · Laravel · COD</span></header>
+        <div class="card-body">
+          <div class="card-row">
+            <div class="card-icon icon-contain">
+              <img src="midoufroid-logo.png" alt="Mido Froid logo" loading="lazy">
+            </div>
+            <div class="card-title">
+              <h3 class="card-name">Mido Froid</h3>
+              <p class="card-cat">Appliances E-commerce</p>
+            </div>
+          </div>
+          <p class="card-desc">Online store for home appliances and spare parts — delivery across all 58 wilayas with full cash-on-delivery logistics.</p>
+        </div>
+        <footer class="card-foot">
+          <a class="card-link" href="https://midoufroid.com/" target="_blank" rel="noopener"><span class="a">↗</span> Visit website</a>
+        </footer>
+      </article>
+
     </div>
+  </div>
+</section>
 
-    <script>
-        // Tab switching functionality
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+<!-- ================= STACK ================= -->
+<section class="section" id="stack">
+  <div class="container">
+    <header class="section-head">
+      <span class="roman">II.</span>
+      <h2 class="section-title">Toolbox</h2>
+      <p class="section-meta">Native where it matters.<br>Pragmatic everywhere else.</p>
+    </header>
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const tabId = button.getAttribute('data-tab');
+    <div class="stack-grid">
+      <div class="stack-col">
+        <h4>Mobile · Native</h4>
+        <ul>
+          <li data-tag="iOS">SwiftUI</li>
+          <li data-tag="iOS">UIKit</li>
+          <li data-tag="Android">Kotlin</li>
+          <li data-tag="Android">Jetpack Compose</li>
+          <li data-tag="X-Platform">Flutter · Dart</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>Backend · APIs</h4>
+        <ul>
+          <li data-tag="PHP">Laravel 11 / 12</li>
+          <li data-tag="Node">Node.js · Express</li>
+          <li data-tag="DB">MySQL · PostgreSQL</li>
+          <li data-tag="BaaS">Firebase · Supabase</li>
+          <li data-tag="Admin">Filament 3</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>Web · Front</h4>
+        <ul>
+          <li data-tag="SPA">Vue 3 · Pinia</li>
+          <li data-tag="SPA">React · Next</li>
+          <li data-tag="Lang">TypeScript</li>
+          <li data-tag="CSS">Tailwind CSS</li>
+          <li data-tag="Build">Vite</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>Ship · Payments</h4>
+        <ul>
+          <li data-tag="Cloud">Railway · Vercel</li>
+          <li data-tag="Cloud">Laravel Cloud</li>
+          <li data-tag="Stores">App Store · Play Console</li>
+          <li data-tag="$">Stripe · IAP · Play Billing</li>
+          <li data-tag="Comms">RevenueCat · OneSignal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
+<!-- ================= PROCESS ================= -->
+<section class="section" id="process">
+  <div class="container">
+    <header class="section-head">
+      <span class="roman">III.</span>
+      <h2 class="section-title">How we'll work</h2>
+      <p class="section-meta">Fixed scope. Fixed price.<br>Weekly builds you can hold.</p>
+    </header>
 
-                // Add active class to clicked button and corresponding content
-                button.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
+    <div class="process-grid">
+      <div class="step">
+        <span class="step-n">i</span>
+        <h3>Brief</h3>
+        <p>A 30-minute call. We agree on scope, milestones and a single fixed price — written down before any code is written.</p>
+        <small>Week 0</small>
+      </div>
+      <div class="step">
+        <span class="step-n">ii</span>
+        <h3>Build</h3>
+        <p>Daily commits to a private repo. TestFlight or an internal Play track from week one. A short demo every Friday — no surprises.</p>
+        <small>Week 1 — 6</small>
+      </div>
+      <div class="step">
+        <span class="step-n">iii</span>
+        <h3>Ship</h3>
+        <p>App Store and Play Store submission — screenshots, copy, ASO and review responses handled. Your launch day, not mine.</p>
+        <small>Submission week</small>
+      </div>
+      <div class="step">
+        <span class="step-n">iv</span>
+        <h3>Stay</h3>
+        <p>Post-launch fixes inside 48 hours for 30 days. Then a clean handover, or stay on a monthly retainer — your call.</p>
+        <small>Beyond launch</small>
+      </div>
+    </div>
+  </div>
+</section>
 
-                // Reset animations for cards in the new tab
-                const cards = document.getElementById(tabId).querySelectorAll('.app-card');
-                cards.forEach((card, index) => {
-                    card.style.animation = 'none';
-                    card.offsetHeight; // Trigger reflow
-                    card.style.animation = `fadeInUp 0.8s ease forwards ${index * 0.1}s`;
-                });
-            });
-        });
-    </script>
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-eyebrow eyebrow" style="color:var(--paper-3)">
+      <span style="color:var(--paper-3)">IV.</span><span>Let's talk</span>
+    </div>
+    <h2>
+      Have an idea
+      worth <em>shipping?</em>
+    </h2>
+    <a class="contact-email" href="mailto:ayoubbenderdouch@gmail.com?subject=New%20project%20%E2%80%94%20enquiry">
+      ayoubbenderdouch@gmail.com
+      <span aria-hidden="true">↗</span>
+    </a>
+
+    <div class="contact-meta">
+      <div class="contact-block">
+        <h5>Studio</h5>
+        <p>Berlin, Germany — UTC+1.<br>Working with founders across the EU &amp; US.</p>
+      </div>
+      <div class="contact-block">
+        <h5>Booking window</h5>
+        <p>Now booking June &amp; July 2026.<br>One project at a time.</p>
+      </div>
+      <div class="contact-block">
+        <h5>Elsewhere</h5>
+        <p>
+          <a href="https://instagram.com/ayoub_benderdouch" target="_blank" rel="noopener">Instagram ↗</a><br>
+          <a href="https://github.com/ayoubbenderdouch" target="_blank" rel="noopener">GitHub ↗</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="colophon">
+  <div class="container">
+    <hr>
+    <div class="col-grid">
+      <div class="left">© 2020 — 2026 &nbsp;·&nbsp; Ayoub Benderdouch Studio</div>
+      <div class="center">— Built by hand in Berlin. Set in Fraunces. —</div>
+      <div class="right">ayoubportfolio.site &nbsp;·&nbsp; <a href="/privacy-policy.html">Privacy</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ----- Local time (Berlin)
+  function updateTime(){
+    try{
+      const d = new Date();
+      const t = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Europe/Berlin'}).format(d);
+      const el = document.getElementById('local-time');
+      if(el) el.textContent = t;
+    }catch(_){}
+  }
+  updateTime();
+  setInterval(updateTime,30000);
+
+  // ----- Project filter
+  const filterBtns = document.querySelectorAll('.filter button');
+  const cards = document.querySelectorAll('#grid .card');
+  function applyFilter(type){
+    cards.forEach(c=>{
+      const match = type==='all' || c.dataset.cat===type;
+      c.classList.toggle('hidden', !match);
+    });
+  }
+  filterBtns.forEach(b=>{
+    b.addEventListener('click',()=>{
+      filterBtns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+      b.classList.add('active');
+      b.setAttribute('aria-selected','true');
+      applyFilter(b.dataset.filter);
+    });
+  });
+  applyFilter('app'); // default
+
+  // ----- Reveal cards on scroll
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    },{rootMargin:'0px 0px -60px 0px',threshold:0.05});
+    cards.forEach(c=>io.observe(c));
+  } else {
+    cards.forEach(c=>c.classList.add('in'));
+  }
+</script>
 </body>
 </html>
