@@ -3,29 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ayoub Benderdouch — Freelance Mobile Developer</title>
-<meta name="description" content="Freelance iOS, Android and Laravel developer based in Berlin & Algeria. 30+ apps shipped. Available for new projects.">
-<meta name="theme-color" content="#FAFAFA">
+<title>Ayoub Benderdouch — Freelance Mobile Developer · iOS, Android, Laravel</title>
+<meta name="description" content="Freelance iOS, Android and Laravel developer. 30+ apps shipped from Berlin & Algeria. Booking June 2026.">
+<meta name="theme-color" content="#07070C">
 <meta property="og:title" content="Ayoub Benderdouch — Freelance Mobile Developer">
-<meta property="og:description" content="iOS · Android · Laravel — 30+ apps shipped. Booking June 2026.">
+<meta property="og:description" content="iOS · Android · Laravel — 30+ apps shipped. Premium freelance mobile development.">
 <meta property="og:url" content="https://ayoubportfolio.site">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FAFAFA;
-    --surface:#FFFFFF;
-    --surface-2:#F4F4F5;
-    --text:#0A0A0A;
-    --text-2:#3F3F46;
-    --text-3:#71717A;
-    --text-4:#A1A1AA;
-    --border:#E4E4E7;
-    --border-hover:#A1A1AA;
-    --green:#16A34A;
+    --bg:#07070C;
+    --bg-2:#0C0C13;
+    --surface:rgba(255,255,255,0.025);
+    --surface-2:rgba(255,255,255,0.05);
+    --surface-3:rgba(255,255,255,0.07);
+    --border:rgba(255,255,255,0.08);
+    --border-2:rgba(255,255,255,0.14);
+    --border-glow:rgba(167,139,250,0.35);
+
+    --text:#FAFAFA;
+    --text-2:#D4D4D8;
+    --text-3:#A1A1AA;
+    --text-4:#71717A;
+    --text-5:#52525B;
+
+    --accent:#A78BFA;
+    --accent-2:#C4B5FD;
+    --accent-glow:rgba(167,139,250,0.45);
+    --teal:#5EEAD4;
+    --amber:#F59E0B;
+    --green:#34D399;
+    --pink:#F0ABFC;
+
+    --font-display:"Instrument Serif","Times New Roman",Georgia,serif;
+    --font-body:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
     --pad:clamp(20px,4vw,48px);
-    --max:1240px;
+    --max:1280px;
   }
   *,*::before,*::after{box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -33,7 +50,7 @@
     margin:0;
     background:var(--bg);
     color:var(--text);
-    font-family:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+    font-family:var(--font-body);
     font-size:15px;
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
@@ -41,147 +58,258 @@
     text-rendering:optimizeLegibility;
     overflow-x:hidden;
     letter-spacing:-0.005em;
+    position:relative;
   }
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%;height:auto}
   button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
-  ::selection{background:var(--text);color:var(--bg)}
-  :focus-visible{outline:2px solid var(--text);outline-offset:3px;border-radius:6px}
+  ::selection{background:var(--accent);color:var(--bg)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 
   .container{
     max-width:var(--max);
     margin:0 auto;
     padding-left:var(--pad);
     padding-right:var(--pad);
+    position:relative;
   }
+
+  /* ---------- BACKGROUND MESH ---------- */
+  .bg-mesh{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .bg-mesh::before,.bg-mesh::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.55;
+    will-change:transform;
+  }
+  .bg-mesh::before{
+    width:700px;height:700px;
+    background:radial-gradient(circle,rgba(167,139,250,0.55),rgba(167,139,250,0) 70%);
+    top:-15%;left:-10%;
+    animation:drift 22s ease-in-out infinite alternate;
+  }
+  .bg-mesh::after{
+    width:600px;height:600px;
+    background:radial-gradient(circle,rgba(94,234,212,0.4),rgba(94,234,212,0) 70%);
+    top:30%;right:-15%;
+    animation:drift2 28s ease-in-out infinite alternate;
+  }
+  .bg-mesh .glow-3{
+    position:absolute;
+    width:520px;height:520px;
+    border-radius:50%;
+    filter:blur(110px);
+    opacity:0.32;
+    background:radial-gradient(circle,rgba(240,171,252,0.5),rgba(240,171,252,0) 70%);
+    bottom:5%;left:30%;
+    animation:drift3 30s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(80px,40px) scale(1.1)}
+  }
+  @keyframes drift2{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(-60px,80px) scale(1.05)}
+  }
+  @keyframes drift3{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(120px,-60px) scale(1.08)}
+  }
+  /* Subtle grain over everything */
+  .bg-grain{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.55 0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:0.12;
+    mix-blend-mode:overlay;
+  }
+  /* Vignette */
+  .bg-vignette{
+    position:fixed;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(ellipse at center,transparent 40%,rgba(7,7,12,0.6) 100%);
+  }
+
+  main,nav,footer{position:relative;z-index:3}
 
   /* ---------- NAV ---------- */
   .nav{
     position:sticky;
     top:0;
     z-index:50;
-    background:rgba(250,250,250,0.78);
-    backdrop-filter:saturate(140%) blur(12px);
-    -webkit-backdrop-filter:saturate(140%) blur(12px);
+    background:rgba(7,7,12,0.62);
+    backdrop-filter:saturate(160%) blur(14px);
+    -webkit-backdrop-filter:saturate(160%) blur(14px);
     border-bottom:1px solid var(--border);
   }
   .nav-inner{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding-top:16px;
-    padding-bottom:16px;
+    padding:14px 0;
     gap:16px;
   }
   .nav-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
     font-weight:500;
     font-size:15px;
-    color:var(--text);
     letter-spacing:-0.01em;
   }
-  .nav-logo span{color:var(--text-3);font-weight:400}
-  .nav-links{display:flex;align-items:center;gap:8px}
+  .nav-logo .mark{
+    width:30px;height:30px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--teal));
+    display:grid;place-items:center;
+    color:#07070C;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:16px;
+    line-height:1;
+  }
+  .nav-logo small{color:var(--text-3);font-weight:400;font-size:13px}
+  .nav-links{display:flex;align-items:center;gap:4px}
   .nav-links a:not(.nav-cta){
     padding:8px 14px;
     font-size:14px;
-    color:var(--text-2);
-    border-radius:8px;
-    transition:background .15s ease,color .15s ease;
+    color:var(--text-3);
+    border-radius:999px;
+    transition:background .2s ease,color .2s ease;
   }
-  .nav-links a:not(.nav-cta):hover{background:var(--surface-2);color:var(--text)}
+  .nav-links a:not(.nav-cta):hover{color:var(--text);background:var(--surface-2)}
   .nav-cta{
-    margin-left:6px;
-    padding:8px 16px;
-    background:var(--text);
-    color:var(--bg);
+    margin-left:8px;
+    padding:9px 18px 9px 14px;
+    background:linear-gradient(135deg,#fff,#E4E4E7);
+    color:#07070C;
     border-radius:999px;
     font-size:14px;
     font-weight:500;
     display:inline-flex;
     align-items:center;
-    gap:6px;
-    transition:opacity .2s ease,transform .2s ease;
+    gap:8px;
+    transition:transform .2s ease,box-shadow .2s ease;
+    box-shadow:0 0 0 0 var(--accent-glow);
   }
-  .nav-cta:hover{opacity:.88}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px -6px var(--accent-glow)}
   .nav-cta .arr{transition:transform .2s ease}
   .nav-cta:hover .arr{transform:translateX(2px)}
-  @media (max-width:720px){
+  @media (max-width:760px){
     .nav-links a:not(.nav-cta):not([data-stay]){display:none}
   }
 
   /* ---------- HERO ---------- */
   .hero{
-    padding-top:clamp(72px,12vw,140px);
-    padding-bottom:clamp(64px,9vw,112px);
+    padding-top:clamp(60px,9vw,120px);
+    padding-bottom:clamp(40px,6vw,80px);
+    position:relative;
   }
   .status-pill{
     display:inline-flex;
     align-items:center;
-    gap:8px;
-    padding:6px 12px 6px 10px;
+    gap:10px;
+    padding:7px 14px 7px 12px;
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:999px;
     font-size:13px;
     color:var(--text-2);
-    margin-bottom:32px;
+    margin-bottom:36px;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
   }
   .status-dot{
-    width:7px;height:7px;border-radius:50%;
+    width:8px;height:8px;border-radius:50%;
     background:var(--green);
-    box-shadow:0 0 0 0 rgba(22,163,74,0.4);
+    box-shadow:0 0 0 0 rgba(52,211,153,0.5),0 0 12px rgba(52,211,153,0.8);
     animation:pulse 2.4s infinite;
   }
   @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(22,163,74,0.5)}
-    70%{box-shadow:0 0 0 8px rgba(22,163,74,0)}
-    100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}
+    0%{box-shadow:0 0 0 0 rgba(52,211,153,0.5),0 0 12px rgba(52,211,153,0.8)}
+    70%{box-shadow:0 0 0 10px rgba(52,211,153,0),0 0 12px rgba(52,211,153,0.8)}
+    100%{box-shadow:0 0 0 0 rgba(52,211,153,0),0 0 12px rgba(52,211,153,0.8)}
   }
   .hero h1{
-    font-size:clamp(40px,7vw,84px);
-    line-height:1.02;
+    font-size:clamp(44px,8vw,108px);
+    line-height:1.0;
     letter-spacing:-0.035em;
     font-weight:500;
-    margin:0 0 28px;
-    max-width:14ch;
+    margin:0 0 32px;
+    max-width:18ch;
   }
-  .hero h1 .muted{color:var(--text-3)}
+  .hero h1 em{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(120deg,var(--accent) 0%,var(--teal) 50%,var(--pink) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:-0.01em;
+    padding-right:0.06em;
+  }
+  .hero h1 .line{
+    display:block;
+    opacity:0;
+    transform:translateY(20px);
+    animation:rise .9s cubic-bezier(.2,.7,.1,1) forwards;
+  }
+  .hero h1 .l1{animation-delay:.05s}
+  .hero h1 .l2{animation-delay:.18s}
+  .hero h1 .l3{animation-delay:.32s}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+
   .hero-sub{
-    font-size:clamp(17px,1.6vw,20px);
-    line-height:1.5;
+    font-size:clamp(17px,1.5vw,20px);
+    line-height:1.55;
     color:var(--text-2);
     max-width:54ch;
     margin:0 0 40px;
     letter-spacing:-0.005em;
   }
+  .hero-sub strong{color:var(--text);font-weight:500}
+
   .hero-actions{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
+    gap:12px;
     margin-bottom:clamp(64px,8vw,112px);
   }
   .btn{
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:12px 20px;
-    border-radius:10px;
+    padding:13px 22px;
+    border-radius:12px;
     font-size:15px;
     font-weight:500;
-    transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;
+    transition:transform .2s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease;
     border:1px solid transparent;
+    cursor:pointer;
   }
   .btn-primary{
-    background:var(--text);
-    color:var(--bg);
+    background:linear-gradient(135deg,#fff,#E4E4E7);
+    color:#07070C;
+    box-shadow:0 0 0 0 var(--accent-glow),0 2px 0 0 rgba(255,255,255,0.1);
   }
-  .btn-primary:hover{opacity:.88}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px -8px var(--accent-glow),0 2px 0 0 rgba(255,255,255,0.1)}
   .btn-secondary{
     background:var(--surface);
     color:var(--text);
-    border-color:var(--border);
+    border-color:var(--border-2);
   }
-  .btn-secondary:hover{border-color:var(--border-hover)}
+  .btn-secondary:hover{background:var(--surface-2);border-color:var(--border-glow)}
   .btn .arr{transition:transform .2s ease}
   .btn:hover .arr{transform:translateX(2px)}
 
@@ -189,18 +317,36 @@
   .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:24px;
-    padding-top:32px;
+    gap:0;
+    padding:28px 0;
     border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
   }
-  @media (max-width:720px){.stats{grid-template-columns:repeat(2,1fr);gap:24px 16px}}
+  @media (max-width:720px){
+    .stats{grid-template-columns:repeat(2,1fr);gap:28px 16px}
+    .stats > div{padding:0 8px}
+  }
+  .stat{padding:0 24px;border-right:1px solid var(--border);position:relative}
+  .stat:last-child{border-right:0}
+  @media (max-width:720px){.stat{border-right:0;padding:0 8px}}
   .stat-n{
-    font-size:clamp(32px,4vw,44px);
+    font-size:clamp(36px,4.5vw,52px);
     line-height:1;
-    letter-spacing:-0.03em;
+    letter-spacing:-0.035em;
     font-weight:500;
     color:var(--text);
-    margin-bottom:6px;
+    margin-bottom:8px;
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+  }
+  .stat-n em{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(135deg,var(--accent),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-size:0.7em;
   }
   .stat-l{
     font-size:13px;
@@ -208,10 +354,50 @@
     line-height:1.4;
   }
 
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    overflow:hidden;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,0.015);
+    padding:20px 0;
+    margin:clamp(72px,8vw,120px) 0 0;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 80px,#000 calc(100% - 80px),transparent 100%);
+  }
+  .marquee-track{
+    display:flex;
+    gap:56px;
+    width:max-content;
+    animation:scroll 40s linear infinite;
+  }
+  .marquee-track:hover{animation-play-state:paused}
+  @keyframes scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .marquee-item{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    color:var(--text-2);
+    font-size:16px;
+    font-weight:500;
+    white-space:nowrap;
+    filter:brightness(1.1);
+  }
+  .marquee-item img{
+    width:22px;height:22px;
+    object-fit:contain;
+    flex-shrink:0;
+    filter:brightness(1.15) saturate(1.05);
+  }
+
   /* ---------- SECTIONS ---------- */
   section{
     padding-top:clamp(72px,9vw,128px);
     padding-bottom:clamp(48px,6vw,80px);
+    position:relative;
   }
   .section-head{
     display:flex;
@@ -220,91 +406,264 @@
     gap:24px;
     margin-bottom:48px;
   }
+  .section-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--text-3);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    margin-bottom:18px;
+  }
+  .section-eyebrow::before{
+    content:"";
+    width:24px;height:1px;
+    background:linear-gradient(90deg,var(--accent),transparent);
+  }
   .section-head h2{
     margin:0;
-    font-size:clamp(28px,4vw,42px);
-    line-height:1.08;
-    letter-spacing:-0.025em;
+    font-size:clamp(32px,5vw,56px);
+    line-height:1.02;
+    letter-spacing:-0.03em;
     font-weight:500;
+    max-width:22ch;
+  }
+  .section-head h2 em{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(120deg,var(--accent),var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .section-head p{
     margin:0;
     color:var(--text-3);
     font-size:14px;
     text-align:right;
+    max-width:280px;
   }
-  @media (max-width:560px){
+  @media (max-width:680px){
     .section-head{flex-direction:column;align-items:flex-start;gap:8px}
     .section-head p{text-align:left}
   }
 
-  /* ---------- WORK ---------- */
-  .filters{
-    display:flex;
-    gap:6px;
-    margin-bottom:32px;
-    padding:4px;
+  /* ---------- BENTO ---------- */
+  .bento{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:240px;
+    gap:14px;
+  }
+  @media (max-width:980px){
+    .bento{grid-template-columns:repeat(4,1fr);grid-auto-rows:220px}
+  }
+  @media (max-width:680px){
+    .bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+    .bento .tile{grid-column:span 2 !important;grid-row:span 1 !important}
+  }
+
+  .tile{
+    position:relative;
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:18px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    overflow:hidden;
+    transition:border-color .3s ease,transform .3s ease;
+    color:var(--text);
+  }
+  .tile::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(167,139,250,0.08),transparent 40%);
+    opacity:0;
+    transition:opacity .4s ease;
+    pointer-events:none;
+    z-index:0;
+  }
+  .tile:hover{border-color:var(--border-glow);transform:translateY(-2px)}
+  .tile:hover::before{opacity:1}
+  .tile > *{position:relative;z-index:1}
+  .tile-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.7;
+  }
+  .tile-bg::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,var(--tile-c1,rgba(167,139,250,0.12)),transparent 65%);
+  }
+
+  .tile-big{grid-column:span 4;grid-row:span 2;padding:32px}
+  .tile-med{grid-column:span 2;grid-row:span 1}
+  .tile-sm{grid-column:span 2;grid-row:span 1}
+  @media (max-width:980px){
+    .tile-big{grid-column:span 4;grid-row:span 2}
+    .tile-med{grid-column:span 2}
+    .tile-sm{grid-column:span 2}
+  }
+
+  .tile-head{display:flex;align-items:center;gap:14px}
+  .tile-icon{
+    width:56px;height:56px;
+    flex-shrink:0;
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    box-shadow:0 6px 24px -8px rgba(0,0,0,0.4);
+  }
+  .tile-icon img{width:100%;height:100%;object-fit:cover}
+  .tile-icon.contain img{object-fit:contain;padding:6px}
+  .tile-big .tile-icon{width:88px;height:88px;border-radius:20px}
+  .tile-title{flex:1;min-width:0}
+  .tile-name{
+    margin:0;
+    font-size:20px;
+    font-weight:500;
+    line-height:1.15;
+    letter-spacing:-0.015em;
+    color:var(--text);
+  }
+  .tile-big .tile-name{
+    font-size:34px;
+    font-weight:500;
+    letter-spacing:-0.025em;
+  }
+  .tile-cat{
+    font-size:12px;
+    color:var(--text-3);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-top:6px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .tile-cat .dot{width:4px;height:4px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
+
+  .tile-desc{
+    margin:0;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--text-2);
+    flex:1;
+  }
+  .tile-big .tile-desc{font-size:16px;max-width:54ch}
+
+  .tile-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:auto;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:7px 12px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:999px;
+    font-size:12.5px;
+    color:var(--text-2);
+    font-weight:500;
+    transition:background .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .pill:hover{background:var(--surface-3);border-color:var(--border-glow);color:var(--text)}
+  .pill svg{width:12px;height:12px;flex-shrink:0}
+  .pill.disabled{opacity:.45;pointer-events:none}
+
+  /* Big tile shows a halo behind icon */
+  .tile-big::after{
+    content:"";
+    position:absolute;
+    right:-90px;bottom:-90px;
+    width:380px;height:380px;
+    border-radius:50%;
+    background:radial-gradient(circle,var(--tile-c2,rgba(167,139,250,0.25)),transparent 70%);
+    filter:blur(40px);
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* ---------- MORE WORK ---------- */
+  .filters{
+    display:flex;
+    gap:4px;
+    margin-bottom:32px;
+    padding:5px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
     width:fit-content;
+    backdrop-filter:blur(8px);
   }
   .filters button{
-    padding:8px 16px;
-    font-size:14px;
+    padding:9px 18px;
+    font-size:13.5px;
     color:var(--text-3);
-    border-radius:8px;
-    transition:background .15s ease,color .15s ease;
+    border-radius:10px;
+    transition:all .2s ease;
     font-weight:500;
   }
   .filters button:hover{color:var(--text)}
   .filters button.active{
-    background:var(--text);
-    color:var(--bg);
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#07070C;
+    box-shadow:0 4px 16px -4px var(--accent-glow);
   }
-  .filters .count{
-    margin-left:6px;
-    opacity:.6;
-    font-size:.85em;
-  }
+  .filters .count{margin-left:6px;opacity:.6;font-size:.85em}
 
   .grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:16px;
+    gap:14px;
   }
   @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.grid{grid-template-columns:1fr}}
-
   .card{
+    position:relative;
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:14px;
-    padding:24px;
+    border-radius:16px;
+    padding:22px;
     display:flex;
     flex-direction:column;
-    gap:16px;
-    min-height:240px;
-    transition:border-color .2s ease,transform .25s ease,box-shadow .25s ease;
+    gap:14px;
+    min-height:220px;
+    overflow:hidden;
+    transition:border-color .3s ease,transform .3s ease;
     opacity:0;
     transform:translateY(8px);
   }
-  .card.in{opacity:1;transform:translateY(0)}
+  .card.in{opacity:1;transform:translateY(0);transition:opacity .55s ease,transform .55s ease,border-color .3s ease}
   .card.hidden{display:none}
-  .card:hover{
-    border-color:var(--border-hover);
-    transform:translateY(-2px);
-    box-shadow:0 8px 24px -8px rgba(0,0,0,0.08);
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(167,139,250,0.07),transparent 40%);
+    opacity:0;
+    transition:opacity .4s ease;
+    pointer-events:none;
   }
+  .card:hover{border-color:var(--border-glow);transform:translateY(-2px)}
+  .card:hover::before{opacity:1}
+  .card > *{position:relative}
 
-  .card-head{
-    display:flex;
-    gap:14px;
-    align-items:center;
-  }
+  .card-head{display:flex;gap:12px;align-items:center}
   .card-icon{
-    width:48px;
-    height:48px;
+    width:44px;height:44px;
     flex-shrink:0;
     border-radius:11px;
     overflow:hidden;
@@ -312,77 +671,121 @@
     border:1px solid var(--border);
   }
   .card-icon img{width:100%;height:100%;object-fit:cover}
-  .card-icon.contain img{object-fit:contain;padding:6px}
+  .card-icon.contain img{object-fit:contain;padding:5px;background:#fff}
   .card-title{flex:1;min-width:0}
   .card-name{
     margin:0;
     font-size:16px;
     font-weight:500;
-    color:var(--text);
     line-height:1.2;
     letter-spacing:-0.01em;
   }
   .card-cat{
-    font-size:13px;
+    font-size:12px;
     color:var(--text-3);
     margin-top:2px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
   }
-
   .card-desc{
     margin:0;
-    font-size:14px;
-    line-height:1.5;
+    font-size:13.5px;
+    line-height:1.55;
     color:var(--text-2);
     flex:1;
   }
+  .card-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
 
-  .card-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-top:auto;
+  /* ---------- APPROACH ---------- */
+  .approach-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
   }
-  .card-link{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    padding:6px 10px;
-    background:var(--surface-2);
-    border:1px solid transparent;
-    border-radius:8px;
-    font-size:12.5px;
-    color:var(--text-2);
-    font-weight:500;
-    transition:background .15s ease,color .15s ease,border-color .15s ease;
-  }
-  .card-link:hover{
+  @media (max-width:980px){.approach-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.approach-grid{grid-template-columns:1fr}}
+  .step{
     background:var(--surface);
-    border-color:var(--border-hover);
-    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .3s ease,transform .3s ease;
   }
-  .card-link svg{width:13px;height:13px;flex-shrink:0}
-  .card-link.disabled{opacity:.5;pointer-events:none}
+  .step:hover{border-color:var(--border-glow);transform:translateY(-2px)}
+  .step::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--accent-glow),transparent);
+    opacity:0.6;
+  }
+  .step-n{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:42px;
+    line-height:1;
+    background:linear-gradient(135deg,var(--accent),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    font-weight:400;
+    margin-bottom:4px;
+  }
+  .step h3{
+    margin:0;
+    font-size:18px;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+  .step p{
+    margin:0;
+    font-size:13.5px;
+    line-height:1.55;
+    color:var(--text-2);
+    flex:1;
+  }
+  .step small{
+    color:var(--text-4);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    margin-top:8px;
+  }
 
   /* ---------- STACK ---------- */
   .stack-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:16px;
+    gap:14px;
   }
   @media (max-width:880px){.stack-grid{grid-template-columns:repeat(2,1fr)}}
   .stack-col{
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:14px;
+    border-radius:16px;
     padding:24px;
+    transition:border-color .3s ease;
   }
+  .stack-col:hover{border-color:var(--border-glow)}
   .stack-col h4{
-    margin:0 0 16px;
-    font-size:13px;
+    margin:0 0 18px;
+    font-size:12px;
     color:var(--text-3);
     font-weight:500;
     text-transform:uppercase;
-    letter-spacing:0.04em;
+    letter-spacing:0.14em;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .stack-col h4::before{
+    content:"";
+    width:18px;height:1px;
+    background:linear-gradient(90deg,var(--accent),transparent);
   }
   .stack-col ul{
     list-style:none;
@@ -395,7 +798,7 @@
   .stack-col li{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
     font-size:14px;
     color:var(--text);
     font-weight:500;
@@ -405,55 +808,86 @@
     height:18px;
     object-fit:contain;
     flex-shrink:0;
+    filter:brightness(1.1) saturate(1.05);
   }
 
   /* ---------- CONTACT ---------- */
+  .contact-eyebrow{margin-bottom:20px}
+  .contact h2{
+    font-size:clamp(38px,6vw,80px);
+    line-height:1;
+    letter-spacing:-0.03em;
+    font-weight:500;
+    margin:0 0 56px;
+    max-width:14ch;
+  }
+  .contact h2 em{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    background:linear-gradient(120deg,var(--accent),var(--pink),var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
   .contact-cta{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:24px;
+    gap:14px;
+    margin-bottom:14px;
   }
   @media (max-width:680px){.contact-cta{grid-template-columns:1fr}}
   .contact-tile{
+    position:relative;
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:14px;
-    padding:24px;
+    border-radius:18px;
+    padding:28px;
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:14px;
     color:var(--text);
-    transition:border-color .2s ease,transform .25s ease,box-shadow .25s ease;
+    transition:border-color .3s ease,transform .3s ease;
+    overflow:hidden;
+    min-height:180px;
   }
-  .contact-tile:hover{
-    border-color:var(--border-hover);
-    transform:translateY(-2px);
-    box-shadow:0 8px 24px -8px rgba(0,0,0,0.08);
+  .contact-tile::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(167,139,250,0.1),transparent 40%);
+    opacity:0;
+    transition:opacity .4s ease;
+    pointer-events:none;
   }
+  .contact-tile:hover{border-color:var(--border-glow);transform:translateY(-2px)}
+  .contact-tile:hover::before{opacity:1}
+  .contact-tile > *{position:relative}
   .contact-tile .label{
     display:flex;
     align-items:center;
-    gap:8px;
-    font-size:13px;
+    gap:10px;
+    font-size:12px;
     color:var(--text-3);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
     font-weight:500;
   }
-  .contact-tile .label svg{width:14px;height:14px}
+  .contact-tile .label svg{width:15px;height:15px;color:var(--accent)}
   .contact-tile .value{
-    font-size:clamp(20px,2.4vw,28px);
+    font-size:clamp(22px,2.8vw,32px);
     font-weight:500;
-    line-height:1.2;
+    line-height:1.15;
     letter-spacing:-0.02em;
     word-break:break-word;
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
+    color:var(--text);
+    transition:color .25s ease;
   }
-  .contact-tile .value .arr{font-size:0.7em;color:var(--text-3)}
-  .contact-tile:hover .value .arr{color:var(--text)}
+  .contact-tile:hover .value{color:var(--accent-2)}
+  .contact-tile .value .arr{color:var(--accent);font-size:0.7em}
   .contact-tile .note{
-    margin-top:6px;
+    margin-top:auto;
     font-size:13px;
     color:var(--text-3);
   }
@@ -461,32 +895,42 @@
   .contact-meta{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
-    margin-bottom:24px;
+    gap:14px;
+    margin-top:14px;
   }
   @media (max-width:680px){.contact-meta{grid-template-columns:1fr}}
   .contact-loc{
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:14px;
+    border-radius:18px;
     padding:24px;
     display:flex;
     flex-direction:column;
     gap:8px;
+    transition:border-color .3s ease;
   }
+  .contact-loc:hover{border-color:var(--border-glow)}
   .contact-loc .label{
-    font-size:13px;
+    font-size:12px;
     color:var(--text-3);
+    text-transform:uppercase;
+    letter-spacing:0.14em;
     font-weight:500;
   }
   .contact-loc .city{
-    font-size:20px;
+    font-size:24px;
     font-weight:500;
-    letter-spacing:-0.015em;
+    letter-spacing:-0.02em;
     color:var(--text);
   }
+  .contact-loc .city em{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent-2);
+  }
   .contact-loc .note{
-    font-size:14px;
+    font-size:13.5px;
     color:var(--text-2);
     line-height:1.5;
   }
@@ -494,78 +938,97 @@
   .contact-social{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:12px;
+    gap:14px;
+    margin-top:14px;
   }
   @media (max-width:680px){.contact-social{grid-template-columns:1fr}}
   .social-tile{
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:14px;
-    padding:18px 20px;
+    padding:18px 22px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:14px;
     color:var(--text);
-    transition:border-color .2s ease,transform .25s ease;
+    transition:border-color .3s ease,transform .3s ease;
   }
-  .social-tile:hover{border-color:var(--border-hover);transform:translateY(-1px)}
-  .social-tile .left{display:flex;flex-direction:column;gap:2px}
+  .social-tile:hover{border-color:var(--border-glow);transform:translateY(-1px)}
   .social-tile .platform{
-    font-size:13px;
+    font-size:12px;
     color:var(--text-3);
-    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
   }
   .social-tile .handle{
     font-size:15px;
     font-weight:500;
-    letter-spacing:-0.01em;
+    letter-spacing:-0.005em;
+    margin-top:4px;
+    display:block;
   }
   .social-tile .handle em{
     font-style:normal;
-    color:var(--text-3);
+    color:var(--accent-2);
     font-weight:400;
-    margin-left:4px;
+    margin-left:6px;
   }
-  .social-tile .arr{color:var(--text-3);font-size:18px;transition:transform .2s ease}
-  .social-tile:hover .arr{color:var(--text);transform:translate(2px,-2px)}
+  .social-tile .arr{color:var(--text-3);font-size:18px;transition:transform .2s ease,color .2s ease}
+  .social-tile:hover .arr{color:var(--accent);transform:translate(2px,-2px)}
 
   /* ---------- FOOTER ---------- */
   footer{
-    padding:40px 0 48px;
-    border-top:1px solid var(--border);
+    padding:32px 0 40px;
     margin-top:80px;
+    border-top:1px solid var(--border);
   }
   .foot{
     display:flex;
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
-    gap:12px;
-    font-size:13px;
-    color:var(--text-3);
+    gap:14px;
+    font-size:12.5px;
+    color:var(--text-4);
   }
-  .foot a{color:var(--text-3);transition:color .2s ease}
+  .foot a{transition:color .2s ease}
   .foot a:hover{color:var(--text)}
+  .foot .made em{
+    font-family:var(--font-display);
+    font-style:italic;
+    color:var(--accent-2);
+  }
 </style>
 </head>
 <body>
 
+<!-- Background layers -->
+<div class="bg-mesh" aria-hidden="true"><div class="glow-3"></div></div>
+<div class="bg-grain" aria-hidden="true"></div>
+<div class="bg-vignette" aria-hidden="true"></div>
+
 <!-- ================= NAV ================= -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="#top" class="nav-logo">Ayoub Benderdouch <span>· Mobile Dev</span></a>
+    <a href="#top" class="nav-logo">
+      <span class="mark" aria-hidden="true">A</span>
+      Ayoub Benderdouch <small>· Mobile Dev</small>
+    </a>
     <div class="nav-links">
       <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
       <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
       <a href="mailto:ayoubbenderdouch@gmail.com" class="nav-cta" data-stay>
-        Email
+        Hire me
         <span class="arr" aria-hidden="true">→</span>
       </a>
     </div>
   </div>
 </nav>
+
+<main>
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="top">
@@ -576,11 +1039,13 @@
     </span>
 
     <h1>
-      Freelance mobile developer <span class="muted">for iOS, Android &amp; Laravel.</span>
+      <span class="line l1">Native apps,</span>
+      <span class="line l2">backends &amp; sites —</span>
+      <span class="line l3"><em>shipped end-to-end.</em></span>
     </h1>
 
     <p class="hero-sub">
-      I design and build apps end-to-end — native iOS in SwiftUI, Android in Kotlin or Flutter, and Laravel backends. 30+ projects shipped from Berlin and Algeria for founders in the EU, US and MENA.
+      I'm <strong>Ayoub</strong>, a freelance mobile developer building <strong>iOS</strong> in SwiftUI, <strong>Android</strong> in Kotlin &amp; Flutter, and <strong>Laravel</strong> backends. 30+ projects shipped from Berlin &amp; Algeria for founders in the EU, US and MENA.
     </p>
 
     <div class="hero-actions">
@@ -591,362 +1056,370 @@
       <a class="btn btn-secondary" href="#work">View work</a>
     </div>
 
-    <div class="stats" role="list">
-      <div role="listitem">
-        <div class="stat-n">30+</div>
-        <div class="stat-l">Projects shipped</div>
-      </div>
-      <div role="listitem">
-        <div class="stat-n">75K</div>
-        <div class="stat-l">Instagram community</div>
-      </div>
-      <div role="listitem">
-        <div class="stat-n">12</div>
-        <div class="stat-l">Apps live in stores</div>
-      </div>
-      <div role="listitem">
-        <div class="stat-n">6</div>
-        <div class="stat-l">Years building</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">30<em>+</em></div><div class="stat-l">Projects shipped<br>2020 – 2026</div></div>
+      <div class="stat"><div class="stat-n">75<em>K</em></div><div class="stat-l">Instagram community<br>@ayoub_benderdouch</div></div>
+      <div class="stat"><div class="stat-n">12</div><div class="stat-l">Apps live on<br>App Store &amp; Play</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Years writing<br>production code</div></div>
     </div>
   </div>
 </header>
 
-<!-- ================= WORK ================= -->
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/swift/F05138" alt="" loading="lazy">SwiftUI</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/kotlin/7F52FF" alt="" loading="lazy">Kotlin</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/jetpackcompose/4285F4" alt="" loading="lazy">Jetpack Compose</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/flutter/02569B" alt="" loading="lazy">Flutter</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="" loading="lazy">Laravel</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/php/777BB4" alt="" loading="lazy">PHP</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/mysql/4479A1" alt="" loading="lazy">MySQL</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="" loading="lazy">Firebase</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/vuedotjs/4FC08D" alt="" loading="lazy">Vue 3</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="" loading="lazy">React</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="" loading="lazy">TypeScript</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="" loading="lazy">Tailwind</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="" loading="lazy">Stripe</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/swift/F05138" alt="" loading="lazy">SwiftUI</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/kotlin/7F52FF" alt="" loading="lazy">Kotlin</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/jetpackcompose/4285F4" alt="" loading="lazy">Jetpack Compose</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/flutter/02569B" alt="" loading="lazy">Flutter</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="" loading="lazy">Laravel</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/php/777BB4" alt="" loading="lazy">PHP</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/mysql/4479A1" alt="" loading="lazy">MySQL</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/firebase/FFCA28" alt="" loading="lazy">Firebase</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/vuedotjs/4FC08D" alt="" loading="lazy">Vue 3</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/react/61DAFB" alt="" loading="lazy">React</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/typescript/3178C6" alt="" loading="lazy">TypeScript</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="" loading="lazy">Tailwind</span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="" loading="lazy">Stripe</span>
+  </div>
+</div>
+
+<!-- ================= FEATURED (BENTO) ================= -->
 <section id="work">
   <div class="container">
+    <span class="section-eyebrow">01 — Selected Work</span>
     <header class="section-head">
-      <h2>Selected work</h2>
-      <p>22 projects · 2020 — 2026</p>
+      <h2>Six apps I'm <em>proud</em> of.</h2>
+      <p>Featured projects from 30+ shipped<br>between 2020 and 2026.</p>
+    </header>
+
+    <div class="bento" id="bento">
+      <!-- BIG: Change Dinar -->
+      <a class="tile tile-big" href="https://apps.apple.com/us/app/change-dinar/id6742030993" target="_blank" rel="noopener" style="--tile-c1:rgba(94,234,212,0.18);--tile-c2:rgba(94,234,212,0.35)">
+        <div class="tile-bg"></div>
+        <div class="tile-head">
+          <div class="tile-icon"><picture><source srcset="changedinaricon.webp" type="image/webp"><img src="changedinaricon.png" alt="Change Dinar icon" loading="lazy"></picture></div>
+          <div class="tile-title">
+            <span class="tile-cat"><span class="dot" style="background:#5EEAD4;box-shadow:0 0 8px rgba(94,234,212,0.6)"></span> Featured · Currency exchange</span>
+            <h3 class="tile-name">Change Dinar</h3>
+          </div>
+        </div>
+        <p class="tile-desc">Real-time EUR / USD / GBP to DZD exchange rates with live updates, historical charts and one-tap conversion shortcuts. Live across all three major mobile stores — iOS, Android &amp; HarmonyOS.</p>
+        <div class="tile-links">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c-2.32 0-3.7.61-4.95 1.86C5.81 4.6 5.2 5.98 5.2 8.3v7.4c0 2.32.61 3.7 1.85 4.95C8.3 21.89 9.68 22.5 12 22.5s3.7-.61 4.95-1.85c1.24-1.25 1.85-2.63 1.85-4.95V8.3c0-2.32-.61-3.7-1.85-4.94C15.7 2.11 14.32 1.5 12 1.5zM8.5 5.7h1.4l1.85 4.5 1.84-4.5h1.41l-2.5 6h-1.5l-2.5-6z"/></svg>AppGallery</span>
+        </div>
+      </a>
+
+      <!-- MED 1: Rain Sounds -->
+      <a class="tile tile-med" href="https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177" target="_blank" rel="noopener" style="--tile-c1:rgba(96,165,250,0.18)">
+        <div class="tile-bg"></div>
+        <div class="tile-head">
+          <div class="tile-icon"><picture><source srcset="rainsoundsicon.webp" type="image/webp"><img src="rainsoundsicon.png" alt="Rain Sounds icon" loading="lazy"></picture></div>
+          <div class="tile-title">
+            <h3 class="tile-name">Rain Sounds</h3>
+            <span class="tile-cat"><span class="dot"></span> Sleep &amp; Relax</span>
+          </div>
+        </div>
+        <p class="tile-desc">Fall asleep faster with curated nature soundscapes.</p>
+        <div class="tile-links">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Play</span>
+        </div>
+      </a>
+
+      <!-- MED 2: Saf9ty -->
+      <a class="tile tile-med" href="https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053" target="_blank" rel="noopener" style="--tile-c1:rgba(167,139,250,0.18)">
+        <div class="tile-bg"></div>
+        <div class="tile-head">
+          <div class="tile-icon"><picture><source srcset="saf9ty-logo.webp" type="image/webp"><img src="saf9ty-logo.png" alt="Saf9ty icon" loading="lazy"></picture></div>
+          <div class="tile-title">
+            <h3 class="tile-name">Saf9ty</h3>
+            <span class="tile-cat"><span class="dot"></span> E-commerce · Affiliate</span>
+          </div>
+        </div>
+        <p class="tile-desc">Marketplace connecting merchants with affiliate marketers.</p>
+        <div class="tile-links">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Play</span>
+        </div>
+      </a>
+
+      <!-- SM 1: Fitrigi Ride -->
+      <a class="tile tile-sm" href="https://apps.apple.com/us/app/fitrigi/id6756182620" target="_blank" rel="noopener" style="--tile-c1:rgba(240,171,252,0.18)">
+        <div class="tile-bg"></div>
+        <div class="tile-head">
+          <div class="tile-icon"><picture><source srcset="fitrigi-ride-icon.webp" type="image/webp"><img src="fitrigi-ride-icon.png" alt="Fitrigi Ride icon" loading="lazy"></picture></div>
+          <div class="tile-title">
+            <h3 class="tile-name">Fitrigi Ride</h3>
+            <span class="tile-cat"><span class="dot"></span> Ride-hailing</span>
+          </div>
+        </div>
+        <p class="tile-desc">City &amp; intercity rides with real-time tracking.</p>
+        <div class="tile-links">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</span>
+        </div>
+      </a>
+
+      <!-- SM 2: Athani Pro -->
+      <a class="tile tile-sm" href="https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280" target="_blank" rel="noopener" style="--tile-c1:rgba(94,234,212,0.16)">
+        <div class="tile-bg"></div>
+        <div class="tile-head">
+          <div class="tile-icon"><picture><source srcset="athanologo.webp" type="image/webp"><img src="athanologo.png" alt="Athani Pro icon" loading="lazy"></picture></div>
+          <div class="tile-title">
+            <h3 class="tile-name">Athani Pro</h3>
+            <span class="tile-cat"><span class="dot"></span> Lifestyle · SwiftUI</span>
+          </div>
+        </div>
+        <p class="tile-desc">Accurate prayer times, Adhan &amp; Qibla finder.</p>
+        <div class="tile-links">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</span>
+        </div>
+      </a>
+
+      <!-- SM 3: Yasfir -->
+      <a class="tile tile-sm" href="https://apps.apple.com/us/app/ysafer/id6761107182" target="_blank" rel="noopener" style="--tile-c1:rgba(245,158,11,0.16)">
+        <div class="tile-bg"></div>
+        <div class="tile-head">
+          <div class="tile-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Yasfir icon" loading="lazy"></picture></div>
+          <div class="tile-title">
+            <h3 class="tile-name">Yasfir</h3>
+            <span class="tile-cat"><span class="dot"></span> Travel · Visa</span>
+          </div>
+        </div>
+        <p class="tile-desc">Buy visas, flight tickets &amp; travel packages.</p>
+        <div class="tile-links">
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</span>
+          <span class="pill"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Play</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MORE WORK ================= -->
+<section id="more">
+  <div class="container">
+    <span class="section-eyebrow">02 — More Work</span>
+    <header class="section-head">
+      <h2>The full <em>catalogue.</em></h2>
+      <p>Sixteen more — apps, dashboards<br>and full-stack web products.</p>
     </header>
 
     <div class="filters" role="tablist">
-      <button class="active" role="tab" aria-selected="true" data-filter="app">Apps <span class="count">10</span></button>
+      <button class="active" role="tab" aria-selected="true" data-filter="all">All <span class="count">16</span></button>
+      <button role="tab" aria-selected="false" data-filter="app">Apps <span class="count">4</span></button>
       <button role="tab" aria-selected="false" data-filter="web">Websites <span class="count">12</span></button>
-      <button role="tab" aria-selected="false" data-filter="all">All <span class="count">22</span></button>
     </div>
 
     <div class="grid" id="grid">
 
-      <!-- ===== APPS ===== -->
-
       <article class="card" data-cat="app">
         <div class="card-head">
-          <div class="card-icon"><picture><source srcset="changedinaricon.webp" type="image/webp"><img src="changedinaricon.png" alt="Change Dinar icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Change Dinar</h3>
-            <div class="card-cat">Currency Exchange</div>
-          </div>
+          <div class="card-icon"><picture><source srcset="fitrigi-driver-icon.webp" type="image/webp"><img src="fitrigi-driver-icon.png" alt="Fitrigi Chauffeur" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Fitrigi Chauffeur</h3><div class="card-cat">Driver app</div></div>
         </div>
-        <p class="card-desc">Real-time EUR / USD / GBP to DZD exchange rates with live updates and history charts.</p>
+        <p class="card-desc">Companion app for drivers — accept rides, navigate and manage earnings.</p>
         <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/change-dinar/id6742030993" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.zaed.changedinar" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-          <a class="card-link" href="https://appgallery.huawei.com/#/app/C116572695" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5c-2.32 0-3.7.61-4.95 1.86C5.81 4.6 5.2 5.98 5.2 8.3v7.4c0 2.32.61 3.7 1.85 4.95C8.3 21.89 9.68 22.5 12 22.5s3.7-.61 4.95-1.85c1.24-1.25 1.85-2.63 1.85-4.95V8.3c0-2.32-.61-3.7-1.85-4.94C15.7 2.11 14.32 1.5 12 1.5zM8.5 5.7h1.4l1.85 4.5 1.84-4.5h1.41l-2.5 6h-1.5l-2.5-6zm-1.1 9.5h2.4v1.1H7.4v-1.1zm9.2 0v1.1h-2.4v-1.1h2.4z"/></svg>AppGallery</a>
+          <a class="pill" href="https://apps.apple.com/us/app/fitrigi-chauffeur/id6756183013" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a class="pill" href="https://play.google.com/store/apps/details?id=com.fitrigi.driver" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Play</a>
         </div>
       </article>
 
       <article class="card" data-cat="app">
         <div class="card-head">
-          <div class="card-icon"><picture><source srcset="rainsoundsicon.webp" type="image/webp"><img src="rainsoundsicon.png" alt="Rain Sounds icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Rain Sounds</h3>
-            <div class="card-cat">Sleep &amp; Relaxation</div>
-          </div>
-        </div>
-        <p class="card-desc">Fall asleep faster with calming nature soundscapes — rain, ocean, fireplace and timed mixes.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="app">
-        <div class="card-head">
-          <div class="card-icon"><picture><source srcset="saf9ty-logo.webp" type="image/webp"><img src="saf9ty-logo.png" alt="Saf9ty icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Saf9ty — صفقتي</h3>
-            <div class="card-cat">E-commerce · Affiliate</div>
-          </div>
-        </div>
-        <p class="card-desc">Marketplace connecting merchants with affiliate marketers. Sell, promote, track commissions.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.saf9ty.app" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="app">
-        <div class="card-head">
-          <div class="card-icon"><picture><source srcset="fitrigi-ride-icon.webp" type="image/webp"><img src="fitrigi-ride-icon.png" alt="Fitrigi Ride icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Fitrigi Ride</h3>
-            <div class="card-cat">Ride-hailing · Passenger</div>
-          </div>
-        </div>
-        <p class="card-desc">City &amp; intercity rides with real-time tracking, fare estimates and in-app payments.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/fitrigi/id6756182620" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.fitrigi.Ride" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="app">
-        <div class="card-head">
-          <div class="card-icon"><picture><source srcset="fitrigi-driver-icon.webp" type="image/webp"><img src="fitrigi-driver-icon.png" alt="Fitrigi Chauffeur icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Fitrigi Chauffeur</h3>
-            <div class="card-cat">Ride-hailing · Driver</div>
-          </div>
-        </div>
-        <p class="card-desc">Driver companion app — accept rides, navigate and manage earnings across 58 wilayas.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/fitrigi-chauffeur/id6756183013" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.fitrigi.driver" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="app">
-        <div class="card-head">
-          <div class="card-icon"><picture><source srcset="faydalik-icon.webp" type="image/webp"><img src="faydalik-icon.png" alt="FaydaLik icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">FaydaLik</h3>
-            <div class="card-cat">Affiliate Marketing</div>
-          </div>
+          <div class="card-icon"><picture><source srcset="faydalik-icon.webp" type="image/webp"><img src="faydalik-icon.png" alt="FaydaLik" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">FaydaLik</h3><div class="card-cat">Affiliate</div></div>
         </div>
         <p class="card-desc">Share products on social media and earn a commission on every sale.</p>
         <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/faydalik/id6753982539" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a class="pill" href="https://apps.apple.com/us/app/faydalik/id6753982539" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
         </div>
       </article>
 
       <article class="card" data-cat="app">
         <div class="card-head">
-          <div class="card-icon"><picture><source srcset="athanologo.webp" type="image/webp"><img src="athanologo.png" alt="Athani Pro icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Athani Pro</h3>
-            <div class="card-cat">Prayer Times · Lifestyle</div>
-          </div>
+          <div class="card-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Yasfir Agency" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Yasfir Agency</h3><div class="card-cat">Operator dashboard</div></div>
         </div>
-        <p class="card-desc">Accurate prayer times, Adhan notifications, Qibla finder and Hijri calendar — built in SwiftUI.</p>
+        <p class="card-desc">Agent app for Yasfir — manage bookings &amp; fulfill requests.</p>
         <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
+          <a class="pill" href="https://play.google.com/store/apps/details?id=com.yasfir.agency" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Play</a>
         </div>
       </article>
 
       <article class="card" data-cat="app">
         <div class="card-head">
-          <div class="card-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Yasfir icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Yasfir</h3>
-            <div class="card-cat">Travel · Visa &amp; Tickets</div>
-          </div>
+          <div class="card-icon"><picture><source srcset="smartdocdz-logo.webp" type="image/webp"><img src="smartdocdz-logo.png" alt="SmartDoc" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">SmartDoc</h3><div class="card-cat">Healthcare booking</div></div>
         </div>
-        <p class="card-desc">Connect with trusted agents to buy visas, flight tickets and travel packages.</p>
+        <p class="card-desc">Find specialists, book consultations &amp; manage medical history.</p>
         <div class="card-links">
-          <a class="card-link" href="https://apps.apple.com/us/app/ysafer/id6761107182" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>App Store</a>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.yasfir.customer" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="app">
-        <div class="card-head">
-          <div class="card-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Yasfir Agency icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Yasfir Agency</h3>
-            <div class="card-cat">Operator Dashboard</div>
-          </div>
-        </div>
-        <p class="card-desc">Agent app — manage bookings, fulfill visa &amp; ticket requests from the field.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.yasfir.agency" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="app">
-        <div class="card-head">
-          <div class="card-icon"><picture><source srcset="smartdocdz-logo.webp" type="image/webp"><img src="smartdocdz-logo.png" alt="SmartDoc icon" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">SmartDoc</h3>
-            <div class="card-cat">Healthcare · Booking</div>
-          </div>
-        </div>
-        <p class="card-desc">Find specialists, book consultations and manage medical history — clinic-grade scheduling.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.tizi.client" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Google Play</a>
-        </div>
-      </article>
-
-      <!-- ===== WEBSITES ===== -->
-
-      <article class="card" data-cat="web">
-        <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="reloadx-logo.webp" type="image/webp"><img src="reloadx-logo.png" alt="ReloadX logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">ReloadX</h3>
-            <div class="card-cat">Gift Cards · Gaming</div>
-          </div>
-        </div>
-        <p class="card-desc">Digital marketplace for game cards, gift cards and premium gaming subscriptions.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://reloadx.co/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
+          <a class="pill" href="https://play.google.com/store/apps/details?id=com.tizi.client" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>Play</a>
         </div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="thinkxie-logo.webp" type="image/webp"><img src="thinkxie-logo.png" alt="Thinkxie logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Thinkxie</h3>
-            <div class="card-cat">Digital Agency</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="reloadx-logo.webp" type="image/webp"><img src="reloadx-logo.png" alt="ReloadX" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">ReloadX</h3><div class="card-cat">Gift cards · Gaming</div></div>
         </div>
-        <p class="card-desc">Modern web presence and content platform for a creative digital agency.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://www.thinkxie.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Digital marketplace for game cards, gift cards &amp; gaming subscriptions.</p>
+        <div class="card-links"><a class="pill" href="https://reloadx.co/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Ysafer logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Ysafer</h3>
-            <div class="card-cat">Travel Platform</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="thinkxie-logo.webp" type="image/webp"><img src="thinkxie-logo.png" alt="Thinkxie" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Thinkxie</h3><div class="card-cat">Digital agency</div></div>
         </div>
-        <p class="card-desc">Search and book Umrah, Hajj and tourism trips from verified agencies in one place.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://ysafer.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Modern web presence &amp; content platform for a creative agency.</p>
+        <div class="card-links"><a class="pill" href="https://www.thinkxie.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="smartdocdz-logo.webp" type="image/webp"><img src="smartdocdz-logo.png" alt="SmartDocDZ logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">SmartDocDZ</h3>
-            <div class="card-cat">Healthcare Platform</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Ysafer" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Ysafer</h3><div class="card-cat">Travel platform</div></div>
         </div>
-        <p class="card-desc">Find doctors, check availability and book appointments in a few clicks.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://smartdocdz.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Search and book Umrah, Hajj and tourism trips from verified agencies.</p>
+        <div class="card-links"><a class="pill" href="https://ysafer.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="albabor-logo.webp" type="image/webp"><img src="albabor-logo.png" alt="AlBabor logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">AlBabor</h3>
-            <div class="card-cat">Nautical Marketplace</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="smartdocdz-logo.webp" type="image/webp"><img src="smartdocdz-logo.png" alt="SmartDocDZ" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">SmartDocDZ</h3><div class="card-cat">Healthcare platform</div></div>
         </div>
-        <p class="card-desc">Buy and sell boats, jet-skis, engines and marine parts with verified listings.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://albabor.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Find doctors, check availability and book in a few clicks.</p>
+        <div class="card-links"><a class="pill" href="https://smartdocdz.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="saf9ty-logo.webp" type="image/webp"><img src="saf9ty-logo.png" alt="Saf9ty logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Saf9ty Dashboard</h3>
-            <div class="card-cat">Merchant Console</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="albabor-logo.webp" type="image/webp"><img src="albabor-logo.png" alt="AlBabor" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">AlBabor</h3><div class="card-cat">Marine marketplace</div></div>
+        </div>
+        <p class="card-desc">Buy &amp; sell boats, jet-skis, engines and marine parts.</p>
+        <div class="card-links"><a class="pill" href="https://albabor.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
+      </article>
+
+      <article class="card" data-cat="web">
+        <div class="card-head">
+          <div class="card-icon contain"><picture><source srcset="saf9ty-logo.webp" type="image/webp"><img src="saf9ty-logo.png" alt="Saf9ty Dashboard" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Saf9ty Dashboard</h3><div class="card-cat">Merchant console</div></div>
         </div>
         <p class="card-desc">Companion web dashboard for Saf9ty merchants — products, orders, payouts.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://saf9ty.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <div class="card-links"><a class="pill" href="https://saf9ty.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><img src="yachtei-emblem.svg" alt="Yachtei emblem" loading="lazy"></div>
-          <div class="card-title">
-            <h3 class="card-name">Yachtei</h3>
-            <div class="card-cat">Marine Rentals</div>
-          </div>
+          <div class="card-icon contain"><img src="yachtei-emblem.svg" alt="Yachtei" loading="lazy"></div>
+          <div class="card-title"><h3 class="card-name">Yachtei</h3><div class="card-cat">Marine rentals</div></div>
         </div>
-        <p class="card-desc">Premium yacht, boat and jet-ski rentals — book luxury marine experiences end-to-end.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://yachtei.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Premium yacht, boat and jet-ski rentals — luxury marine experiences.</p>
+        <div class="card-links"><a class="pill" href="https://yachtei.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon"><picture><source srcset="israa-logo.webp" type="image/webp"><img src="israa-logo.jpg" alt="ISRAA logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">ISRAA Collections</h3>
-            <div class="card-cat">Fashion E-commerce</div>
-          </div>
+          <div class="card-icon"><picture><source srcset="israa-logo.webp" type="image/webp"><img src="israa-logo.jpg" alt="ISRAA Collections" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">ISRAA Collections</h3><div class="card-cat">Fashion e-commerce</div></div>
         </div>
         <p class="card-desc">Online clothing store for women — clean catalog and seamless checkout.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://clothes-store-femme.vercel.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <div class="card-links"><a class="pill" href="https://clothes-store-femme.vercel.app/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="radiant-body-logo.webp" type="image/webp"><img src="radiant-body-logo.png" alt="Radiant Body logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Radiant Body</h3>
-            <div class="card-cat">Health &amp; Wellness</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="radiant-body-logo.webp" type="image/webp"><img src="radiant-body-logo.png" alt="Radiant Body" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Radiant Body</h3><div class="card-cat">Health &amp; wellness</div></div>
         </div>
-        <p class="card-desc">Wellness platform with appointment flows, product catalogue and editorial content.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://radiant-body.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Wellness platform with appointment flows and editorial content.</p>
+        <div class="card-links"><a class="pill" href="https://radiant-body.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><picture><source srcset="polo-logo.webp" type="image/webp"><img src="polo-logo.png" alt="Polo Boissons logo" loading="lazy"></picture></div>
-          <div class="card-title">
-            <h3 class="card-name">Polo Boissons</h3>
-            <div class="card-cat">Beverage Brand</div>
-          </div>
+          <div class="card-icon contain"><picture><source srcset="polo-logo.webp" type="image/webp"><img src="polo-logo.png" alt="Polo Boissons" loading="lazy"></picture></div>
+          <div class="card-title"><h3 class="card-name">Polo Boissons</h3><div class="card-cat">Beverage brand</div></div>
         </div>
-        <p class="card-desc">Premium beverage company website — modern bilingual design serving FR / AR markets.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://www.poloboissons.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Premium beverage company — modern bilingual FR / AR design.</p>
+        <div class="card-links"><a class="pill" href="https://www.poloboissons.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><img src="dilin-logo.png" alt="Diline Academy logo" loading="lazy"></div>
-          <div class="card-title">
-            <h3 class="card-name">Diline Academy</h3>
-            <div class="card-cat">E-Learning · Languages</div>
-          </div>
+          <div class="card-icon contain"><img src="dilin-logo.png" alt="Diline Academy" loading="lazy"></div>
+          <div class="card-title"><h3 class="card-name">Diline Academy</h3><div class="card-cat">E-learning · Languages</div></div>
         </div>
-        <p class="card-desc">Online Turkish learning — A1 to C2 with live sessions, quizzes and progress tracking.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://dilin.academy/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Online Turkish learning — A1 to C2 with live sessions and progress tracking.</p>
+        <div class="card-links"><a class="pill" href="https://dilin.academy/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
       <article class="card" data-cat="web">
         <div class="card-head">
-          <div class="card-icon contain"><img src="midoufroid-logo.png" alt="Mido Froid logo" loading="lazy"></div>
-          <div class="card-title">
-            <h3 class="card-name">Mido Froid</h3>
-            <div class="card-cat">Appliances E-commerce</div>
-          </div>
+          <div class="card-icon contain"><img src="midoufroid-logo.png" alt="Mido Froid" loading="lazy"></div>
+          <div class="card-title"><h3 class="card-name">Mido Froid</h3><div class="card-cat">Appliances e-commerce</div></div>
         </div>
-        <p class="card-desc">Online store for home appliances and spare parts — delivery across all 58 wilayas.</p>
-        <div class="card-links">
-          <a class="card-link" href="https://midoufroid.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit site</a>
-        </div>
+        <p class="card-desc">Online appliance store — delivery across all 58 wilayas.</p>
+        <div class="card-links"><a class="pill" href="https://midoufroid.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3c2.5 3 4 6 4 9s-1.5 6-4 9c-2.5-3-4-6-4-9s1.5-6 4-9z"/></svg>Visit</a></div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPROACH ================= -->
+<section id="approach">
+  <div class="container">
+    <span class="section-eyebrow">03 — Approach</span>
+    <header class="section-head">
+      <h2>How we'll <em>work.</em></h2>
+      <p>Fixed scope. Fixed price.<br>Weekly builds you can hold.</p>
+    </header>
+
+    <div class="approach-grid">
+      <div class="step">
+        <div class="step-n">i</div>
+        <h3>Brief</h3>
+        <p>A 30-minute call. We agree on scope, milestones and a single fixed price — written down before any code is written.</p>
+        <small>Week 0</small>
+      </div>
+      <div class="step">
+        <div class="step-n">ii</div>
+        <h3>Build</h3>
+        <p>Daily commits to a private repo. TestFlight or an internal Play track from week one. Demo every Friday — no surprises.</p>
+        <small>Week 1 — 6</small>
+      </div>
+      <div class="step">
+        <div class="step-n">iii</div>
+        <h3>Ship</h3>
+        <p>App Store and Play Store submission — screenshots, copy, ASO and review responses handled. Your launch day.</p>
+        <small>Submission</small>
+      </div>
+      <div class="step">
+        <div class="step-n">iv</div>
+        <h3>Stay</h3>
+        <p>Post-launch fixes within 48 hours for 30 days. Then a clean handover, or stay on a monthly retainer.</p>
+        <small>Beyond launch</small>
+      </div>
     </div>
   </div>
 </section>
@@ -954,9 +1427,10 @@
 <!-- ================= STACK ================= -->
 <section id="stack">
   <div class="container">
+    <span class="section-eyebrow">04 — Toolbox</span>
     <header class="section-head">
-      <h2>Tools I work with</h2>
-      <p>The stack I reach for</p>
+      <h2>Tools I reach <em>for.</em></h2>
+      <p>Native where it matters.<br>Pragmatic everywhere else.</p>
     </header>
 
     <div class="stack-grid">
@@ -964,7 +1438,7 @@
         <h4>Mobile</h4>
         <ul>
           <li><img src="https://cdn.simpleicons.org/swift/F05138" alt="" loading="lazy" width="18" height="18">SwiftUI</li>
-          <li><img src="https://cdn.simpleicons.org/apple/0A0A0A" alt="" loading="lazy" width="18" height="18">UIKit</li>
+          <li><img src="https://cdn.simpleicons.org/apple/FAFAFA" alt="" loading="lazy" width="18" height="18">UIKit</li>
           <li><img src="https://cdn.simpleicons.org/kotlin/7F52FF" alt="" loading="lazy" width="18" height="18">Kotlin</li>
           <li><img src="https://cdn.simpleicons.org/jetpackcompose/4285F4" alt="" loading="lazy" width="18" height="18">Jetpack Compose</li>
           <li><img src="https://cdn.simpleicons.org/flutter/02569B" alt="" loading="lazy" width="18" height="18">Flutter</li>
@@ -994,10 +1468,10 @@
         <h4>Ship</h4>
         <ul>
           <li><img src="https://cdn.simpleicons.org/appstore/0D96F6" alt="" loading="lazy" width="18" height="18">App Store</li>
-          <li><img src="https://cdn.simpleicons.org/googleplay/414141" alt="" loading="lazy" width="18" height="18">Play Console</li>
+          <li><img src="https://cdn.simpleicons.org/googleplay/A1A1AA" alt="" loading="lazy" width="18" height="18">Play Console</li>
           <li><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="" loading="lazy" width="18" height="18">Stripe</li>
-          <li><img src="https://cdn.simpleicons.org/railway/0A0A0A" alt="" loading="lazy" width="18" height="18">Railway</li>
-          <li><img src="https://cdn.simpleicons.org/vercel/0A0A0A" alt="" loading="lazy" width="18" height="18">Vercel</li>
+          <li><img src="https://cdn.simpleicons.org/railway/FAFAFA" alt="" loading="lazy" width="18" height="18">Railway</li>
+          <li><img src="https://cdn.simpleicons.org/vercel/FAFAFA" alt="" loading="lazy" width="18" height="18">Vercel</li>
         </ul>
       </div>
     </div>
@@ -1005,12 +1479,10 @@
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact">
+<section id="contact" class="contact">
   <div class="container">
-    <header class="section-head">
-      <h2>Let's talk</h2>
-      <p>Booking June &amp; July 2026</p>
-    </header>
+    <span class="section-eyebrow contact-eyebrow">05 — Let's talk</span>
+    <h2>Have an idea worth <em>shipping?</em></h2>
 
     <div class="contact-cta">
       <a class="contact-tile" href="mailto:ayoubbenderdouch@gmail.com?subject=New%20project%20enquiry">
@@ -1034,33 +1506,33 @@
     <div class="contact-meta">
       <div class="contact-loc">
         <span class="label">Studio · Germany</span>
-        <span class="city">Berlin · DE</span>
+        <span class="city">Berlin · <em>DE</em></span>
         <span class="note">UTC+1 — Working with founders across the EU &amp; US.</span>
       </div>
       <div class="contact-loc">
         <span class="label">Studio · Algeria</span>
-        <span class="city">Oran · DZ</span>
+        <span class="city">Oran · <em>DZ</em></span>
         <span class="note">UTC+1 — Building for MENA &amp; North Africa, all 58 wilayas.</span>
       </div>
     </div>
 
     <div class="contact-social">
       <a class="social-tile" href="https://instagram.com/ayoub_benderdouch" target="_blank" rel="noopener">
-        <span class="left">
+        <span>
           <span class="platform">Instagram</span>
           <span class="handle">@ayoub_benderdouch <em>75K</em></span>
         </span>
         <span class="arr" aria-hidden="true">↗</span>
       </a>
       <a class="social-tile" href="https://github.com/ayoubbenderdouch" target="_blank" rel="noopener">
-        <span class="left">
+        <span>
           <span class="platform">GitHub</span>
           <span class="handle">@ayoubbenderdouch</span>
         </span>
         <span class="arr" aria-hidden="true">↗</span>
       </a>
       <a class="social-tile" href="https://ayoubportfolio.site">
-        <span class="left">
+        <span>
           <span class="platform">Web</span>
           <span class="handle">ayoubportfolio.site</span>
         </span>
@@ -1070,45 +1542,58 @@
   </div>
 </section>
 
+</main>
+
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="container foot">
     <span>© 2026 Ayoub Benderdouch</span>
-    <span>Berlin &amp; Oran</span>
+    <span class="made">Built by hand in <em>Berlin &amp; Oran</em></span>
     <span><a href="/privacy-policy.html">Privacy</a></span>
   </div>
 </footer>
 
 <script>
+  // Spotlight effect on cards & tiles
+  function attachSpotlight(els){
+    els.forEach(el => {
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+  attachSpotlight(document.querySelectorAll('.tile, .card, .contact-tile'));
+
   // Filter
   const filterBtns = document.querySelectorAll('.filters button');
   const cards = document.querySelectorAll('#grid .card');
   function applyFilter(type){
-    cards.forEach(c=>{
-      const match = type==='all' || c.dataset.cat===type;
-      c.classList.toggle('hidden', !match);
+    cards.forEach(c => {
+      c.classList.toggle('hidden', !(type === 'all' || c.dataset.cat === type));
     });
   }
-  filterBtns.forEach(b=>{
-    b.addEventListener('click',()=>{
-      filterBtns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+  filterBtns.forEach(b => {
+    b.addEventListener('click', () => {
+      filterBtns.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected', 'false'); });
       b.classList.add('active');
-      b.setAttribute('aria-selected','true');
+      b.setAttribute('aria-selected', 'true');
       applyFilter(b.dataset.filter);
     });
   });
-  applyFilter('app');
+  applyFilter('all');
 
-  // Reveal cards
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  // Reveal on scroll
+  if ('IntersectionObserver' in window){
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
       });
-    },{rootMargin:'0px 0px -40px 0px',threshold:0.06});
-    cards.forEach(c=>io.observe(c));
+    }, { rootMargin: '0px 0px -40px 0px', threshold: 0.05 });
+    cards.forEach(c => io.observe(c));
   } else {
-    cards.forEach(c=>c.classList.add('in'));
+    cards.forEach(c => c.classList.add('in'));
   }
 </script>
 </body>
