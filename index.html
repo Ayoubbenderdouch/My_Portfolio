@@ -577,6 +577,89 @@
             background: linear-gradient(135deg, rgba(155, 89, 182, 0.5), rgba(155, 89, 182, 0.2));
         }
 
+        /* Crido Card */
+        .app-card.crido {
+            background: linear-gradient(180deg, rgba(29, 158, 117, 0.12) 0%, rgba(29, 158, 117, 0.02) 100%);
+            border-color: rgba(29, 158, 117, 0.2);
+        }
+        .app-card.crido:hover {
+            box-shadow: 0 30px 60px rgba(29, 158, 117, 0.2), 0 0 100px rgba(29, 158, 117, 0.1);
+            border-color: rgba(29, 158, 117, 0.4);
+        }
+        .app-card.crido .app-name {
+            background: linear-gradient(135deg, #1fb380, #1d9e75);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .download-btn.visit-site-crido {
+            background: linear-gradient(135deg, rgba(29, 158, 117, 0.3), rgba(29, 158, 117, 0.1));
+            border-color: rgba(29, 158, 117, 0.3);
+        }
+        .download-btn.visit-site-crido:hover {
+            background: linear-gradient(135deg, rgba(29, 158, 117, 0.5), rgba(29, 158, 117, 0.2));
+        }
+
+        /* Out of Service state */
+        .app-card.out-of-service {
+            opacity: 0.72;
+            filter: grayscale(0.35);
+        }
+        .app-card.out-of-service:hover {
+            transform: translateY(-6px);
+            opacity: 0.95;
+            filter: grayscale(0);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+        .app-card.out-of-service .app-icon,
+        .app-card.out-of-service .app-icon img {
+            filter: grayscale(0.45);
+            transition: filter 0.4s ease;
+        }
+        .app-card.out-of-service:hover .app-icon,
+        .app-card.out-of-service:hover .app-icon img {
+            filter: grayscale(0);
+        }
+        .status-badge {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #ffb1a6;
+            background: rgba(255, 107, 95, 0.1);
+            border: 1px solid rgba(255, 107, 95, 0.28);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 2;
+        }
+        .status-badge .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #ff6b5f;
+            box-shadow: 0 0 8px rgba(255, 107, 95, 0.9);
+            animation: pulse-offline 2s ease-in-out infinite;
+        }
+        @keyframes pulse-offline {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .download-btn.offline {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.45);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         /* Ysafer Card */
         .app-card.ysafer {
             background: linear-gradient(180deg, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.02) 100%);
@@ -742,6 +825,10 @@
 
         .app-icon.website-icon.midoufroid-icon {
             background: linear-gradient(135deg, rgba(0, 188, 212, 0.4), rgba(0, 188, 212, 0.2));
+        }
+
+        .app-icon.website-icon.crido-icon {
+            background: linear-gradient(135deg, rgba(228, 248, 240, 0.96), rgba(198, 240, 222, 0.88));
         }
 
         .app-icon.website-icon.thinkxie-icon {
@@ -1428,19 +1515,19 @@
                     </div>
                 </div>
 
-                <!-- 2. Thinkxie -->
-                <div class="app-card thinkxie">
-                    <div class="app-icon">
+                <!-- 2. Crido -->
+                <div class="app-card crido">
+                    <div class="app-icon website-icon crido-icon">
                         <picture>
-                        <source srcset="thinkxie-logo.webp" type="image/webp">
-                        <img src="thinkxie-logo.png" alt="Thinkxie">
+                        <source srcset="crido-logo.webp" type="image/webp">
+                        <img src="crido-logo.png" alt="Crido" style="width:100%;height:100%;object-fit:contain;border-radius:0;padding:18px;">
                     </picture>
                     </div>
-                    <h2 class="app-name">Thinkxie</h2>
-                    <span class="badge">Digital Agency</span>
-                    <p class="app-description">Creative digital solutions. Modern web presence for innovative businesses.</p>
+                    <h2 class="app-name">Crido</h2>
+                    <span class="badge">Buy Now, Pay Later</span>
+                    <p class="app-description">Algeria's Buy Now, Pay Later platform. Split your purchases into easy installments and shop today with trusted merchants — pay over time.</p>
                     <div class="download-buttons">
-                        <a href="https://www.thinkxie.com/" target="_blank" class="download-btn visit-site-thinkxie">
+                        <a href="https://www.cridodz.com/" target="_blank" class="download-btn visit-site-crido">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
                             </svg>
@@ -1470,28 +1557,7 @@
                     </div>
                 </div>
 
-                <!-- 4. SmartDocDZ -->
-                <div class="app-card smartdocdz">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="smartdocdz-logo.webp" type="image/webp">
-                        <img src="smartdocdz-logo.png" alt="SmartDocDZ">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">SmartDocDZ</h2>
-                    <span class="badge">Healthcare</span>
-                    <p class="app-description">Medical appointment booking platform for Algeria. Find doctors, check availability & book appointments in a few clicks.</p>
-                    <div class="download-buttons">
-                        <a href="https://smartdocdz.com/" target="_blank" class="download-btn visit-site-smartdocdz">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 5. AlBabor -->
+                <!-- 4. AlBabor -->
                 <div class="app-card albabor">
                     <div class="app-icon">
                         <picture>
@@ -1512,28 +1578,7 @@
                     </div>
                 </div>
 
-                <!-- Saf9ty Website -->
-                <div class="app-card saf9ty">
-                    <div class="app-icon">
-                        <picture>
-                        <source srcset="saf9ty-logo.webp" type="image/webp">
-                        <img src="saf9ty-logo.png" alt="Saf9ty">
-                    </picture>
-                    </div>
-                    <h2 class="app-name">Saf9ty - صفقتي</h2>
-                    <span class="badge">E-Commerce Platform</span>
-                    <p class="app-description">Algeria's first e-commerce platform connecting merchants with affiliate marketers. Manage products, orders & commissions.</p>
-                    <div class="download-buttons">
-                        <a href="https://saf9ty.com/" target="_blank" class="download-btn visit-site-saf9ty">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-                            </svg>
-                            Visit Website
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Yachtei -->
+                <!-- 5. Yachtei -->
                 <div class="app-card yachtei">
                     <div class="app-icon yachtei-icon">
                         <img src="yachtei-emblem.svg" alt="Yachtei" style="width:100%;height:100%;object-fit:contain;border-radius:0;padding:12px;">
@@ -1551,7 +1596,64 @@
                     </div>
                 </div>
 
-                <!-- 8. ISRAA Collections -->
+                <!-- 6. SmartDocDZ -->
+                <div class="app-card smartdocdz">
+                    <div class="app-icon">
+                        <picture>
+                        <source srcset="smartdocdz-logo.webp" type="image/webp">
+                        <img src="smartdocdz-logo.png" alt="SmartDocDZ">
+                    </picture>
+                    </div>
+                    <h2 class="app-name">SmartDocDZ</h2>
+                    <span class="badge">Healthcare</span>
+                    <p class="app-description">Medical appointment booking platform for Algeria. Find doctors, check availability & book appointments in a few clicks.</p>
+                    <div class="download-buttons">
+                        <a href="https://smartdocdz.com/" target="_blank" class="download-btn visit-site-smartdocdz">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7. Diline Academy -->
+                <div class="app-card dilin">
+                    <div class="app-icon website-icon dilin-icon">
+                        <img src="dilin-logo.png" alt="Diline Academy">
+                    </div>
+                    <h2 class="app-name">Diline Academy</h2>
+                    <span class="badge">E-Learning</span>
+                    <p class="app-description">Online Turkish language learning platform for Algerian students. A1 to C2 with live sessions, quizzes & PDF materials.</p>
+                    <div class="download-buttons">
+                        <a href="https://dilin.academy/" target="_blank" class="download-btn visit-site-dilin">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8. Mido Froid -->
+                <div class="app-card midoufroid">
+                    <div class="app-icon website-icon midoufroid-icon">
+                        <img src="midoufroid-logo.png" alt="Mido Froid">
+                    </div>
+                    <h2 class="app-name">Mido Froid</h2>
+                    <span class="badge">E-Commerce</span>
+                    <p class="app-description">Algerian online store for home appliances & spare parts. Delivery across all 58 wilayas with cash on delivery.</p>
+                    <div class="download-buttons">
+                        <a href="https://midoufroid.com/" target="_blank" class="download-btn visit-site-midoufroid">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 9. ISRAA Collections -->
                 <div class="app-card client-work">
                     <div class="app-icon">
                         <picture>
@@ -1572,8 +1674,7 @@
                     </div>
                 </div>
 
-
-                <!-- 6. Radiant Body -->
+                <!-- 10. Radiant Body -->
                 <div class="app-card radiant-body">
                     <div class="app-icon">
                         <picture>
@@ -1594,7 +1695,7 @@
                     </div>
                 </div>
 
-                <!-- 10. Polo Boissons -->
+                <!-- 11. Polo Boissons -->
                 <div class="app-card polo">
                     <div class="app-icon">
                         <picture>
@@ -1615,39 +1716,47 @@
                     </div>
                 </div>
 
-                <!-- 11. Diline Academy -->
-                <div class="app-card dilin">
-                    <div class="app-icon website-icon dilin-icon">
-                        <img src="dilin-logo.png" alt="Diline Academy">
+                <!-- 12. Thinkxie (out of service) -->
+                <div class="app-card thinkxie out-of-service">
+                    <span class="status-badge"><span class="status-dot"></span> Out of Service</span>
+                    <div class="app-icon">
+                        <picture>
+                        <source srcset="thinkxie-logo.webp" type="image/webp">
+                        <img src="thinkxie-logo.png" alt="Thinkxie">
+                    </picture>
                     </div>
-                    <h2 class="app-name">Diline Academy</h2>
-                    <span class="badge">E-Learning</span>
-                    <p class="app-description">Online Turkish language learning platform for Algerian students. A1 to C2 with live sessions, quizzes & PDF materials.</p>
+                    <h2 class="app-name">Thinkxie</h2>
+                    <span class="badge">Digital Agency</span>
+                    <p class="app-description">Creative digital solutions. Modern web presence for innovative businesses.</p>
                     <div class="download-buttons">
-                        <a href="https://dilin.academy/" target="_blank" class="download-btn visit-site-dilin">
+                        <span class="download-btn offline">
                             <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C13.85,4 15.55,4.63 16.9,5.69L5.69,16.9C4.63,15.55 4,13.85 4,12A8,8 0 0,1 12,4M12,20C10.15,20 8.45,19.37 7.1,18.31L18.31,7.1C19.37,8.45 20,10.15 20,12A8,8 0 0,1 12,20Z"/>
                             </svg>
-                            Visit Website
-                        </a>
+                            Out of Service
+                        </span>
                     </div>
                 </div>
 
-                <!-- 12. Mido Froid -->
-                <div class="app-card midoufroid">
-                    <div class="app-icon website-icon midoufroid-icon">
-                        <img src="midoufroid-logo.png" alt="Mido Froid">
+                <!-- 13. Saf9ty (out of service) -->
+                <div class="app-card saf9ty out-of-service">
+                    <span class="status-badge"><span class="status-dot"></span> Out of Service</span>
+                    <div class="app-icon">
+                        <picture>
+                        <source srcset="saf9ty-logo.webp" type="image/webp">
+                        <img src="saf9ty-logo.png" alt="Saf9ty">
+                    </picture>
                     </div>
-                    <h2 class="app-name">Mido Froid</h2>
-                    <span class="badge">E-Commerce</span>
-                    <p class="app-description">Algerian online store for home appliances & spare parts. Delivery across all 58 wilayas with cash on delivery.</p>
+                    <h2 class="app-name">Saf9ty - صفقتي</h2>
+                    <span class="badge">E-Commerce Platform</span>
+                    <p class="app-description">Algeria's first e-commerce platform connecting merchants with affiliate marketers. Manage products, orders & commissions.</p>
                     <div class="download-buttons">
-                        <a href="https://midoufroid.com/" target="_blank" class="download-btn visit-site-midoufroid">
+                        <span class="download-btn offline">
                             <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C13.85,4 15.55,4.63 16.9,5.69L5.69,16.9C4.63,15.55 4,13.85 4,12A8,8 0 0,1 12,4M12,20C10.15,20 8.45,19.37 7.1,18.31L18.31,7.1C19.37,8.45 20,10.15 20,12A8,8 0 0,1 12,20Z"/>
                             </svg>
-                            Visit Website
-                        </a>
+                            Out of Service
+                        </span>
                     </div>
                 </div>
             </div>
