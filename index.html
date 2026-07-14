@@ -813,6 +813,36 @@
             background: linear-gradient(135deg, rgba(30, 144, 200, 0.4), rgba(30, 144, 200, 0.2));
         }
 
+        /* SALONI Card */
+        .app-card.saloni {
+            background: linear-gradient(180deg, rgba(30, 110, 92, 0.12) 0%, rgba(30, 110, 92, 0.02) 100%);
+            border-color: rgba(30, 110, 92, 0.25);
+        }
+        .app-card.saloni:hover {
+            box-shadow: 0 30px 60px rgba(30, 110, 92, 0.2), 0 0 100px rgba(30, 110, 92, 0.1);
+            border-color: rgba(30, 110, 92, 0.5);
+        }
+        .app-card.saloni .app-name {
+            background: linear-gradient(135deg, #2fae8c, #1e6e5c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .download-btn.visit-site-saloni {
+            background: linear-gradient(135deg, rgba(30, 110, 92, 0.35), rgba(30, 110, 92, 0.1));
+            border-color: rgba(30, 110, 92, 0.35);
+        }
+
+        .download-btn.visit-site-saloni:hover {
+            background: linear-gradient(135deg, rgba(30, 110, 92, 0.55), rgba(30, 110, 92, 0.2));
+        }
+
+        /* Sand tile, matching the app's own icon background */
+        .app-icon.website-icon.saloni-icon {
+            background: linear-gradient(135deg, #f7f4ef, #e9e5db);
+        }
+
         .app-icon {
             width: 110px;
             height: 110px;
@@ -1824,7 +1854,28 @@
                     </div>
                 </div>
 
-                <!-- 13. Thinkxie (out of service) -->
+                <!-- 13. SALONI -->
+                <div class="app-card saloni">
+                    <div class="app-icon website-icon saloni-icon">
+                        <picture>
+                        <source srcset="saloni-logo.webp" type="image/webp">
+                        <img src="saloni-logo.png" alt="SALONI" style="width:100%;height:100%;object-fit:contain;border-radius:0;padding:22px;">
+                    </picture>
+                    </div>
+                    <h2 class="app-name">SALONI</h2>
+                    <span class="badge">Barber Booking</span>
+                    <p class="app-description">Booking platform for barbershops in Algeria. Customers scan the salon's QR code and grab a slot with their barber — no account needed. Arabic, French & English.</p>
+                    <div class="download-buttons">
+                        <a href="https://salonidz.com/" target="_blank" class="download-btn visit-site-saloni">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                            </svg>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 14. Thinkxie (out of service) -->
                 <div class="app-card thinkxie out-of-service">
                     <span class="status-badge"><span class="status-dot"></span> Out of Service</span>
                     <div class="app-icon">
@@ -1846,7 +1897,7 @@
                     </div>
                 </div>
 
-                <!-- 14. Saf9ty (out of service) -->
+                <!-- 15. Saf9ty (out of service) -->
                 <div class="app-card saf9ty out-of-service">
                     <span class="status-badge"><span class="status-dot"></span> Out of Service</span>
                     <div class="app-icon">
