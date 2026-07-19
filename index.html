@@ -8,8 +8,12 @@
     <meta property="og:description" content="Fullstack developer. 14 mobile apps and 15 web platforms, shipped on the App Store, Google Play and the web.">
     <meta property="og:url" content="https://ayoubportfolio.site/">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://ayoubportfolio.site/ayoub-logo.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
     <title>Ayoub Benderdouch — Apps & Websites</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308080c'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='%23f2f3f7' text-anchor='middle'%3EA%3C/text%3E%3Ccircle cx='47' cy='19' r='5' fill='%23d4af37'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/png" href="ayoub-logo-nav.png">
+    <link rel="apple-touch-icon" href="ayoub-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -66,6 +70,13 @@
                 radial-gradient(ellipse 80% 55% at 18% -8%, rgba(99, 102, 241, 0.16) 0%, transparent 55%),
                 radial-gradient(ellipse 60% 45% at 85% 4%, rgba(212, 175, 55, 0.08) 0%, transparent 55%),
                 radial-gradient(ellipse 70% 50% at 82% 100%, rgba(168, 85, 247, 0.10) 0%, transparent 55%);
+        }
+
+        #bg-code {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .glow {
@@ -125,25 +136,12 @@
         }
 
         .brand-mark {
-            width: 34px; height: 34px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            font-family: var(--fd);
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--bg);
-            background: linear-gradient(135deg, #f2f3f7 0%, #c7c9d4 100%);
-            position: relative;
-        }
-
-        .brand-mark::after {
-            content: '';
-            position: absolute;
-            top: 5px; right: 5px;
-            width: 6px; height: 6px;
+            width: 38px; height: 38px;
             border-radius: 50%;
-            background: #d4af37;
+            object-fit: cover;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            box-shadow: 0 0 14px rgba(212, 175, 55, 0.18);
+            display: block;
         }
 
         .brand-name {
@@ -887,6 +885,7 @@
     <!-- Ambient background -->
     <div class="bg-wrapper">
         <div class="bg-gradient"></div>
+        <canvas id="bg-code"></canvas>
         <div class="glow glow-1"></div>
         <div class="glow glow-2"></div>
         <div class="noise"></div>
@@ -895,7 +894,7 @@
     <!-- Nav -->
     <nav class="nav">
         <a class="brand" href="#top">
-            <span class="brand-mark">A</span>
+            <img class="brand-mark" src="ayoub-logo-nav.png" alt="Ayoub Benderdouch logo">
             <span class="brand-name">Ayoub Benderdouch
                 <span class="brand-role">Fullstack Developer</span>
             </span>
@@ -1627,6 +1626,97 @@
                 });
             });
         }
+
+        // Binary-matrix background with blue pulse glow
+        (() => {
+            const canvas = document.getElementById('bg-code');
+            if (!canvas || !canvas.getContext) return;
+            const ctx = canvas.getContext('2d');
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const CELL = 26;
+            const FONT = '12px "SF Mono", Menlo, Consolas, monospace';
+            const BLUE = '77, 159, 255';
+            let cols, rows, chars, staticLayer, pulses = [];
+
+            const newPulse = (seedPhase) => ({
+                c: Math.floor(Math.random() * cols),
+                r: Math.floor(Math.random() * rows),
+                t: seedPhase ? Math.random() : 0,
+                speed: 0.15 + Math.random() * 0.35
+            });
+
+            function build() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const w = window.innerWidth, h = window.innerHeight;
+                canvas.width = w * dpr;
+                canvas.height = h * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                cols = Math.ceil(w / CELL);
+                rows = Math.ceil(h / CELL);
+                chars = Array.from({ length: cols * rows }, () => Math.random() < 0.5 ? '0' : '1');
+                staticLayer = document.createElement('canvas');
+                staticLayer.width = canvas.width;
+                staticLayer.height = canvas.height;
+                const s = staticLayer.getContext('2d');
+                s.setTransform(dpr, 0, 0, dpr, 0, 0);
+                s.font = FONT;
+                s.textAlign = 'center';
+                s.textBaseline = 'middle';
+                s.fillStyle = 'rgba(160, 190, 255, 0.085)';
+                for (let r = 0; r < rows; r++)
+                    for (let c = 0; c < cols; c++)
+                        s.fillText(chars[r * cols + c], c * CELL + CELL / 2, r * CELL + CELL / 2);
+                pulses = [];
+                if (!reduce) {
+                    const n = Math.max(10, Math.round(cols * rows * 0.012));
+                    for (let i = 0; i < n; i++) pulses.push(newPulse(true));
+                }
+                render();
+            }
+
+            function render() {
+                const w = window.innerWidth, h = window.innerHeight;
+                ctx.clearRect(0, 0, w, h);
+                ctx.drawImage(staticLayer, 0, 0, w, h);
+                if (!pulses.length) return;
+                ctx.font = FONT;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                pulses.forEach(p => {
+                    const a = Math.sin(Math.PI * Math.min(p.t, 1));
+                    ctx.fillStyle = `rgba(${BLUE}, ${(0.12 + 0.5 * a).toFixed(3)})`;
+                    ctx.shadowColor = `rgba(${BLUE}, ${(0.8 * a).toFixed(3)})`;
+                    ctx.shadowBlur = 10;
+                    ctx.fillText(chars[p.r * cols + p.c], p.c * CELL + CELL / 2, p.r * CELL + CELL / 2);
+                });
+                ctx.shadowBlur = 0;
+            }
+
+            let last = 0, acc = 0;
+            function frame(ts) {
+                if (!last) last = ts;
+                acc += (ts - last) / 1000;
+                last = ts;
+                if (acc >= 0.085) {
+                    pulses.forEach(p => {
+                        p.t += p.speed * acc;
+                        if (p.t >= 1) Object.assign(p, newPulse(false));
+                    });
+                    render();
+                    acc = 0;
+                }
+                requestAnimationFrame(frame);
+            }
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(build, 200);
+            });
+
+            build();
+            if (!reduce) requestAnimationFrame(frame);
+        })();
     </script>
 </body>
 </html>
