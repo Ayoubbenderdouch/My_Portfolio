@@ -333,41 +333,7 @@
         .shelf-icon.tile img { object-fit: contain; border-radius: 0; }
         .shelf-icon.tile-dark { background: rgba(45, 212, 191, 0.13); padding: 9px; }
         .shelf-icon.tile-dark img { object-fit: contain; border-radius: 0; }
-
-        /* ---------- Showcase (VS Code style gradient frame) ---------- */
-        .showcase {
-            position: relative;
-            z-index: 1;
-            max-width: 1150px;
-            margin: clamp(40px, 7vh, 70px) auto 0;
-            padding: 0 20px;
-        }
-
-        .showcase-frame {
-            border-radius: 26px;
-            padding: clamp(16px, 3.2vw, 42px);
-            background: linear-gradient(135deg, #7cc0ff 0%, #3b82f6 38%, #1d4ed8 100%);
-            box-shadow: 0 30px 80px rgba(37, 99, 235, 0.25);
-        }
-
-        .showcase-inner {
-            background: #050508;
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: clamp(10px, 3vw, 40px);
-            padding: clamp(18px, 3vw, 36px);
-            overflow: hidden;
-        }
-
-        .showcase-inner img {
-            max-height: 520px;
-            max-width: 46%;
-            width: auto;
-            object-fit: contain;
-        }
-
+        
         /* ---------- Split sections (text left, content right) ---------- */
         .split {
             position: relative;
@@ -869,8 +835,6 @@
             .stack-grid { grid-template-columns: repeat(2, 1fr); gap: 8px 12px; }
             .shelf-icon { width: 52px; height: 52px; flex-basis: 52px; border-radius: 13px; }
             .shelf, .shelf-track { gap: 13px; }
-            .showcase-inner { flex-direction: column; }
-            .showcase-inner img { max-width: 88%; max-height: 430px; }
             .banner-inner { flex-direction: column; align-items: flex-start; }
             .hero-ctas .btn-primary, .hero-ctas .btn-ghost { width: 100%; justify-content: center; }
             .float-whatsapp { width: 54px; height: 54px; bottom: 20px; right: 20px; }
@@ -1002,22 +966,6 @@
             <div class="shelf-icon tile" title="SALONI"><img src="saloni-logo.webp" alt=""></div>
             <div class="shelf-icon" title="Thinkxie"><img src="thinkxie-logo.webp" alt=""></div>
             <div class="shelf-icon" title="AlBabor"><img src="albabor-logo.webp" alt=""></div>
-        </div>
-    </div>
-
-    <!-- Showcase: real app screens in gradient frame -->
-    <div class="showcase reveal">
-        <div class="showcase-frame">
-            <div class="showcase-inner">
-                <picture>
-                    <source srcset="rainsoundsscreen.webp" type="image/webp">
-                    <img src="rainsoundsscreen.png" alt="Rain Sounds app on iPhone" loading="lazy">
-                </picture>
-                <picture>
-                    <source srcset="athani-screen.webp" type="image/webp">
-                    <img src="athani-screen.png" alt="Athani Pro app on iPhone" loading="lazy">
-                </picture>
-            </div>
         </div>
     </div>
 
