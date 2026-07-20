@@ -18,6 +18,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @property --ba {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
         :root {
             --bg: #08080c;
             --ink: #f2f3f7;
@@ -543,8 +549,26 @@
             justify-content: space-between;
             gap: 26px;
             background: #0b0b12;
-            border: 1px solid rgba(255, 255, 255, 0.08);
             overflow: hidden;
+        }
+
+        .banner-inner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: conic-gradient(from var(--ba), #4d9fff, #a78bfa, #f43f9e, #ff8a4c, #4d9fff);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: border-spin 5s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes border-spin {
+            to { --ba: 360deg; }
         }
 
         .banner-inner::before {
@@ -552,9 +576,9 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse 45% 90% at 8% 50%, rgba(74, 222, 128, 0.35) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 100% at 45% 30%, rgba(59, 130, 246, 0.32) 0%, transparent 62%),
-                radial-gradient(ellipse 45% 90% at 92% 60%, rgba(139, 92, 246, 0.38) 0%, transparent 60%);
+                radial-gradient(ellipse 45% 90% at 8% 50%, rgba(77, 159, 255, 0.4) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 100% at 45% 30%, rgba(167, 139, 250, 0.36) 0%, transparent 62%),
+                radial-gradient(ellipse 45% 90% at 92% 60%, rgba(244, 63, 158, 0.42) 0%, transparent 60%);
             filter: blur(24px);
             pointer-events: none;
         }
@@ -855,7 +879,7 @@
         /* ---------- Reduced motion ---------- */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .shelf-track, .bg-art, .bg-light, .contact-badge .dot, .float-whatsapp { animation: none !important; }
+            .shelf-track, .bg-art, .bg-light, .banner-inner::after, .contact-badge .dot, .float-whatsapp { animation: none !important; }
             .reveal { opacity: 1; transform: none; }
             .mini-card, .chip, .btn-primary, .btn-ghost, .nav-wa, .whatsapp-btn, .banner-btn { transition: none; }
         }
