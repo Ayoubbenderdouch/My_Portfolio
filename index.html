@@ -612,18 +612,19 @@
         .lang:hover { background: rgba(255, 255, 255, 0.05); }
 
         .lang-badge {
-            width: 36px; height: 36px;
-            flex: 0 0 36px;
-            border-radius: 9px;
+            width: 38px; height: 38px;
+            flex: 0 0 38px;
+            border-radius: 10px;
             display: grid;
             place-items: center;
-            font-family: var(--fd);
-            font-weight: 800;
-            font-size: 0.82rem;
-            color: #fff;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.09);
         }
 
-        .lang-badge.dark-text { color: #08080c; }
+        .lang-badge img {
+            width: 22px; height: 22px;
+            display: block;
+        }
 
         .lang-name {
             font-size: 0.95rem;
@@ -1284,18 +1285,18 @@
             <p>The stack behind every project.</p>
         </div>
         <div class="stack-grid reveal">
-            <div class="lang"><span class="lang-badge" style="background:#0468D7">Fl</span><span class="lang-name">Flutter</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#F05138">Sw</span><span class="lang-name">SwiftUI</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#7F52FF">Kt</span><span class="lang-name">Kotlin</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#FF2D20">La</span><span class="lang-name">Laravel</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#777BB4">Ph</span><span class="lang-name">PHP</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#42B883">Vu</span><span class="lang-name">Vue.js</span></div>
-            <div class="lang"><span class="lang-badge dark-text" style="background:#61DAFB">Re</span><span class="lang-name">React</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#3178C6">TS</span><span class="lang-name">TypeScript</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#00758F">My</span><span class="lang-name">MySQL</span></div>
-            <div class="lang"><span class="lang-badge dark-text" style="background:#FFCA28">Fb</span><span class="lang-name">Firebase</span></div>
-            <div class="lang"><span class="lang-badge dark-text" style="background:#38BDF8">Tw</span><span class="lang-name">Tailwind</span></div>
-            <div class="lang"><span class="lang-badge" style="background:#333">Nx</span><span class="lang-name">Next.js</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-flutter.svg" alt="" loading="lazy"></span><span class="lang-name">Flutter</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-swiftui.svg" alt="" loading="lazy"></span><span class="lang-name">SwiftUI</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-kotlin.svg" alt="" loading="lazy"></span><span class="lang-name">Kotlin</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-laravel.svg" alt="" loading="lazy"></span><span class="lang-name">Laravel</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-php.svg" alt="" loading="lazy"></span><span class="lang-name">PHP</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-vue.svg" alt="" loading="lazy"></span><span class="lang-name">Vue.js</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-react.svg" alt="" loading="lazy"></span><span class="lang-name">React</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-typescript.svg" alt="" loading="lazy"></span><span class="lang-name">TypeScript</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-mysql.svg" alt="" loading="lazy"></span><span class="lang-name">MySQL</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-firebase.svg" alt="" loading="lazy"></span><span class="lang-name">Firebase</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-tailwind.svg" alt="" loading="lazy"></span><span class="lang-name">Tailwind</span></div>
+            <div class="lang"><span class="lang-badge"><img src="stack-nextjs.svg" alt="" loading="lazy"></span><span class="lang-name">Next.js</span></div>
         </div>
     </section>
 
