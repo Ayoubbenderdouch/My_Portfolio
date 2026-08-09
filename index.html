@@ -1,876 +1,643 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ayoub Benderdouch — fullstack developer. 14 mobile apps and 16 web platforms, shipped on the App Store, Google Play and the web.">
-    <meta property="og:title" content="Ayoub Benderdouch — Apps & Websites">
-    <meta property="og:description" content="Fullstack developer. 14 mobile apps and 16 web platforms, shipped on the App Store, Google Play and the web.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>أيوب بن دردوش — تطبيقات ومنصّات | Ayoub Benderdouch</title>
+    <meta name="description" content="٣٠ منتجاً حقيقياً على App Store وGoogle Play — تطبيقات ومنصّات من مطوّر واحد.">
+    <meta name="theme-color" content="#D8ECFA">
+    <link rel="canonical" href="https://ayoubportfolio.site/">
+    <meta property="og:title" content="أيوب بن دردوش — تطبيقات ومنصّات | Ayoub Benderdouch">
+    <meta property="og:description" content="٣٠ منتجاً حقيقياً على App Store وGoogle Play — تطبيقات ومنصّات من مطوّر واحد.">
     <meta property="og:url" content="https://ayoubportfolio.site/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://ayoubportfolio.site/ayoub-logo.png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
-    <title>Ayoub Benderdouch — Apps & Websites</title>
-    <link rel="icon" type="image/png" href="ayoub-logo-nav.png">
-    <link rel="apple-touch-icon" href="ayoub-logo.png">
+    <meta property="og:image" content="https://ayoubportfolio.site/assets/sky-poster.jpg">
+
+    <link rel="preload" as="image" href="assets/sky-poster.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" media="print" onload="this.media='all'"
+          href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap"></noscript>
+
+    <script>
+        /* Sprach-Init vor dem ersten Paint — verhindert RTL/LTR-Flackern */
+        (function () {
+            try {
+                var p = new URLSearchParams(location.search).get('lang');
+                var s = p || localStorage.getItem('lang');
+                if (s === 'en') { document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; }
+                if (p === 'en' || p === 'ar') localStorage.setItem('lang', p);
+            } catch (e) { }
+        })();
+    </script>
+
     <style>
         :root {
-            --bg: #08080c;
-            --ink: #f2f3f7;
-            --muted: rgba(242, 243, 247, 0.62);
-            --faint: rgba(242, 243, 247, 0.4);
-            --line: rgba(255, 255, 255, 0.09);
-            --surface: rgba(255, 255, 255, 0.04);
-            --card: #101016;
-            --blue: #4d9fff;
-            --blue-btn: #0078d4;
-            --wa: #25D366;
-            --wa-deep: #128C7E;
-            --fd: 'Bricolage Grotesque', 'Inter', sans-serif;
-            --fb: 'Inter', sans-serif;
+            --sky:          #D8ECFA;
+            --accent:       #2E7CD6;
+            --ink:          #12365C;
+            --ink-soft:     #4A6B8F; /* AA-sicher auf Glas über hellen Wolken */
+            --glass:        rgba(255,255,255,0.62);
+            --glass-border: rgba(255,255,255,0.95);
+            --badge:        #12365C;
+            --whatsapp:     #25D366;
+            --accent-text:  #1D5FAE; /* dunklerer Akzent nur fuer Text auf hellen Flaechen (AA) */
+            --fd: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+            --fb: 'IBM Plex Sans Arabic', 'Alexandria', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-snap-type: y proximity;
+            scroll-behavior: smooth;
+        }
 
         body {
             font-family: var(--fb);
-            background: var(--bg);
+            background: var(--sky);
             color: var(--ink);
             min-height: 100vh;
-            overflow-x: hidden;
+            min-height: 100svh;
+            overflow-x: clip;
             -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
-        ::selection { background: rgba(77, 159, 255, 0.35); }
+        ::selection { background: rgba(46, 124, 214, 0.25); }
 
         a { color: inherit; }
 
         :focus-visible {
-            outline: 2px solid var(--blue);
+            outline: 2px solid var(--accent);
             outline-offset: 3px;
-            border-radius: 6px;
+            border-radius: 9px;
         }
 
-        /* ---------- Background: Lovable-style layered gradient ---------- */
-        .bg-wrapper {
+        /* ---------- Sky layers ---------- */
+        .sky-fallback {
             position: fixed;
             inset: 0;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: #07070d;
+            z-index: -2;
+            background: var(--sky) url('assets/sky-poster.jpg') center / cover no-repeat;
         }
 
-        .bg-art {
-            position: absolute;
-            left: 0; right: 0;
-            top: -12%; height: 124%;
-            background:
-                radial-gradient(ellipse 55% 36% at 50% 30%, rgba(5, 6, 14, 0.7) 0%, transparent 70%),
-                radial-gradient(ellipse 62% 20% at 50% 103%, rgba(255, 122, 69, 0.9) 0%, transparent 72%),
-                radial-gradient(ellipse 46% 32% at 6% 74%, rgba(255, 45, 135, 0.8) 0%, transparent 70%),
-                radial-gradient(ellipse 46% 32% at 94% 74%, rgba(255, 45, 135, 0.8) 0%, transparent 70%),
-                radial-gradient(ellipse 95% 48% at 50% 87%, rgba(236, 54, 145, 0.85) 0%, transparent 75%),
-                radial-gradient(ellipse 44% 32% at 4% 36%, rgba(59, 110, 246, 0.72) 0%, transparent 70%),
-                radial-gradient(ellipse 44% 32% at 96% 36%, rgba(59, 110, 246, 0.72) 0%, transparent 70%),
-                linear-gradient(180deg, #07070c 0%, #0b1430 30%, #1e3577 48%, #5b3f9e 62%, #b23390 76%, #e83e8c 88%, #ff6b45 100%);
-            animation: bg-breathe 12s ease-in-out infinite alternate, bg-hue 16s ease-in-out infinite alternate;
-            will-change: transform, filter;
-        }
-
-        @keyframes bg-breathe {
-            to { transform: translateY(6%) scale(1.09); }
-        }
-
-        @keyframes bg-hue {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(-16deg); }
-        }
-
-        .bg-light {
-            position: absolute;
-            width: 60vw; height: 60vw;
-            max-width: 950px; max-height: 950px;
-            border-radius: 50%;
-            mix-blend-mode: screen;
-            filter: blur(60px);
-            will-change: transform, opacity;
-        }
-
-        .bg-light-1 {
-            background: radial-gradient(circle, rgba(255, 64, 150, 0.62) 0%, transparent 65%);
-            top: 38%; left: -22%;
-            animation: light-drift-1 13s ease-in-out infinite alternate;
-        }
-
-        .bg-light-2 {
-            background: radial-gradient(circle, rgba(80, 130, 255, 0.58) 0%, transparent 65%);
-            top: 4%; right: -20%;
-            animation: light-drift-2 17s ease-in-out infinite alternate;
-        }
-
-        @keyframes light-drift-1 {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.45; }
-            100% { transform: translate(72vw, -20vh) scale(1.35); opacity: 1; }
-        }
-
-        @keyframes light-drift-2 {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-            100% { transform: translate(-70vw, 24vh) scale(1.4); opacity: 1; }
-        }
-
-        .noise {
-            position: absolute;
+        .sky-bg {
+            position: fixed;
             inset: 0;
-            opacity: 0.028;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1.2s ease;
         }
 
-        /* ---------- Nav ---------- */
-        .nav {
+        .sky-bg.ready { opacity: 1; }
+
+        /* ---------- Glass primitives ---------- */
+        .glass {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            backdrop-filter: blur(18px) saturate(1.4);
+            -webkit-backdrop-filter: blur(18px) saturate(1.4);
+        }
+
+        /* leichte Fläche ohne Blur — Perf-Regel: max ~3 geblurte Flächen im Viewport */
+        .lite {
+            background: rgba(255, 255, 255, 0.66);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* ---------- Page column ---------- */
+        .page {
+            max-width: 480px;
+            margin-inline: auto;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- Header ---------- */
+        .topbar {
             position: sticky;
             top: 0;
-            z-index: 50;
+            z-index: 40;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            padding: 12px clamp(18px, 4vw, 44px);
-            background: rgba(8, 8, 12, 0.72);
-            -webkit-backdrop-filter: blur(16px);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 12px;
+            padding: 9px 14px;
+            border-left: 0;
+            border-right: 0;
+            border-top: 0;
+            border-radius: 0;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
-        .brand-mark {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid rgba(212, 175, 55, 0.45);
-            box-shadow: 0 0 14px rgba(212, 175, 55, 0.18);
-            display: block;
+        .mono {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1.5px solid var(--accent);
+            font-family: var(--fd);
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--accent-text);
         }
 
         .brand-name {
             font-family: var(--fd);
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: -0.01em;
-            line-height: 1.15;
-        }
-
-        .brand-role {
-            display: block;
-            font-family: var(--fb);
             font-weight: 500;
-            font-size: 0.68rem;
-            color: var(--faint);
+            font-size: 14px;
+            color: var(--ink);
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 26px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--muted);
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            transition: color 0.25s ease;
-        }
-
-        .nav-links a:hover { color: var(--ink); }
-
-        .nav-wa {
+        .lang-toggle {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 9px 16px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 0.83rem;
-            font-weight: 600;
+            gap: 2px;
+            padding: 3px;
+            border-radius: 9px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.55);
+            font-family: var(--fb);
+            cursor: pointer;
+        }
+
+        .lang-toggle span {
+            padding: 4px 10px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink-soft);
+            line-height: 1.4;
+        }
+
+        .lang-toggle span.on {
+            background: var(--accent-text);
             color: #fff;
-            background: linear-gradient(135deg, var(--wa) 0%, var(--wa-deep) 100%);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
             white-space: nowrap;
+            border: 0;
         }
-
-        .nav-wa:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
-        }
-
-        .nav-wa svg { width: 16px; height: 16px; }
 
         /* ---------- Hero ---------- */
         .hero {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: clamp(70px, 11vh, 130px) 20px 20px;
+            min-height: 45vh;
+            min-height: 45svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            gap: 14px;
+            padding: 34px 24px 18px;
         }
 
         h1 {
             font-family: var(--fd);
-            font-weight: 800;
-            font-size: clamp(2.6rem, 6.8vw, 5rem);
-            line-height: 1.03;
-            letter-spacing: -0.03em;
-            margin: 0 auto 18px;
+            font-weight: 600;
+            font-size: clamp(30px, 8.5vw, 38px);
+            line-height: 1.25;
+            color: var(--ink);
         }
 
         .hero-sub {
-            color: var(--muted);
-            font-size: clamp(1rem, 1.7vw, 1.2rem);
-            line-height: 1.6;
-            max-width: 560px;
-            margin: 0 auto 30px;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.8;
+            color: var(--ink);
+            max-width: 320px;
         }
 
-        .hero-sub strong { color: var(--ink); font-weight: 600; }
-
-        .hero-ctas {
+        .stats {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 14px;
+            gap: 8px;
+            margin-top: 2px;
         }
 
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 14px 30px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #fff;
-            background: linear-gradient(135deg, #2f8ae0 0%, var(--blue-btn) 100%);
-            box-shadow: 0 12px 30px rgba(0, 120, 212, 0.35);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(0, 120, 212, 0.5);
-        }
-
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 26px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+        .stat-chip {
+            padding: 7px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 500;
             color: var(--ink);
-            border: 1px solid rgba(37, 211, 102, 0.4);
-            background: rgba(37, 211, 102, 0.08);
-            transition: background 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
         }
 
-        .btn-ghost:hover {
-            background: rgba(37, 211, 102, 0.16);
-            transform: translateY(-3px);
+        .hero-chev {
+            margin-top: 14px;
+            color: var(--ink-soft);
+            display: inline-flex;
+            padding: 6px;
         }
 
-        .btn-ghost svg { width: 19px; height: 19px; color: var(--wa); }
+        .hero-chev svg { width: 24px; height: 24px; }
 
-        /* ---------- App shelf (icon marquee) ---------- */
-        .shelf {
+        /* ---------- Featured feed ---------- */
+        .feed-card {
+            min-height: 100vh;
+            min-height: 100svh;
             position: relative;
-            z-index: 1;
-            padding: 36px 0 8px;
-            display: grid;
-            gap: 16px;
-            overflow: hidden;
-            -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-        }
-
-        .shelf-track {
             display: flex;
-            gap: 16px;
-            width: max-content;
-            animation: shelf-move 52s linear infinite;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: start;
+            padding: 72px 20px 92px;
         }
 
-        .shelf-track.reverse { animation: shelf-move-r 46s linear infinite; }
-
-        .shelf:hover .shelf-track { animation-play-state: paused; }
-
-        @keyframes shelf-move { to { transform: translateX(-50%); } }
-        @keyframes shelf-move-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-
-        .shelf-icon {
-            width: 60px; height: 60px;
-            flex: 0 0 60px;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
-            background: var(--surface);
-        }
-
-        .shelf-icon img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .shelf-icon.tile { background: #f5f3ec; padding: 8px; }
-        .shelf-icon.tile img { object-fit: contain; border-radius: 0; }
-        .shelf-icon.tile-dark { background: rgba(45, 212, 191, 0.13); padding: 9px; }
-        .shelf-icon.tile-dark img { object-fit: contain; border-radius: 0; }
-        
-        /* ---------- Split sections (text left, content right) ---------- */
-        .split {
-            position: relative;
-            z-index: 1;
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: clamp(70px, 10vh, 120px) 24px 0;
-            display: grid;
-            grid-template-columns: minmax(230px, 0.9fr) 2.3fr;
-            gap: clamp(30px, 5vw, 70px);
-            align-items: start;
-            scroll-margin-top: 80px;
-        }
-
-        .split-copy { position: sticky; top: 96px; }
-
-        .split-copy h2 {
-            font-family: var(--fd);
-            font-weight: 800;
-            font-size: clamp(2rem, 4.2vw, 3rem);
-            letter-spacing: -0.025em;
-            line-height: 1.05;
-            margin-bottom: 14px;
-        }
-
-        .split-copy p {
-            color: var(--muted);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .split-copy .count {
-            display: inline-block;
-            margin-top: 18px;
-            font-family: var(--fd);
-            font-weight: 800;
-            font-size: 0.85rem;
-            color: var(--ink);
-            background: var(--surface);
-            border: 1px solid var(--line);
-            padding: 5px 14px;
-            border-radius: 50px;
-        }
-
-        /* ---------- Mini cards (VS Code extension style) ---------- */
-        .mini-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .mini-card {
-            position: relative;
+        .glass-card {
+            width: 100%;
+            max-width: 350px;
+            padding: 26px 22px 22px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            padding: 18px;
-            border-radius: 16px;
-            background: rgba(16, 16, 22, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1), border-color 0.3s ease, background 0.3s ease;
-        }
-
-        .mini-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(300px circle at var(--mx, 50%) var(--my, -20%), rgba(77, 159, 255, 0.09), transparent 65%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .mini-card:hover::before { opacity: 1; }
-
-        .mini-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.18);
-            background: rgba(20, 20, 28, 0.85);
-        }
-
-        .mini-top {
-            display: flex;
             align-items: center;
-            gap: 13px;
+            text-align: center;
+            box-shadow: 0 18px 40px rgba(18, 54, 92, 0.12);
         }
 
-        .mini-icon {
-            width: 62px; height: 62px;
-            flex: 0 0 62px;
-            border-radius: 15px;
+        .logo-tile {
+            width: 84px;
+            height: 84px;
+            border-radius: 20px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 22px rgba(18, 54, 92, 0.10);
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
         }
 
-        .mini-icon img, .mini-icon picture {
-            width: 100%; height: 100%;
+        .logo-tile img {
+            width: 68px;
+            height: 68px;
+            border-radius: 15px;
             object-fit: cover;
             display: block;
         }
 
-        .mini-icon.tile { background: #f5f3ec; padding: 7px; }
-        .mini-icon.tile img { object-fit: contain; }
-        .mini-icon.tile-dark { background: rgba(45, 212, 191, 0.13); padding: 8px; }
-        .mini-icon.tile-dark img { object-fit: contain; }
-
-        .mini-name {
-            font-weight: 700;
-            font-size: 1.06rem;
-            letter-spacing: -0.01em;
-            line-height: 1.2;
+        .logo-tile.pad img {
+            object-fit: contain;
+            border-radius: 0;
         }
 
-        .mini-line {
-            display: block;
-            margin-top: 3px;
-            font-size: 0.83rem;
-            color: var(--muted);
-            line-height: 1.4;
+        .logo-fallback {
+            font-family: var(--fd);
+            font-weight: 600;
+            font-size: 30px;
+            color: var(--accent);
         }
 
-        .mini-links {
+        .p-name {
+            margin-top: 14px;
+            font-family: var(--fd);
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 1.35;
+            color: var(--ink);
+        }
+
+        .feat-label {
+            margin-top: 5px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent-text);
+        }
+
+        .chips {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 7px;
-            margin-top: auto;
+            margin-top: 11px;
         }
 
         .chip {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 6px 11px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.73rem;
-            font-weight: 600;
-            color: var(--ink);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.05);
-            transition: background 0.25s ease, border-color 0.25s ease;
-        }
-
-        .chip:hover {
-            background: rgba(77, 159, 255, 0.18);
-            border-color: rgba(77, 159, 255, 0.45);
-        }
-
-        .chip svg { width: 13px; height: 13px; }
-
-        .chip.soon, .chip.dead {
-            opacity: 0.38;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .status-badge {
-            position: absolute;
-            top: 12px; right: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 9px;
-            border-radius: 999px;
-            font-size: 0.58rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #ffb1a6;
-            background: rgba(255, 107, 95, 0.1);
-            border: 1px solid rgba(255, 107, 95, 0.28);
-            z-index: 2;
-        }
-
-        .mini-card.offline { opacity: 0.68; filter: grayscale(0.3); }
-        .mini-card.offline:hover { opacity: 1; filter: none; }
-
-        /* ---------- Gradient CTA banner (VS Code style) ---------- */
-        .banner {
-            position: relative;
-            z-index: 1;
-            max-width: 1240px;
-            margin: clamp(80px, 11vh, 130px) auto 0;
-            padding: 0 24px;
-        }
-
-        .banner-inner {
-            position: relative;
-            border-radius: 22px;
-            padding: clamp(36px, 5.5vw, 60px) clamp(24px, 5vw, 60px);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 26px;
-            background: #0b0b12;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            overflow: hidden;
-        }
-
-        .banner-inner::before {
-            content: '';
-            position: absolute;
-            inset: -14%;
-            background: linear-gradient(115deg,
-                rgba(59, 110, 246, 0.5) 0%,
-                rgba(139, 92, 246, 0.46) 30%,
-                rgba(236, 54, 145, 0.52) 62%,
-                rgba(255, 122, 69, 0.46) 100%);
-            filter: blur(30px) hue-rotate(-28deg);
-            animation: banner-aurora 8s ease-in-out infinite alternate;
-            will-change: transform, filter;
-            pointer-events: none;
-        }
-
-        @keyframes banner-aurora {
-            0% { transform: translateX(-4.5%) scale(1); filter: blur(30px) hue-rotate(-28deg); }
-            100% { transform: translateX(4.5%) scale(1.14); filter: blur(30px) hue-rotate(30deg); }
-        }
-
-        .banner-inner > * { position: relative; z-index: 1; }
-
-        .banner h2 {
-            font-family: var(--fd);
-            font-weight: 800;
-            font-size: clamp(1.7rem, 3.8vw, 2.6rem);
-            letter-spacing: -0.02em;
-        }
-
-        .banner-right {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 22px;
-        }
-
-        .banner-right p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1rem;
+            gap: 7px;
+            padding: 6px 12px;
+            border-radius: 9px;
+            font-size: 12px;
             font-weight: 500;
+            color: var(--ink);
         }
 
-        .banner-btn {
+        .chip img {
+            width: 22px;
+            height: 22px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .c-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--glass-border);
+            display: inline-block;
+        }
+
+        .chip.stat {
+            background: rgba(46, 124, 214, 0.12);
+            border: 1px solid rgba(46, 124, 214, 0.30);
+            color: var(--accent-text);
+        }
+
+        .story {
+            margin-top: 13px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--ink-soft);
+            max-width: 290px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 17px;
+        }
+
+        .badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 13px 26px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
+            gap: 7px;
+            padding: 8px 13px;
+            border-radius: 9px;
+            background: var(--badge);
             color: #fff;
-            background: linear-gradient(135deg, var(--wa) 0%, var(--wa-deep) 100%);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
             white-space: nowrap;
         }
 
-        .banner-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.5);
+        .badge svg { width: 14px; height: 14px; flex: 0 0 14px; }
+
+        .badge:active { transform: scale(0.97); }
+
+        .plat-chip {
+            padding: 8px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink);
         }
 
-        .banner-btn svg { width: 20px; height: 20px; }
-
-        /* ---------- Stack ---------- */
-        .stack-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px 24px;
-        }
-
-        .lang {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px;
-            border-radius: 12px;
-            transition: background 0.25s ease;
-        }
-
-        .lang:hover { background: rgba(255, 255, 255, 0.05); }
-
-        .lang-badge {
-            width: 38px; height: 38px;
-            flex: 0 0 38px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-        }
-
-        .lang-badge img {
-            width: 22px; height: 22px;
-            display: block;
-        }
-
-        .lang-name {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        /* ---------- Contact ---------- */
-        .contact-section {
-            position: relative;
-            z-index: 1;
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: clamp(80px, 11vh, 130px) 20px 0;
-            display: flex;
-            justify-content: center;
-            scroll-margin-top: 80px;
-        }
-
-        .contact-card {
-            position: relative;
-            width: 100%;
-            max-width: 760px;
-            text-align: center;
-            padding: clamp(44px, 6vw, 66px) clamp(24px, 5vw, 48px);
-            border-radius: 28px;
-            background: linear-gradient(180deg, rgba(37, 211, 102, 0.10) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(37, 211, 102, 0.18);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
-            overflow: hidden;
-        }
-
-        .contact-card::before {
-            content: "";
+        .swipe-hint {
             position: absolute;
-            top: -45%; left: 50%;
-            transform: translateX(-50%);
-            width: 540px; height: 540px;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.18) 0%, transparent 70%);
+            bottom: 26px;
+            inset-inline: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            color: var(--ink);
+            font-size: 11px;
+            font-weight: 500;
+            opacity: 0.82;
             pointer-events: none;
         }
 
-        .contact-card > * { position: relative; z-index: 1; }
-
-        .contact-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(37, 211, 102, 0.12);
-            border: 1px solid rgba(37, 211, 102, 0.3);
-            color: #4ade80;
-            padding: 7px 16px;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            margin-bottom: 20px;
+        .swipe-hint svg {
+            width: 18px;
+            height: 18px;
+            animation: hint-float 1.6s ease-in-out infinite;
         }
 
-        .contact-badge .dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--wa);
-            animation: pulse-dot 2s infinite;
+        @keyframes hint-float {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-6px); }
         }
 
-        @keyframes pulse-dot {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        /* ---------- All-projects grid ---------- */
+        .all {
+            padding: 44px 20px 6px;
         }
 
-        .contact-card h2 {
-            font-family: var(--fd);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 14px;
-        }
-
-        .contact-subtitle {
-            color: var(--muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            max-width: 480px;
-            margin: 0 auto 30px;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 34px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.02rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--wa) 0%, var(--wa-deep) 100%);
-            box-shadow: 0 14px 40px rgba(37, 211, 102, 0.35);
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-btn svg { width: 24px; height: 24px; }
-
-        .contact-meta {
-            margin-top: 20px;
-            color: var(--faint);
-            font-size: 0.9rem;
-        }
-
-        .contact-meta strong {
-            color: rgba(255, 255, 255, 0.78);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* ---------- Floating WhatsApp ---------- */
-        .float-whatsapp {
-            position: fixed;
-            bottom: 26px; right: 26px;
-            width: 58px; height: 58px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--wa) 0%, var(--wa-deep) 100%);
+        .sec-head {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-inline: 2px;
+        }
+
+        .sec-head h2 {
+            font-family: var(--fd);
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--ink);
+        }
+
+        .count {
+            padding: 5px 12px;
+            border-radius: 9px;
+            background: rgba(46, 124, 214, 0.12);
+            border: 1px solid rgba(46, 124, 214, 0.30);
+            color: var(--accent-text);
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            padding: 13px 6px 11px;
+            border-radius: 18px;
+            text-decoration: none;
+            transition: transform 0.15s ease;
+        }
+
+        .tile:active { transform: scale(0.97); }
+
+        .tile img {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tile.pad img { object-fit: contain; border-radius: 0; }
+
+        .t-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+
+        .t-country {
+            font-size: 11px;
+            color: var(--ink-soft);
+            line-height: 1;
+        }
+
+        .grid:not(.expanded) .tile:nth-child(n+10) { display: none; }
+
+        .more {
+            display: block;
+            margin: 16px auto 0;
+            padding: 10px 24px;
+            border-radius: 9px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.66);
+            font-family: var(--fb);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .more:active { transform: scale(0.97); }
+
+        .grid.expanded + .more { display: none; }
+
+        /* ---------- CTA ---------- */
+        .cta-wrap {
+            padding: 48px 20px 10px;
+            display: flex;
             justify-content: center;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
-            z-index: 60;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: float-pulse 2.6s infinite;
         }
 
-        .float-whatsapp:hover {
-            transform: scale(1.08);
-            box-shadow: 0 14px 40px rgba(37, 211, 102, 0.65);
+        .cta {
+            padding: 30px 24px 24px;
         }
 
-        .float-whatsapp svg { width: 32px; height: 32px; color: #fff; }
+        .cta h2 {
+            font-family: var(--fd);
+            font-weight: 600;
+            font-size: 22px;
+            color: var(--ink);
+        }
 
-        @keyframes float-pulse {
-            0% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45), 0 0 0 16px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0); }
+        .cta-sub {
+            margin-top: 8px;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--ink-soft);
+        }
+
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 18px;
+            padding: 13px 26px;
+            border-radius: 9px;
+            background: var(--whatsapp);
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            box-shadow: 0 10px 24px rgba(37, 211, 102, 0.30);
+        }
+
+        .wa-btn:active { transform: scale(0.97); }
+
+        .wa-btn svg { width: 18px; height: 18px; }
+
+        .reply {
+            margin-top: 11px;
+            font-size: 11px;
+            color: var(--ink-soft);
         }
 
         /* ---------- Footer ---------- */
         footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            margin-top: clamp(70px, 9vw, 110px);
-            padding: 36px 20px 52px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.32);
-            font-size: 0.88rem;
-        }
-
-        footer .foot-links {
+            margin-top: auto;
+            padding: 30px 20px 40px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 24px;
-            margin-bottom: 16px;
+            gap: 8px;
+            font-size: 12px;
             font-weight: 500;
+            color: var(--ink);
         }
 
         footer a {
-            color: rgba(255, 255, 255, 0.5);
+            display: inline-flex;
+            padding: 4px;
+            color: var(--ink);
             text-decoration: none;
-            transition: color 0.3s ease;
         }
 
-        footer a:hover { color: rgba(255, 255, 255, 0.85); }
+        footer svg { width: 17px; height: 17px; }
 
-        /* ---------- Reveal ---------- */
+        .dot-sep { opacity: 0.45; }
+
+        /* ---------- Motion ---------- */
         .reveal {
             opacity: 0;
-            transform: translateY(16px);
+            transform: translateY(14px);
         }
 
         .reveal.in {
             opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease var(--d, 0s), transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) var(--d, 0s);
+            transform: none;
+            transition: opacity 0.45s ease-out, transform 0.45s ease-out;
         }
 
-        /* ---------- Responsive ---------- */
-        @media (max-width: 1024px) {
-            .mini-grid { grid-template-columns: repeat(2, 1fr); }
-            .stack-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 800px) {
-            .split {
-                grid-template-columns: 1fr;
-                gap: 28px;
+        /* ---------- Desktop: Telefon-Spalte, Himmel full-bleed ---------- */
+        @media (min-width: 520px) {
+            .topbar {
+                margin: 10px 10px 0;
+                border-radius: 14px;
+                border: 1px solid var(--glass-border);
             }
-            .split-copy { position: static; }
-        }
-
-        @media (max-width: 680px) {
-            .nav-links { display: none; }
-            .brand-role { display: none; }
-            .mini-grid { grid-template-columns: 1fr; }
-            .stack-grid { grid-template-columns: repeat(2, 1fr); gap: 8px 12px; }
-            .shelf-icon { width: 52px; height: 52px; flex-basis: 52px; border-radius: 13px; }
-            .shelf, .shelf-track { gap: 13px; }
-            .banner-inner { flex-direction: column; align-items: flex-start; }
-            .hero-ctas .btn-primary, .hero-ctas .btn-ghost { width: 100%; justify-content: center; }
-            .float-whatsapp { width: 54px; height: 54px; bottom: 20px; right: 20px; }
         }
 
         /* ---------- Reduced motion ---------- */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .shelf-track, .bg-art, .bg-light, .banner-inner::before, .contact-badge .dot, .float-whatsapp { animation: none !important; }
-            .reveal { opacity: 1; transform: none; }
-            .mini-card, .chip, .btn-primary, .btn-ghost, .nav-wa, .whatsapp-btn, .banner-btn { transition: none; }
+            .sky-bg { display: none; }
+            .swipe-hint svg { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .sky-bg, .tile, .more, .badge, .wa-btn { transition: none; }
         }
     </style>
 </head>
 <body>
-    <!-- SVG icon symbols -->
+    <!-- SVG-Sprite -->
     <svg style="display:none" aria-hidden="true">
         <symbol id="i-apple" viewBox="0 0 24 24">
             <path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -881,517 +648,473 @@
         <symbol id="i-huawei" viewBox="0 0 24 24">
             <path fill="currentColor" d="M2.133 10.027a1.71 1.71 0 0 1-.073-.123c-.066-.123-.11-.24-.147-.357-.028-.086-.05-.172-.06-.261a1.63 1.63 0 0 1-.015-.222c0-.377.104-.748.29-1.072.118-.208.27-.399.436-.567a4.37 4.37 0 0 1 .623-.526c.258-.185.534-.352.813-.505a14.27 14.27 0 0 1 1.74-.816c.49-.19.991-.36 1.503-.503.67-.19 1.35-.339 2.038-.453.09-.015.18-.03.27-.042a23.32 23.32 0 0 1 3.43-.239c1.19 0 2.376.082 3.546.247.09.012.18.027.27.042a15.88 15.88 0 0 1 2.037.453c.512.144 1.014.314 1.503.503.602.227 1.182.503 1.74.816.28.153.555.32.814.505.224.161.432.338.623.526.165.168.317.36.435.567.187.324.291.695.291 1.072 0 .074-.005.148-.015.222a1.55 1.55 0 0 1-.06.261 1.88 1.88 0 0 1-.147.357 1.71 1.71 0 0 1-.073.123c-.02.031-.041.062-.063.091a2.66 2.66 0 0 1-.22.261l-.018.018a4.87 4.87 0 0 1-.548.47c-.259.194-.535.367-.82.526-.485.27-.999.496-1.528.686-.605.217-1.232.391-1.871.52-.848.172-1.715.281-2.59.324-.3.015-.601.023-.903.023-.302 0-.603-.008-.903-.023a17.54 17.54 0 0 1-2.59-.324 13.35 13.35 0 0 1-1.871-.52 10.03 10.03 0 0 1-1.528-.686 7.82 7.82 0 0 1-.82-.526 4.87 4.87 0 0 1-.548-.47l-.018-.018a2.66 2.66 0 0 1-.22-.261 1.06 1.06 0 0 1-.063-.091zm9.858 8.128c3.625 0 6.564-2.94 6.564-6.564 0-1.092-.267-2.122-.739-3.027-1.612.727-3.64 1.153-5.825 1.153-2.185 0-4.213-.426-5.825-1.153a6.53 6.53 0 0 0-.739 3.027c0 3.625 2.94 6.564 6.564 6.564z"/>
         </symbol>
-        <symbol id="i-web" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-        </symbol>
-        <symbol id="i-off" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C13.85,4 15.55,4.63 16.9,5.69L5.69,16.9C4.63,15.55 4,13.85 4,12A8,8 0 0,1 12,4M12,20C10.15,20 8.45,19.37 7.1,18.31L18.31,7.1C19.37,8.45 20,10.15 20,12A8,8 0 0,1 12,20Z"/>
+        <symbol id="i-globe" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m6.93 6H15.9a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8M12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.7 13.7 0 0 1 12 4.04M4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2zm.81 2h3.03c.33 1.29.8 2.5 1.38 3.56A8.03 8.03 0 0 1 5.07 16m3.03-8H5.07a8.03 8.03 0 0 1 4.41-3.56A15.7 15.7 0 0 0 8.1 8M12 19.96a13.7 13.7 0 0 1-1.91-3.96h3.82A13.7 13.7 0 0 1 12 19.96M14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2m.25 5.56c.58-1.06 1.05-2.27 1.38-3.56h3.03a8.03 8.03 0 0 1-4.41 3.56M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2z"/>
         </symbol>
         <symbol id="i-wa" viewBox="0 0 24 24">
             <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.359 11.943-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </symbol>
+        <symbol id="i-down" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z"/>
+        </symbol>
+        <symbol id="i-up" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </symbol>
+        <symbol id="i-ig" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+        </symbol>
     </svg>
 
-    <!-- Background -->
-    <div class="bg-wrapper">
-        <div class="bg-art"></div>
-        <div class="bg-light bg-light-1"></div>
-        <div class="bg-light bg-light-2"></div>
-        <div class="noise"></div>
-    </div>
+    <!-- Himmel: Poster zuerst, Video blendet ein -->
+    <div class="sky-fallback" aria-hidden="true"></div>
+    <video id="sky" class="sky-bg" autoplay muted loop playsinline
+           preload="metadata" poster="assets/sky-poster.jpg" aria-hidden="true" tabindex="-1">
+        <source src="assets/clouds_bg.mp4" type="video/mp4">
+    </video>
 
-    <!-- Nav -->
-    <nav class="nav">
-        <a class="brand" href="#top">
-            <img class="brand-mark" src="ayoub-logo-nav.png" alt="Ayoub Benderdouch logo">
-            <span class="brand-name">Ayoub Benderdouch
-                <span class="brand-role">Fullstack Developer</span>
-            </span>
-        </a>
-        <div class="nav-links">
-            <a href="#apps">Apps</a>
-            <a href="#websites">Websites</a>
-            <a href="#stack">Stack</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <a class="nav-wa" href="https://wa.me/213676085441?text=Hi%20Ayoub%21%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project%20%28app%20or%20website%29.%20Are%20you%20available%3F" target="_blank" rel="noopener">
-            <svg><use href="#i-wa"/></svg>
-            WhatsApp
-        </a>
-    </nav>
-
-    <!-- Hero -->
-    <header class="hero" id="top">
-        <h1>From idea to the App&nbsp;Store.</h1>
-        <p class="hero-sub">Fullstack developer. <strong>30 real products</strong> — on the App Store, Google Play &amp; the web.</p>
-        <div class="hero-ctas">
-            <a class="btn-primary" href="#apps">Explore the apps</a>
-            <a class="btn-ghost" href="https://wa.me/213676085441?text=Hi%20Ayoub%21%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project%20%28app%20or%20website%29.%20Are%20you%20available%3F" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg> Chat on WhatsApp</a>
-        </div>
-    </header>
-
-    <!-- App shelf -->
-    <div class="shelf" aria-hidden="true">
-        <div class="shelf-track">
-            <div class="shelf-icon" title="Change Dinar"><img src="changedinaricon.webp" alt=""></div>
-            <div class="shelf-icon" title="Rain Sounds"><img src="rainsoundsicon.webp" alt=""></div>
-            <div class="shelf-icon" title="Egg Timer"><img src="eggtimer-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Saf9ty"><img src="saf9ty-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Fitrigi Ride"><img src="fitrigi-ride-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Fitrigi Chauffeur"><img src="fitrigi-driver-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="FaydaLik"><img src="faydalik-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Athani Pro"><img src="athanologo.webp" alt=""></div>
-            <div class="shelf-icon" title="Yasfir"><img src="ysafer-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="SmartDoc"><img src="smartdocdz-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Smart Clinique"><img src="smartclinique-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Mido Froid"><img src="midoufroid-thumb.png" alt=""></div>
-            <div class="shelf-icon" title="AlBabor"><img src="albabor-app-icon.webp" alt=""></div>
-            <!-- duplicate for seamless loop -->
-            <div class="shelf-icon" title="Change Dinar"><img src="changedinaricon.webp" alt=""></div>
-            <div class="shelf-icon" title="Rain Sounds"><img src="rainsoundsicon.webp" alt=""></div>
-            <div class="shelf-icon" title="Egg Timer"><img src="eggtimer-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Saf9ty"><img src="saf9ty-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Fitrigi Ride"><img src="fitrigi-ride-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Fitrigi Chauffeur"><img src="fitrigi-driver-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="FaydaLik"><img src="faydalik-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Athani Pro"><img src="athanologo.webp" alt=""></div>
-            <div class="shelf-icon" title="Yasfir"><img src="ysafer-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="SmartDoc"><img src="smartdocdz-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Smart Clinique"><img src="smartclinique-icon.webp" alt=""></div>
-            <div class="shelf-icon" title="Mido Froid"><img src="midoufroid-thumb.png" alt=""></div>
-            <div class="shelf-icon" title="AlBabor"><img src="albabor-app-icon.webp" alt=""></div>
-        </div>
-        <div class="shelf-track reverse">
-            <div class="shelf-icon" title="Tabaraati"><img src="tabaraati-logo.png" alt=""></div>
-            <div class="shelf-icon" title="UX Beacon"><img src="uxbeacon-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="ReloadX"><img src="reloadx-logo.webp" alt=""></div>
-            <div class="shelf-icon tile" title="Crido"><img src="crido-logo.webp" alt=""></div>
-            <div class="shelf-icon tile-dark" title="Yachtei"><img src="yachtei-emblem.svg" alt=""></div>
-            <div class="shelf-icon tile" title="Diline Academy"><img src="dilin-thumb.png" alt=""></div>
-            <div class="shelf-icon" title="ISRAA Collections"><img src="israa-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Radiant Body"><img src="radiant-body-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Polo Boissons"><img src="polo-logo.webp" alt=""></div>
-            <div class="shelf-icon tile" title="SALONI"><img src="saloni-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Thinkxie"><img src="thinkxie-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="AlBabor"><img src="albabor-logo.webp" alt=""></div>
-            <!-- duplicate for seamless loop -->
-            <div class="shelf-icon" title="Tabaraati"><img src="tabaraati-logo.png" alt=""></div>
-            <div class="shelf-icon" title="UX Beacon"><img src="uxbeacon-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="ReloadX"><img src="reloadx-logo.webp" alt=""></div>
-            <div class="shelf-icon tile" title="Crido"><img src="crido-logo.webp" alt=""></div>
-            <div class="shelf-icon tile-dark" title="Yachtei"><img src="yachtei-emblem.svg" alt=""></div>
-            <div class="shelf-icon tile" title="Diline Academy"><img src="dilin-thumb.png" alt=""></div>
-            <div class="shelf-icon" title="ISRAA Collections"><img src="israa-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Radiant Body"><img src="radiant-body-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Polo Boissons"><img src="polo-logo.webp" alt=""></div>
-            <div class="shelf-icon tile" title="SALONI"><img src="saloni-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="Thinkxie"><img src="thinkxie-logo.webp" alt=""></div>
-            <div class="shelf-icon" title="AlBabor"><img src="albabor-logo.webp" alt=""></div>
-        </div>
-    </div>
-
-    <!-- ============ APPS ============ -->
-    <section class="split" id="apps">
-        <div class="split-copy reveal">
-            <h2>Apps for the stores.</h2>
-            <p>Live on the App Store, Google Play and Huawei AppGallery.</p>
-            <span class="count">14 apps</span>
-        </div>
-        <div class="mini-grid">
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="changedinaricon.webp" type="image/webp"><img src="changedinaricon.png" alt="Change Dinar"></picture></div>
-                    <div><h3 class="mini-name">Change Dinar</h3><span class="mini-line">Live EUR/USD → DZD exchange rates</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/change-dinar/id6742030993"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.zaed.changedinar"><svg><use href="#i-play"/></svg>Android</a>
-                    <a class="chip" href="https://appgallery.huawei.com/#/app/C116572695"><svg><use href="#i-huawei"/></svg>AppGallery</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="rainsoundsicon.webp" type="image/webp"><img src="rainsoundsicon.png" alt="Rain Sounds"></picture></div>
-                    <div><h3 class="mini-name">Rain Sounds</h3><span class="mini-line">Nature sounds for deep sleep</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="eggtimer-icon.webp" type="image/webp"><img src="eggtimer-icon.png" alt="Egg Timer"></picture></div>
-                    <div><h3 class="mini-name">Egg Timer</h3><span class="mini-line">Perfect eggs, every time</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/egg-timer-soft-hard-boiled/id6787127960"><svg><use href="#i-apple"/></svg>iOS</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="saf9ty-logo.webp" type="image/webp"><img src="saf9ty-logo.png" alt="Saf9ty"></picture></div>
-                    <div><h3 class="mini-name">Saf9ty - صفقتي</h3><span class="mini-line">E-commerce + affiliate marketing</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.saf9ty.app"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="fitrigi-ride-icon.webp" type="image/webp"><img src="fitrigi-ride-icon.png" alt="Fitrigi Ride"></picture></div>
-                    <div><h3 class="mini-name">Fitrigi Ride</h3><span class="mini-line">Ride sharing for Algeria</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/fitrigi/id6756182620"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.fitrigi.Ride"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="fitrigi-driver-icon.webp" type="image/webp"><img src="fitrigi-driver-icon.png" alt="Fitrigi Chauffeur"></picture></div>
-                    <div><h3 class="mini-name">Fitrigi Chauffeur</h3><span class="mini-line">The driver app for Fitrigi</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/fitrigi-chauffeur/id6756183013"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.fitrigi.driver"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="faydalik-icon.webp" type="image/webp"><img src="faydalik-icon.png" alt="FaydaLik"></picture></div>
-                    <div><h3 class="mini-name">FaydaLik</h3><span class="mini-line">Share products, earn commissions</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/faydalik/id6753982539"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <span class="chip soon"><svg><use href="#i-play"/></svg>Soon</span>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="athanologo.webp" type="image/webp"><img src="athanologo.png" alt="Athani Pro"></picture></div>
-                    <div><h3 class="mini-name">Athani Pro</h3><span class="mini-line">Prayer times, Adhan &amp; Qibla</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <span class="chip soon"><svg><use href="#i-play"/></svg>Soon</span>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Yasfir"></picture></div>
-                    <div><h3 class="mini-name">Yasfir</h3><span class="mini-line">Visas &amp; tickets via trusted agents</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/ysafer/id6761107182"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.yasfir.customer"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Yasfir Agency"></picture></div>
-                    <div><h3 class="mini-name">Yasfir Agency</h3><span class="mini-line">The agent-side app for Yasfir</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://apps.apple.com/us/app/ysafer-agency/id6767173790"><svg><use href="#i-apple"/></svg>iOS</a>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.yasfir.agency"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="smartdocdz-logo.webp" type="image/webp"><img src="smartdocdz-logo.png" alt="SmartDoc"></picture></div>
-                    <div><h3 class="mini-name">SmartDoc</h3><span class="mini-line">Book doctors online in Algeria</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.tizi.client"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="smartclinique-icon.webp" type="image/webp"><img src="smartclinique-icon.png" alt="Smart Clinique"></picture></div>
-                    <div><h3 class="mini-name">Smart Clinique</h3><span class="mini-line">The doctor-side app for SmartDoc</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.tizi.doctor"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><img src="midoufroid-thumb.png" alt="Mido Froid"></div>
-                    <div><h3 class="mini-name">Mido Froid</h3><span class="mini-line">Home appliances, delivered — 58 wilayas</span></div>
-                </div>
-                <div class="mini-links">
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=dz.midofroid.mido_froid"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="albabor-app-icon.webp" type="image/webp"><img src="albabor-app-icon.png" alt="AlBabor"></picture></div>
-                    <div><h3 class="mini-name">AlBabor</h3><span class="mini-line">Buy &amp; sell boats and marine gear</span></div>
-                </div>
-                <div class="mini-links">
-                    <span class="chip soon"><svg><use href="#i-apple"/></svg>Soon</span>
-                    <a class="chip" href="https://play.google.com/store/apps/details?id=com.albabor.app"><svg><use href="#i-play"/></svg>Android</a>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- Gradient CTA banner -->
-    <div class="banner reveal">
-        <div class="banner-inner">
-            <h2>Have an app idea?</h2>
-            <div class="banner-right">
-                <p>One developer — from design to the stores.</p>
-                <a class="banner-btn" href="https://wa.me/213676085441?text=Hi%20Ayoub%21%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project%20%28app%20or%20website%29.%20Are%20you%20available%3F" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Let's talk</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============ WEBSITES ============ -->
-    <section class="split" id="websites">
-        <div class="split-copy reveal">
-            <h2>Built for the web.</h2>
-            <p>Marketplaces, SaaS and e-commerce — shipped end to end.</p>
-            <span class="count">16 platforms</span>
-        </div>
-        <div class="mini-grid">
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><img src="tabaraati-logo.png" alt="Tabaraati - تبرعاتي"></div>
-                    <div><h3 class="mini-name">Tabaraati - <span lang="ar" dir="rtl">تبرعاتي</span></h3><span class="mini-line">Blood donation &amp; community giving in Algeria</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://tabaraati.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="uxbeacon-logo.webp" type="image/webp"><img src="uxbeacon-logo.png" alt="UX Beacon"></picture></div>
-                    <div><h3 class="mini-name">UX Beacon</h3><span class="mini-line">AI UX/UI design studio</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://uxbeacon.online/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="reloadx-logo.webp" type="image/webp"><img src="reloadx-logo.png" alt="ReloadX"></picture></div>
-                    <div><h3 class="mini-name">ReloadX</h3><span class="mini-line">Game &amp; gift card marketplace</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://reloadx.co/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon tile"><picture><source srcset="crido-logo.webp" type="image/webp"><img src="crido-logo.png" alt="Crido"></picture></div>
-                    <div><h3 class="mini-name">Crido</h3><span class="mini-line">Buy now, pay later for Algeria</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://www.cridodz.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="ysafer-logo.webp" type="image/webp"><img src="ysafer-logo.png" alt="Ysafer"></picture></div>
-                    <div><h3 class="mini-name">Ysafer</h3><span class="mini-line">Umrah, Hajj &amp; travel booking</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://ysafer.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="albabor-logo.webp" type="image/webp"><img src="albabor-logo.png" alt="AlBabor"></picture></div>
-                    <div><h3 class="mini-name">AlBabor</h3><span class="mini-line">Algeria's nautical marketplace</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://albabor.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon tile-dark"><img src="yachtei-emblem.svg" alt="Yachtei"></div>
-                    <div><h3 class="mini-name">Yachtei</h3><span class="mini-line">Yacht &amp; jet ski rentals</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://yachtei.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="smartdocdz-logo.webp" type="image/webp"><img src="smartdocdz-logo.png" alt="SmartDocDZ"></picture></div>
-                    <div><h3 class="mini-name">SmartDocDZ</h3><span class="mini-line">Doctor booking platform</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://smartdocdz.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon tile"><img src="dilin-thumb.png" alt="Diline Academy"></div>
-                    <div><h3 class="mini-name">Diline Academy</h3><span class="mini-line">Learn Turkish online, A1–C2</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://dilin.academy/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><img src="midoufroid-thumb.png" alt="Mido Froid"></div>
-                    <div><h3 class="mini-name">Mido Froid</h3><span class="mini-line">Appliances shop, cash on delivery</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://midoufroid.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="israa-logo.webp" type="image/webp"><img src="israa-logo.jpg" alt="ISRAA Collections"></picture></div>
-                    <div><h3 class="mini-name">ISRAA Collections</h3><span class="mini-line">Online clothing store for women</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://clothes-store-femme.vercel.app/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="radiant-body-logo.webp" type="image/webp"><img src="radiant-body-logo.png" alt="Radiant Body"></picture></div>
-                    <div><h3 class="mini-name">Radiant Body</h3><span class="mini-line">Health &amp; wellness platform</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://radiant-body.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="polo-logo.webp" type="image/webp"><img src="polo-logo.png" alt="Polo Boissons"></picture></div>
-                    <div><h3 class="mini-name">Polo Boissons</h3><span class="mini-line">Premium beverage brand site</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://www.poloboissons.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card reveal">
-                <div class="mini-top">
-                    <div class="mini-icon tile"><picture><source srcset="saloni-logo.webp" type="image/webp"><img src="saloni-logo.png" alt="SALONI"></picture></div>
-                    <div><h3 class="mini-name">SALONI</h3><span class="mini-line">QR barber booking — no account needed</span></div>
-                </div>
-                <div class="mini-links"><a class="chip" href="https://salonidz.com/" target="_blank" rel="noopener"><svg><use href="#i-web"/></svg>Visit</a></div>
-            </article>
-
-            <article class="mini-card offline reveal">
-                <span class="status-badge">Offline</span>
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="thinkxie-logo.webp" type="image/webp"><img src="thinkxie-logo.png" alt="Thinkxie"></picture></div>
-                    <div><h3 class="mini-name">Thinkxie</h3><span class="mini-line">Digital agency</span></div>
-                </div>
-                <div class="mini-links"><span class="chip dead"><svg><use href="#i-off"/></svg>Out of Service</span></div>
-            </article>
-
-            <article class="mini-card offline reveal">
-                <span class="status-badge">Offline</span>
-                <div class="mini-top">
-                    <div class="mini-icon"><picture><source srcset="saf9ty-logo.webp" type="image/webp"><img src="saf9ty-logo.png" alt="Saf9ty"></picture></div>
-                    <div><h3 class="mini-name">Saf9ty - صفقتي</h3><span class="mini-line">Merchant &amp; affiliate platform</span></div>
-                </div>
-                <div class="mini-links"><span class="chip dead"><svg><use href="#i-off"/></svg>Out of Service</span></div>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- ============ STACK ============ -->
-    <section class="split" id="stack">
-        <div class="split-copy reveal">
-            <h2>Built with.</h2>
-            <p>The stack behind every project.</p>
-        </div>
-        <div class="stack-grid reveal">
-            <div class="lang"><span class="lang-badge"><img src="stack-flutter.svg" alt="" loading="lazy"></span><span class="lang-name">Flutter</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-swiftui.svg" alt="" loading="lazy"></span><span class="lang-name">SwiftUI</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-kotlin.svg" alt="" loading="lazy"></span><span class="lang-name">Kotlin</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-laravel.svg" alt="" loading="lazy"></span><span class="lang-name">Laravel</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-php.svg" alt="" loading="lazy"></span><span class="lang-name">PHP</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-vue.svg" alt="" loading="lazy"></span><span class="lang-name">Vue.js</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-react.svg" alt="" loading="lazy"></span><span class="lang-name">React</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-typescript.svg" alt="" loading="lazy"></span><span class="lang-name">TypeScript</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-mysql.svg" alt="" loading="lazy"></span><span class="lang-name">MySQL</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-firebase.svg" alt="" loading="lazy"></span><span class="lang-name">Firebase</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-tailwind.svg" alt="" loading="lazy"></span><span class="lang-name">Tailwind</span></div>
-            <div class="lang"><span class="lang-badge"><img src="stack-nextjs.svg" alt="" loading="lazy"></span><span class="lang-name">Next.js</span></div>
-        </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="contact-section" id="contact">
-        <div class="contact-card reveal">
-            <span class="contact-badge"><span class="dot"></span> Available for new projects</span>
-            <h2>Let's build something great</h2>
-            <p class="contact-subtitle">Tell me your idea — I'll design, build and ship it.</p>
-            <a href="https://wa.me/213676085441?text=Hi%20Ayoub%21%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project%20%28app%20or%20website%29.%20Are%20you%20available%3F" target="_blank" rel="noopener" class="whatsapp-btn">
-                <svg><use href="#i-wa"/></svg>
-                Chat on WhatsApp
+    <div class="page">
+        <!-- Header -->
+        <header class="topbar glass">
+            <a class="brand" href="#top">
+                <span class="mono" id="monoTile" aria-hidden="true">أ</span>
+                <span class="brand-name" data-i18n="name">أيوب بن دردوش</span>
             </a>
-            <p class="contact-meta"><strong>+213 676 085 441</strong> &middot; Usually replies within a few hours</p>
-        </div>
-    </section>
+            <button class="lang-toggle" id="langToggle" type="button">
+                <span data-l="en">EN</span>
+                <span data-l="ar" class="on">ع</span>
+                <span class="sr-only" data-i18n="langSr">تبديل اللغة</span>
+            </button>
+        </header>
 
-    <footer>
-        <div class="foot-links">
-            <a href="#apps">Apps</a>
-            <a href="#websites">Websites</a>
-            <a href="#stack">Stack</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <p>&copy; 2026 Ayoub Benderdouch. All rights reserved.</p>
-    </footer>
+        <main>
+            <!-- Hero -->
+            <section class="hero" id="top">
+                <h1 data-i18n="name">أيوب بن دردوش</h1>
+                <p class="hero-sub" data-i18n="heroSub">٣٠ منتجاً حقيقياً على المتاجر — من الجزائر إلى العراق</p>
+                <div class="stats">
+                    <span class="stat-chip lite" data-i18n="stat1">٣٠ منتج</span>
+                    <span class="stat-chip lite" data-i18n="stat2">٦ دول</span>
+                    <span class="stat-chip lite" data-i18n="stat3">92K متابع</span>
+                </div>
+                <a class="hero-chev" href="#feed" data-i18n-aria="scrollDown" aria-label="انتقل إلى المشاريع">
+                    <svg aria-hidden="true"><use href="#i-down"/></svg>
+                </a>
+            </section>
 
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/213676085441?text=Hi%20Ayoub%21%20I%20saw%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project%20%28app%20or%20website%29.%20Are%20you%20available%3F" target="_blank" rel="noopener" class="float-whatsapp" aria-label="Chat on WhatsApp">
-        <svg><use href="#i-wa"/></svg>
-    </a>
+            <!-- Featured feed (JS-gerendert aus PROJECTS) -->
+            <section id="feed" aria-live="off"></section>
+
+            <!-- Alle Projekte -->
+            <section class="all" id="projects">
+                <div class="sec-head">
+                    <h2 data-i18n="gridTitle">كل المشاريع</h2>
+                    <span class="count" id="gridCount"></span>
+                </div>
+                <div class="grid" id="grid"></div>
+                <button class="more" id="moreBtn" type="button" data-i18n="more">عرض المزيد</button>
+            </section>
+
+            <!-- CTA -->
+            <section class="cta-wrap" id="contact">
+                <div class="glass-card glass cta reveal">
+                    <h2 data-i18n="ctaTitle">عندك فكرة تطبيق؟</h2>
+                    <p class="cta-sub" data-i18n="ctaSub">من التصميم إلى المتاجر — مطوّر واحد.</p>
+                    <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener">
+                        <svg aria-hidden="true"><use href="#i-wa"/></svg>
+                        <span data-i18n="ctaBtn">راسلني على واتساب</span>
+                    </a>
+                    <p class="reply" data-i18n="reply">الرد عادة خلال ساعات</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <span data-i18n="name">أيوب بن دردوش</span>
+            <span class="dot-sep" aria-hidden="true">&middot;</span>
+            <span data-i18n="year">٢٠٢٦</span>
+            <span class="dot-sep" aria-hidden="true">&middot;</span>
+            <a href="https://instagram.com/ayoub_benderdouch" target="_blank" rel="noopener" data-i18n-aria="ig" aria-label="إنستغرام">
+                <svg aria-hidden="true"><use href="#i-ig"/></svg>
+            </a>
+        </footer>
+    </div>
 
     <script>
-        // Scroll reveal
-        const revealEls = document.querySelectorAll('.reveal');
+        'use strict';
+
+        /* ================= I18N ================= */
+        const I18N = {
+            ar: {
+                name: 'أيوب بن دردوش',
+                mono: 'أ',
+                langSr: 'تبديل اللغة',
+                heroSub: '٣٠ منتجاً حقيقياً على المتاجر — من الجزائر إلى العراق',
+                stat1: '٣٠ منتج',
+                stat2: '٦ دول',
+                stat3: '92K متابع',
+                scrollDown: 'انتقل إلى المشاريع',
+                featured: 'دراسة حالة مميّزة',
+                swipe: 'اسحب للمشروع التالي',
+                gridTitle: 'كل المشاريع',
+                projectsCount: n => arDigits(n) + ' مشروعاً',
+                more: 'عرض المزيد',
+                web: 'الموقع',
+                platforms: ['ويب', 'iOS', 'أندرويد'],
+                countries: { dz: 'الجزائر', iq: 'العراق', global: 'عالمي' },
+                ctaTitle: 'عندك فكرة تطبيق؟',
+                ctaSub: 'من التصميم إلى المتاجر — مطوّر واحد.',
+                ctaBtn: 'راسلني على واتساب',
+                reply: 'الرد عادة خلال ساعات',
+                waMsg: 'مرحبا أيوب! شفت البورتفوليو تاعك وحاب نناقش مشروع (تطبيق أو موقع).',
+                year: '٢٠٢٦',
+                ig: 'إنستغرام'
+            },
+            en: {
+                name: 'Ayoub Benderdouch',
+                mono: 'A',
+                langSr: 'Switch language',
+                heroSub: '30 real products on the stores — from Algeria to Iraq',
+                stat1: '30 products',
+                stat2: '6 countries',
+                stat3: '92K followers',
+                scrollDown: 'Scroll to the projects',
+                featured: 'Featured case study',
+                swipe: 'Swipe for the next project',
+                gridTitle: 'All projects',
+                projectsCount: n => n + ' projects',
+                more: 'Show more',
+                web: 'Website',
+                platforms: ['Web', 'iOS', 'Android'],
+                countries: { dz: 'Algeria', iq: 'Iraq', global: 'Global' },
+                ctaTitle: 'Have an app idea?',
+                ctaSub: 'From design to the stores — one developer.',
+                ctaBtn: 'Chat on WhatsApp',
+                reply: 'Usually replies within a few hours',
+                waMsg: "Hi Ayoub! I saw your portfolio and I'd like to discuss a project (app or website).",
+                year: '2026',
+                ig: 'Instagram'
+            }
+        };
+
+        function arDigits(n) {
+            return String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+        }
+
+        /* ================= PROJECTS — single source of truth ================= */
+        const PROJECTS = [
+            /* ---- Featured (feste Reihenfolge) ---- */
+            {
+                id: 'bashir', tier: 'featured', order: 1,
+                name: { ar: 'منصّة الشيف بشير فوزي', en: 'Chef Bashir Fawzi Platform' },
+                country: 'iq', mono: 'ب',
+                stat: { ar: '935K متابع', en: '935K followers' },
+                story: {
+                    ar: 'منصّة تعليم طبخ متكاملة من ١٣ نظاماً — ويب وiOS وأندرويد، سُلّمت في ١٦ أسبوعاً.',
+                    en: 'A complete cooking-education platform of 13 systems — web, iOS and Android, delivered in 16 weeks.'
+                },
+                links: {}, /* TODO: Links ergänzen, sobald öffentlich */
+                logo: 'assets/logos/bashir.webp'
+            },
+            {
+                id: 'ysafer', tier: 'featured', order: 2,
+                name: { ar: 'يسافر Ysafer', en: 'Ysafer' },
+                country: 'dz', stat: null,
+                story: {
+                    ar: 'عمرة وحج وتذاكر عبر وكالات موثوقة — تطبيق للعميل، تطبيق للوكالة، ومنصّة ويب.',
+                    en: 'Umrah, Hajj and tickets through trusted agencies — customer app, agency app and web platform.'
+                },
+                links: {
+                    ios: 'https://apps.apple.com/us/app/ysafer/id6761107182',
+                    android: 'https://play.google.com/store/apps/details?id=com.yasfir.customer',
+                    web: 'https://ysafer.com/'
+                },
+                logo: 'assets/logos/ysafer.webp'
+            },
+            {
+                id: 'fitrigi', tier: 'featured', order: 3,
+                name: { ar: 'فتريجي Fitrigi', en: 'Fitrigi' },
+                country: 'dz', stat: null,
+                story: {
+                    ar: 'منظومة نقل تشاركي كاملة: تطبيق الراكب، تطبيق السائق، والتتبّع اللحظي.',
+                    en: 'A complete ride-sharing system: rider app, driver app and live tracking.'
+                },
+                links: {
+                    ios: 'https://apps.apple.com/us/app/fitrigi/id6756182620',
+                    android: 'https://play.google.com/store/apps/details?id=com.fitrigi.Ride'
+                },
+                logo: 'assets/logos/fitrigi.webp'
+            },
+            {
+                id: 'crido', tier: 'featured', order: 4,
+                name: { ar: 'كريدو Crido', en: 'Crido' },
+                country: 'dz', stat: null, pad: true,
+                story: {
+                    ar: 'منصّة «اشترِ الآن وادفع لاحقاً» — تقسيط ذكي مبني للسوق الجزائرية.',
+                    en: 'A buy-now-pay-later platform — smart installments built for the Algerian market.'
+                },
+                links: { web: 'https://www.cridodz.com/' },
+                logo: 'assets/logos/crido.webp'
+            },
+            {
+                id: 'changedinar', tier: 'featured', order: 5,
+                name: { ar: 'Change Dinar', en: 'Change Dinar' },
+                country: 'dz',
+                stat: { ar: '25K مستخدم', en: '25K users' },
+                story: {
+                    ar: 'أسعار صرف الدينار لحظة بلحظة — iOS وأندرويد وAppGallery.',
+                    en: 'Live dinar exchange rates — iOS, Android and AppGallery.'
+                },
+                links: {
+                    ios: 'https://apps.apple.com/us/app/change-dinar/id6742030993',
+                    android: 'https://play.google.com/store/apps/details?id=com.zaed.changedinar',
+                    gallery: 'https://appgallery.huawei.com/#/app/C116572695'
+                },
+                logo: 'assets/logos/changedinar.webp'
+            },
+            {
+                id: 'smartdoc', tier: 'featured', order: 6,
+                name: { ar: 'SmartDoc', en: 'SmartDoc' },
+                country: 'dz', stat: null,
+                story: {
+                    ar: 'حجز الأطباء أونلاين — تطبيق للمريض، تطبيق للطبيب، ولوحة تحكّم للعيادة.',
+                    en: 'Online doctor booking — patient app, doctor app and clinic dashboard.'
+                },
+                links: {
+                    android: 'https://play.google.com/store/apps/details?id=com.tizi.client',
+                    web: 'https://smartdocdz.com/'
+                },
+                logo: 'assets/logos/smartdoc.webp'
+            },
+
+            /* ---- Grid ---- */
+            { id: 'rainsounds', tier: 'grid', order: 10, name: { ar: 'Rain Sounds', en: 'Rain Sounds' }, country: 'global',
+              links: { ios: 'https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177', android: 'https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android' }, logo: 'assets/logos/rainsounds.webp' },
+            { id: 'eggtimer', tier: 'grid', order: 11, name: { ar: 'Egg Timer', en: 'Egg Timer' }, country: 'global',
+              links: { ios: 'https://apps.apple.com/us/app/egg-timer-soft-hard-boiled/id6787127960' }, logo: 'assets/logos/eggtimer.webp' },
+            { id: 'athani', tier: 'grid', order: 12, name: { ar: 'Athani Pro', en: 'Athani Pro' }, country: 'global',
+              links: { ios: 'https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280' }, logo: 'assets/logos/athani.webp' },
+            { id: 'saf9ty', tier: 'grid', order: 13, name: { ar: 'صفقتي Saf9ty', en: 'Saf9ty' }, country: 'dz',
+              links: { ios: 'https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053', android: 'https://play.google.com/store/apps/details?id=com.saf9ty.app' }, logo: 'assets/logos/saf9ty.webp' },
+            { id: 'faydalik', tier: 'grid', order: 14, name: { ar: 'FaydaLik', en: 'FaydaLik' }, country: 'dz',
+              links: { ios: 'https://apps.apple.com/us/app/faydalik/id6753982539' }, logo: 'assets/logos/faydalik.webp' },
+            { id: 'ysafer-agency', tier: 'grid', order: 15, name: { ar: 'Ysafer Agency', en: 'Ysafer Agency' }, country: 'dz',
+              links: { ios: 'https://apps.apple.com/us/app/ysafer-agency/id6767173790', android: 'https://play.google.com/store/apps/details?id=com.yasfir.agency' }, logo: 'assets/logos/ysafer.webp' },
+            { id: 'smartclinique', tier: 'grid', order: 16, name: { ar: 'Smart Clinique', en: 'Smart Clinique' }, country: 'dz',
+              links: { android: 'https://play.google.com/store/apps/details?id=com.tizi.doctor' }, logo: 'assets/logos/smartclinique.webp' },
+            { id: 'midofroid', tier: 'grid', order: 17, name: { ar: 'Mido Froid', en: 'Mido Froid' }, country: 'dz',
+              links: { android: 'https://play.google.com/store/apps/details?id=dz.midofroid.mido_froid', web: 'https://midoufroid.com/' }, logo: 'assets/logos/midofroid.webp' },
+            { id: 'albabor', tier: 'grid', order: 18, name: { ar: 'AlBabor', en: 'AlBabor' }, country: 'dz',
+              links: { android: 'https://play.google.com/store/apps/details?id=com.albabor.app', web: 'https://albabor.com/' }, logo: 'assets/logos/albabor.webp' },
+            { id: 'yachtei', tier: 'grid', order: 19, name: { ar: 'Yachtei', en: 'Yachtei' }, country: 'dz', pad: true,
+              links: { web: 'https://yachtei.com/' }, logo: 'assets/logos/yachtei.webp' },
+            { id: 'saloni', tier: 'grid', order: 20, name: { ar: 'SALONI', en: 'SALONI' }, country: 'dz', pad: true,
+              links: { web: 'https://salonidz.com/' }, logo: 'assets/logos/saloni.webp' },
+            { id: 'tabaraati', tier: 'grid', order: 21, name: { ar: 'تبرعاتي', en: 'Tabaraati' }, country: 'dz',
+              links: { web: 'https://tabaraati.com/' }, logo: 'assets/logos/tabaraati.webp' },
+            { id: 'uxbeacon', tier: 'grid', order: 22, name: { ar: 'UX Beacon', en: 'UX Beacon' }, country: 'global',
+              links: { web: 'https://uxbeacon.online/' }, logo: 'assets/logos/uxbeacon.webp' },
+            { id: 'reloadx', tier: 'grid', order: 23, name: { ar: 'ReloadX', en: 'ReloadX' }, country: 'global',
+              links: { web: 'https://reloadx.co/' }, logo: 'assets/logos/reloadx.webp' },
+            { id: 'diline', tier: 'grid', order: 24, name: { ar: 'Diline Academy', en: 'Diline Academy' }, country: 'global', pad: true,
+              links: { web: 'https://dilin.academy/' }, logo: 'assets/logos/diline.webp' },
+            { id: 'israa', tier: 'grid', order: 25, name: { ar: 'ISRAA Collections', en: 'ISRAA Collections' }, country: 'dz',
+              links: { web: 'https://clothes-store-femme.vercel.app/' }, logo: 'assets/logos/israa.webp' },
+            /* TODO: radiant-body.com + poloboissons.com lösen nicht mehr auf (Domains tot) — neue URLs bei Ayoub erfragen */
+            { id: 'radiantbody', tier: 'grid', order: 26, name: { ar: 'Radiant Body', en: 'Radiant Body' }, country: 'global',
+              links: {}, logo: 'assets/logos/radiantbody.webp' },
+            { id: 'polo', tier: 'grid', order: 27, name: { ar: 'Polo Boissons', en: 'Polo Boissons' }, country: 'dz', pad: true,
+              links: {}, logo: 'assets/logos/polo.webp' },
+            { id: 'smartdocdz', tier: 'grid', order: 28, name: { ar: 'SmartDocDZ', en: 'SmartDocDZ' }, country: 'dz',
+              links: { web: 'https://smartdocdz.com/' }, logo: 'assets/logos/smartdoc.webp' }
+        ];
+
+        /* ================= State & Helpers ================= */
+        const $ = s => document.querySelector(s);
+        let lang = document.documentElement.lang === 'en' ? 'en' : 'ar';
+        let booted = false;
+        const t = k => I18N[lang][k];
+
+        function esc(s) {
+            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function countryChip(p) {
+            const L = I18N[lang];
+            return '<span class="chip country lite">' +
+                '<img class="cicon" src="assets/countries/' + p.country + '.png" alt="" width="22" height="22" loading="lazy">' +
+                '<span>' + L.countries[p.country] + '</span></span>';
+        }
+
+        function storeBadges(links) {
+            const b = [];
+            if (links.ios) b.push('<a class="badge" href="' + links.ios + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>');
+            if (links.android) b.push('<a class="badge" href="' + links.android + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>');
+            if (links.gallery) b.push('<a class="badge" href="' + links.gallery + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-huawei"/></svg>AppGallery</a>');
+            if (links.web) b.push('<a class="badge" href="' + links.web + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-globe"/></svg>' + t('web') + '</a>');
+            return b.join('');
+        }
+
+        function platformChips() {
+            return t('platforms').map(x => '<span class="plat-chip lite">' + x + '</span>').join('');
+        }
+
+        function hookImgFallbacks(scope) {
+            /* Länder-Icons: fehlt die Datei, ersetzt ein neutraler Glas-Kreis das Bild (nie eine Emoji-Flagge) */
+            scope.querySelectorAll('img.cicon').forEach(img => {
+                const swap = () => {
+                    const dot = document.createElement('span');
+                    dot.className = 'c-dot';
+                    dot.setAttribute('aria-hidden', 'true');
+                    img.replaceWith(dot);
+                };
+                if (img.complete && img.naturalWidth === 0) swap();
+                else img.addEventListener('error', swap, { once: true });
+            });
+            /* Projekt-Logos: fehlt die Datei, zeigt die Kachel den Anfangsbuchstaben */
+            scope.querySelectorAll('img.plogo').forEach(img => {
+                const swap = () => {
+                    const span = document.createElement('span');
+                    span.className = 'logo-fallback';
+                    span.textContent = img.dataset.mono || '·';
+                    img.replaceWith(span);
+                };
+                if (img.complete && img.naturalWidth === 0) swap();
+                else img.addEventListener('error', swap, { once: true });
+            });
+        }
+
+        /* ================= Render ================= */
+        function renderFeed() {
+            const feed = $('#feed');
+            const featured = PROJECTS.filter(p => p.tier === 'featured').sort((a, b) => a.order - b.order);
+            feed.innerHTML = featured.map((p, i) => {
+                const last = i === featured.length - 1;
+                const hasLinks = Object.keys(p.links).length > 0;
+                const monoChar = p.mono || p.name[lang].charAt(0);
+                return '<article class="feed-card" aria-label="' + esc(p.name[lang]) + '">' +
+                    '<div class="glass-card glass reveal">' +
+                        '<div class="logo-tile' + (p.pad ? ' pad' : '') + '">' +
+                            '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(monoChar) + '" alt="" width="68" height="68"' + (i > 0 ? ' loading="lazy"' : '') + '>' +
+                        '</div>' +
+                        '<h2 class="p-name">' + esc(p.name[lang]) + '</h2>' +
+                        (p.id === 'bashir' ? '<p class="feat-label">' + t('featured') + '</p>' : '') +
+                        '<div class="chips">' + countryChip(p) +
+                            (p.stat ? '<span class="chip stat">' + p.stat[lang] + '</span>' : '') +
+                        '</div>' +
+                        '<p class="story">' + p.story[lang] + '</p>' +
+                        '<div class="badges">' + (hasLinks ? storeBadges(p.links) : platformChips()) + '</div>' +
+                    '</div>' +
+                    (!last ? '<div class="swipe-hint" aria-hidden="true"><svg><use href="#i-up"/></svg><span>' + t('swipe') + '</span></div>' : '') +
+                '</article>';
+            }).join('');
+            hookImgFallbacks(feed);
+            if (booted) feed.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+            else observeReveals(feed);
+        }
+
+        function renderGrid() {
+            const grid = $('#grid');
+            const items = PROJECTS.filter(p => p.tier === 'grid').sort((a, b) => a.order - b.order);
+            $('#gridCount').textContent = I18N[lang].projectsCount(items.length);
+            grid.innerHTML = items.map(p => {
+                const href = p.links.ios || p.links.android || p.links.web;
+                const label = esc(p.name[lang]) + ' — ' + I18N[lang].countries[p.country];
+                const inner = '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.en.charAt(0)) + '" alt="" width="44" height="44" loading="lazy">' +
+                    '<span class="t-name">' + esc(p.name[lang]) + '</span>' +
+                    '<span class="t-country">' + I18N[lang].countries[p.country] + '</span>';
+                const cls = 'tile lite' + (p.pad ? ' pad' : '');
+                /* Projekte ohne erreichbare URL werden als Nicht-Link-Kachel gerendert */
+                return href
+                    ? '<a class="' + cls + '" href="' + href + '" target="_blank" rel="noopener" aria-label="' + label + '">' + inner + '</a>'
+                    : '<div class="' + cls + '">' + inner + '</div>';
+            }).join('');
+            hookImgFallbacks(grid);
+        }
+
+        function applyStatics() {
+            document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+            document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
+            $('#monoTile').textContent = t('mono');
+            $('#waBtn').href = 'https://wa.me/213676085441?text=' + encodeURIComponent(t('waMsg'));
+            document.querySelectorAll('.lang-toggle span').forEach(s => s.classList.toggle('on', s.dataset.l === lang));
+        }
+
+        function applyLang() {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            try { localStorage.setItem('lang', lang); } catch (e) { }
+            applyStatics();
+            renderFeed();
+            renderGrid();
+        }
+
+        /* ================= Reveal-Animation ================= */
+        let io = null;
+
+        function observeReveals(scope) {
+            if (!io) { scope.querySelectorAll('.reveal').forEach(el => el.classList.add('in')); return; }
+            scope.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+        }
+
         if ('IntersectionObserver' in window) {
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in');
-                        io.unobserve(entry.target);
-                    }
+            io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
                 });
-            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-            document.querySelectorAll('.mini-grid').forEach(grid => {
-                [...grid.children].forEach((card, i) => {
-                    card.style.setProperty('--d', `${Math.min(i % 3, 2) * 0.07}s`);
-                });
-            });
-
-            revealEls.forEach(el => io.observe(el));
-        } else {
-            revealEls.forEach(el => el.classList.add('in'));
+            }, { threshold: 0.15 });
         }
 
-        // Cursor spotlight on cards (pointer devices only)
-        if (window.matchMedia('(pointer: fine)').matches) {
-            document.querySelectorAll('.mini-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const r = card.getBoundingClientRect();
-                    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-                    card.style.setProperty('--my', `${e.clientY - r.top}px`);
-                });
+        /* ================= Boot ================= */
+        applyStatics();
+        renderFeed();
+        renderGrid();
+        observeReveals(document);
+        booted = true;
+
+        /* Deep-Links (#projects, #contact): erneut scrollen, nachdem der Feed gerendert wurde */
+        if (location.hash) {
+            requestAnimationFrame(() => {
+                const target = document.querySelector(location.hash);
+                if (target) target.scrollIntoView();
             });
         }
 
+        $('#langToggle').addEventListener('click', () => {
+            lang = lang === 'ar' ? 'en' : 'ar';
+            applyLang();
+        });
+
+        $('#moreBtn').addEventListener('click', () => {
+            $('#grid').classList.add('expanded');
+        });
+
+        /* ================= Sky-Video ================= */
+        (function () {
+            const sky = document.getElementById('sky');
+            if (!sky) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                sky.remove(); /* Poster (.sky-fallback) bleibt als fester Hintergrund */
+                return;
+            }
+            const kill = () => { if (sky.parentNode) sky.remove(); };
+            sky.addEventListener('error', kill);
+            const srcEl = sky.querySelector('source');
+            if (srcEl) srcEl.addEventListener('error', kill);
+
+            sky.addEventListener('playing', () => sky.classList.add('ready'));
+
+            document.addEventListener('visibilitychange', () => {
+                if (!sky.parentNode) return;
+                if (document.hidden) sky.pause();
+                else sky.play().catch(() => { });
+            });
+
+            /* iOS-Energiesparmodus: Autoplay blockiert → beim ersten Touch erneut versuchen */
+            const tryPlay = () => { sky.play().catch(() => { }); };
+            window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+            window.addEventListener('click', tryPlay, { once: true });
+        })();
     </script>
 </body>
 </html>
