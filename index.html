@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>أيوب بن دردوش — تطبيقات ومنصّات | Ayoub Benderdouch</title>
-    <meta name="description" content="٣٠ منتجاً حقيقياً على App Store وGoogle Play — تطبيقات ومنصّات من مطوّر واحد.">
+    <title>Ayoub Benderdouch — Apps & Platforms</title>
+    <meta name="description" content="30 real products on the App Store and Google Play — apps and platforms by one developer.">
     <meta name="theme-color" content="#D8ECFA">
     <link rel="canonical" href="https://ayoubportfolio.site/">
-    <meta property="og:title" content="أيوب بن دردوش — تطبيقات ومنصّات | Ayoub Benderdouch">
-    <meta property="og:description" content="٣٠ منتجاً حقيقياً على App Store وGoogle Play — تطبيقات ومنصّات من مطوّر واحد.">
+    <meta property="og:title" content="Ayoub Benderdouch — Apps & Platforms">
+    <meta property="og:description" content="30 real products on the App Store and Google Play — apps and platforms by one developer.">
     <meta property="og:url" content="https://ayoubportfolio.site/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://ayoubportfolio.site/assets/sky-poster.jpg">
@@ -20,39 +20,24 @@
           href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap"></noscript>
 
-    <script>
-        /* Sprach-Init vor dem ersten Paint — verhindert RTL/LTR-Flackern */
-        (function () {
-            try {
-                var p = new URLSearchParams(location.search).get('lang');
-                var s = p || localStorage.getItem('lang');
-                if (s === 'en') { document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; }
-                if (p === 'en' || p === 'ar') localStorage.setItem('lang', p);
-            } catch (e) { }
-        })();
-    </script>
-
     <style>
         :root {
             --sky:          #D8ECFA;
             --accent:       #2E7CD6;
             --ink:          #12365C;
-            --ink-soft:     #4A6B8F; /* AA-sicher auf Glas über hellen Wolken */
+            --ink-soft:     #4A6B8F; /* AA-safe on glass over bright clouds */
             --glass:        rgba(255,255,255,0.62);
             --glass-border: rgba(255,255,255,0.95);
             --badge:        #12365C;
             --whatsapp:     #25D366;
-            --accent-text:  #1D5FAE; /* dunklerer Akzent nur fuer Text auf hellen Flaechen (AA) */
+            --accent-text:  #1D5FAE; /* darker accent for text on light surfaces (AA) */
             --fd: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
             --fb: 'IBM Plex Sans Arabic', 'Alexandria', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-snap-type: y proximity;
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--fb);
@@ -105,7 +90,7 @@
             -webkit-backdrop-filter: blur(18px) saturate(1.4);
         }
 
-        /* leichte Fläche ohne Blur — Perf-Regel: max ~3 geblurte Flächen im Viewport */
+        /* light surface without blur — perf rule: max ~3 blurred surfaces per viewport */
         .lite {
             background: rgba(255, 255, 255, 0.66);
             border: 1px solid var(--glass-border);
@@ -128,7 +113,6 @@
             z-index: 40;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             gap: 12px;
             padding: 9px 14px;
             border-left: 0;
@@ -165,113 +149,130 @@
             color: var(--ink);
         }
 
-        .lang-toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
-            padding: 3px;
-            border-radius: 9px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.55);
-            font-family: var(--fb);
-            cursor: pointer;
-        }
-
-        .lang-toggle span {
-            padding: 4px 10px;
-            border-radius: 7px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--ink-soft);
-            line-height: 1.4;
-        }
-
-        .lang-toggle span.on {
-            background: var(--accent-text);
-            color: #fff;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px; height: 1px;
-            padding: 0; margin: -1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
         /* ---------- Hero ---------- */
         .hero {
-            min-height: 45vh;
-            min-height: 45svh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             gap: 14px;
-            padding: 34px 24px 18px;
+            padding: 44px 24px 26px;
         }
 
         h1 {
             font-family: var(--fd);
             font-weight: 600;
             font-size: clamp(30px, 8.5vw, 38px);
-            line-height: 1.25;
+            line-height: 1.2;
             color: var(--ink);
         }
 
         .hero-sub {
             font-size: 15px;
             font-weight: 500;
-            line-height: 1.8;
+            line-height: 1.7;
             color: var(--ink);
             max-width: 320px;
         }
 
-        .stats {
+        /* Zwei klare Sektions-Buttons: Apps / Websites */
+        .nav-btns {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 2px;
+            gap: 10px;
+            width: 100%;
+            max-width: 350px;
+            margin-top: 6px;
         }
 
-        .stat-chip {
-            padding: 7px 14px;
-            border-radius: 9px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--ink);
-            white-space: nowrap;
-        }
-
-        .hero-chev {
-            margin-top: 14px;
-            color: var(--ink-soft);
-            display: inline-flex;
-            padding: 6px;
-        }
-
-        .hero-chev svg { width: 24px; height: 24px; }
-
-        /* ---------- Featured feed ---------- */
-        .feed-card {
-            min-height: 100vh;
-            min-height: 100svh;
-            position: relative;
+        .nav-card {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            scroll-snap-align: start;
-            padding: 72px 20px 92px;
+            gap: 8px;
+            padding: 15px 10px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 26px rgba(18, 54, 92, 0.10);
+            text-decoration: none;
+            font-family: var(--fd);
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--ink);
+            transition: transform 0.15s ease;
         }
+
+        .nav-card:active { transform: scale(0.97); }
+
+        .nav-card svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-text);
+            flex: 0 0 18px;
+        }
+
+        .nav-count {
+            padding: 2px 8px;
+            border-radius: 9px;
+            background: rgba(46, 124, 214, 0.12);
+            border: 1px solid rgba(46, 124, 214, 0.30);
+            color: var(--accent-text);
+            font-family: var(--fb);
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* ---------- Sections ---------- */
+        .sect {
+            padding: 34px 20px 0;
+            scroll-margin-top: 58px;
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+            padding-inline: 2px;
+        }
+
+        .sec-head h2 {
+            font-family: var(--fd);
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--ink);
+        }
+
+        .count {
+            padding: 5px 12px;
+            border-radius: 9px;
+            background: rgba(46, 124, 214, 0.12);
+            border: 1px solid rgba(46, 124, 214, 0.30);
+            color: var(--accent-text);
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Featured stack (big glass cards) */
+        .featured {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .featured:empty { display: none; margin: 0; }
 
         .glass-card {
             width: 100%;
             max-width: 350px;
-            padding: 26px 22px 22px;
+            padding: 24px 22px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -312,19 +313,12 @@
         }
 
         .p-name {
-            margin-top: 14px;
+            margin-top: 13px;
             font-family: var(--fd);
             font-weight: 500;
             font-size: 20px;
-            line-height: 1.35;
+            line-height: 1.3;
             color: var(--ink);
-        }
-
-        .feat-label {
-            margin-top: 5px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--accent-text);
         }
 
         .chips {
@@ -332,7 +326,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 7px;
-            margin-top: 11px;
+            margin-top: 10px;
         }
 
         .chip {
@@ -369,9 +363,9 @@
         }
 
         .story {
-            margin-top: 13px;
+            margin-top: 12px;
             font-size: 13px;
-            line-height: 1.7;
+            line-height: 1.65;
             color: var(--ink-soft);
             max-width: 290px;
         }
@@ -381,7 +375,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 8px;
-            margin-top: 17px;
+            margin-top: 15px;
         }
 
         .badge {
@@ -402,72 +396,7 @@
 
         .badge:active { transform: scale(0.97); }
 
-        .plat-chip {
-            padding: 8px 14px;
-            border-radius: 9px;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--ink);
-        }
-
-        .swipe-hint {
-            position: absolute;
-            bottom: 26px;
-            inset-inline: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            color: var(--ink);
-            font-size: 11px;
-            font-weight: 500;
-            opacity: 0.82;
-            pointer-events: none;
-        }
-
-        .swipe-hint svg {
-            width: 18px;
-            height: 18px;
-            animation: hint-float 1.6s ease-in-out infinite;
-        }
-
-        @keyframes hint-float {
-            0%, 100% { transform: translateY(0); }
-            50%      { transform: translateY(-6px); }
-        }
-
-        /* ---------- All-projects grid ---------- */
-        .all {
-            padding: 44px 20px 6px;
-        }
-
-        .sec-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 16px;
-            padding-inline: 2px;
-        }
-
-        .sec-head h2 {
-            font-family: var(--fd);
-            font-weight: 600;
-            font-size: 20px;
-            color: var(--ink);
-        }
-
-        .count {
-            padding: 5px 12px;
-            border-radius: 9px;
-            background: rgba(46, 124, 214, 0.12);
-            border: 1px solid rgba(46, 124, 214, 0.30);
-            color: var(--accent-text);
-            font-size: 12px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
+        /* ---------- Tile grid ---------- */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -511,35 +440,15 @@
             line-height: 1;
         }
 
-        .grid:not(.expanded) .tile:nth-child(n+10) { display: none; }
-
-        .more {
-            display: block;
-            margin: 16px auto 0;
-            padding: 10px 24px;
-            border-radius: 9px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.66);
-            font-family: var(--fb);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--ink);
-            cursor: pointer;
-        }
-
-        .more:active { transform: scale(0.97); }
-
-        .grid.expanded + .more { display: none; }
-
         /* ---------- CTA ---------- */
         .cta-wrap {
-            padding: 48px 20px 10px;
+            padding: 40px 20px 10px;
             display: flex;
             justify-content: center;
         }
 
         .cta {
-            padding: 30px 24px 24px;
+            padding: 28px 24px 22px;
         }
 
         .cta h2 {
@@ -560,7 +469,7 @@
             display: inline-flex;
             align-items: center;
             gap: 9px;
-            margin-top: 18px;
+            margin-top: 16px;
             padding: 13px 26px;
             border-radius: 9px;
             background: var(--whatsapp);
@@ -576,7 +485,7 @@
         .wa-btn svg { width: 18px; height: 18px; }
 
         .reply {
-            margin-top: 11px;
+            margin-top: 10px;
             font-size: 11px;
             color: var(--ink-soft);
         }
@@ -584,7 +493,7 @@
         /* ---------- Footer ---------- */
         footer {
             margin-top: auto;
-            padding: 30px 20px 40px;
+            padding: 28px 20px 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -617,7 +526,7 @@
             transition: opacity 0.45s ease-out, transform 0.45s ease-out;
         }
 
-        /* ---------- Desktop: Telefon-Spalte, Himmel full-bleed ---------- */
+        /* ---------- Desktop: phone column, sky full-bleed ---------- */
         @media (min-width: 520px) {
             .topbar {
                 margin: 10px 10px 0;
@@ -630,14 +539,13 @@
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .sky-bg { display: none; }
-            .swipe-hint svg { animation: none; }
             .reveal { opacity: 1; transform: none; transition: none; }
-            .sky-bg, .tile, .more, .badge, .wa-btn { transition: none; }
+            .sky-bg, .tile, .badge, .wa-btn, .nav-card { transition: none; }
         }
     </style>
 </head>
 <body>
-    <!-- SVG-Sprite -->
+    <!-- SVG sprite -->
     <svg style="display:none" aria-hidden="true">
         <symbol id="i-apple" viewBox="0 0 24 24">
             <path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -651,21 +559,18 @@
         <symbol id="i-globe" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m6.93 6H15.9a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8M12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.7 13.7 0 0 1 12 4.04M4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2zm.81 2h3.03c.33 1.29.8 2.5 1.38 3.56A8.03 8.03 0 0 1 5.07 16m3.03-8H5.07a8.03 8.03 0 0 1 4.41-3.56A15.7 15.7 0 0 0 8.1 8M12 19.96a13.7 13.7 0 0 1-1.91-3.96h3.82A13.7 13.7 0 0 1 12 19.96M14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2m.25 5.56c.58-1.06 1.05-2.27 1.38-3.56h3.03a8.03 8.03 0 0 1-4.41 3.56M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2z"/>
         </symbol>
+        <symbol id="i-apps" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M5 4h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m9 0h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1M5 13h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1m9 0h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z"/>
+        </symbol>
         <symbol id="i-wa" viewBox="0 0 24 24">
             <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.359 11.943-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </symbol>
-        <symbol id="i-down" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M7.41 8.58 12 13.17l4.59-4.59L18 10l-6 6-6-6z"/>
-        </symbol>
-        <symbol id="i-up" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
         </symbol>
         <symbol id="i-ig" viewBox="0 0 24 24">
             <path fill="currentColor" d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
         </symbol>
     </svg>
 
-    <!-- Himmel: Poster zuerst, Video blendet ein -->
+    <!-- Sky: poster paints first, video fades in -->
     <div class="sky-fallback" aria-hidden="true"></div>
     <video id="sky" class="sky-bg" autoplay muted loop playsinline
            preload="metadata" poster="assets/sky-poster.jpg" aria-hidden="true" tabindex="-1">
@@ -676,65 +581,71 @@
         <!-- Header -->
         <header class="topbar glass">
             <a class="brand" href="#top">
-                <span class="mono" id="monoTile" aria-hidden="true">أ</span>
-                <span class="brand-name" data-i18n="name">أيوب بن دردوش</span>
+                <span class="mono" aria-hidden="true">A</span>
+                <span class="brand-name">Ayoub Benderdouch</span>
             </a>
-            <button class="lang-toggle" id="langToggle" type="button">
-                <span data-l="en">EN</span>
-                <span data-l="ar" class="on">ع</span>
-                <span class="sr-only" data-i18n="langSr">تبديل اللغة</span>
-            </button>
         </header>
 
         <main>
             <!-- Hero -->
             <section class="hero" id="top">
-                <h1 data-i18n="name">أيوب بن دردوش</h1>
-                <p class="hero-sub" data-i18n="heroSub">٣٠ منتجاً حقيقياً على المتاجر — من الجزائر إلى العراق</p>
-                <div class="stats">
-                    <span class="stat-chip lite" data-i18n="stat1">٣٠ منتج</span>
-                    <span class="stat-chip lite" data-i18n="stat2">٦ دول</span>
-                    <span class="stat-chip lite" data-i18n="stat3">92K متابع</span>
-                </div>
-                <a class="hero-chev" href="#feed" data-i18n-aria="scrollDown" aria-label="انتقل إلى المشاريع">
-                    <svg aria-hidden="true"><use href="#i-down"/></svg>
-                </a>
+                <h1>Ayoub Benderdouch</h1>
+                <p class="hero-sub">30 real products on the stores — from Algeria to Iraq</p>
+                <nav class="nav-btns" aria-label="Sections">
+                    <a class="nav-card" href="#apps">
+                        <svg aria-hidden="true"><use href="#i-apps"/></svg>
+                        Apps
+                        <span class="nav-count" id="navAppsCount"></span>
+                    </a>
+                    <a class="nav-card" href="#websites">
+                        <svg aria-hidden="true"><use href="#i-globe"/></svg>
+                        Websites
+                        <span class="nav-count" id="navWebCount"></span>
+                    </a>
+                </nav>
             </section>
 
-            <!-- Featured feed (JS-gerendert aus PROJECTS) -->
-            <section id="feed" aria-live="off"></section>
-
-            <!-- Alle Projekte -->
-            <section class="all" id="projects">
+            <!-- All apps -->
+            <section class="sect" id="apps">
                 <div class="sec-head">
-                    <h2 data-i18n="gridTitle">كل المشاريع</h2>
-                    <span class="count" id="gridCount"></span>
+                    <h2>All apps</h2>
+                    <span class="count" id="appsCount"></span>
                 </div>
-                <div class="grid" id="grid"></div>
-                <button class="more" id="moreBtn" type="button" data-i18n="more">عرض المزيد</button>
+                <div class="featured" id="appsFeatured"></div>
+                <div class="grid" id="appsGrid"></div>
+            </section>
+
+            <!-- All websites -->
+            <section class="sect" id="websites">
+                <div class="sec-head">
+                    <h2>All websites</h2>
+                    <span class="count" id="webCount"></span>
+                </div>
+                <div class="featured" id="webFeatured"></div>
+                <div class="grid" id="webGrid"></div>
             </section>
 
             <!-- CTA -->
             <section class="cta-wrap" id="contact">
                 <div class="glass-card glass cta reveal">
-                    <h2 data-i18n="ctaTitle">عندك فكرة تطبيق؟</h2>
-                    <p class="cta-sub" data-i18n="ctaSub">من التصميم إلى المتاجر — مطوّر واحد.</p>
+                    <h2>Have an app idea?</h2>
+                    <p class="cta-sub">From design to the stores — one developer.</p>
                     <a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener">
                         <svg aria-hidden="true"><use href="#i-wa"/></svg>
-                        <span data-i18n="ctaBtn">راسلني على واتساب</span>
+                        <span>Chat on WhatsApp</span>
                     </a>
-                    <p class="reply" data-i18n="reply">الرد عادة خلال ساعات</p>
+                    <p class="reply">Usually replies within a few hours</p>
                 </div>
             </section>
         </main>
 
         <!-- Footer -->
         <footer>
-            <span data-i18n="name">أيوب بن دردوش</span>
+            <span>Ayoub Benderdouch</span>
             <span class="dot-sep" aria-hidden="true">&middot;</span>
-            <span data-i18n="year">٢٠٢٦</span>
+            <span>2026</span>
             <span class="dot-sep" aria-hidden="true">&middot;</span>
-            <a href="https://instagram.com/ayoub_benderdouch" target="_blank" rel="noopener" data-i18n-aria="ig" aria-label="إنستغرام">
+            <a href="https://instagram.com/ayoub_benderdouch" target="_blank" rel="noopener" aria-label="Instagram">
                 <svg aria-hidden="true"><use href="#i-ig"/></svg>
             </a>
         </footer>
@@ -743,87 +654,17 @@
     <script>
         'use strict';
 
-        /* ================= I18N ================= */
-        const I18N = {
-            ar: {
-                name: 'أيوب بن دردوش',
-                mono: 'أ',
-                langSr: 'تبديل اللغة',
-                heroSub: '٣٠ منتجاً حقيقياً على المتاجر — من الجزائر إلى العراق',
-                stat1: '٣٠ منتج',
-                stat2: '٦ دول',
-                stat3: '92K متابع',
-                scrollDown: 'انتقل إلى المشاريع',
-                featured: 'دراسة حالة مميّزة',
-                swipe: 'اسحب للمشروع التالي',
-                gridTitle: 'كل المشاريع',
-                projectsCount: n => arDigits(n) + ' مشروعاً',
-                more: 'عرض المزيد',
-                web: 'الموقع',
-                platforms: ['ويب', 'iOS', 'أندرويد'],
-                countries: { dz: 'الجزائر', iq: 'العراق', global: 'عالمي' },
-                ctaTitle: 'عندك فكرة تطبيق؟',
-                ctaSub: 'من التصميم إلى المتاجر — مطوّر واحد.',
-                ctaBtn: 'راسلني على واتساب',
-                reply: 'الرد عادة خلال ساعات',
-                waMsg: 'مرحبا أيوب! شفت البورتفوليو تاعك وحاب نناقش مشروع (تطبيق أو موقع).',
-                year: '٢٠٢٦',
-                ig: 'إنستغرام'
-            },
-            en: {
-                name: 'Ayoub Benderdouch',
-                mono: 'A',
-                langSr: 'Switch language',
-                heroSub: '30 real products on the stores — from Algeria to Iraq',
-                stat1: '30 products',
-                stat2: '6 countries',
-                stat3: '92K followers',
-                scrollDown: 'Scroll to the projects',
-                featured: 'Featured case study',
-                swipe: 'Swipe for the next project',
-                gridTitle: 'All projects',
-                projectsCount: n => n + ' projects',
-                more: 'Show more',
-                web: 'Website',
-                platforms: ['Web', 'iOS', 'Android'],
-                countries: { dz: 'Algeria', iq: 'Iraq', global: 'Global' },
-                ctaTitle: 'Have an app idea?',
-                ctaSub: 'From design to the stores — one developer.',
-                ctaBtn: 'Chat on WhatsApp',
-                reply: 'Usually replies within a few hours',
-                waMsg: "Hi Ayoub! I saw your portfolio and I'd like to discuss a project (app or website).",
-                year: '2026',
-                ig: 'Instagram'
-            }
-        };
+        const COUNTRIES = { dz: 'Algeria', iq: 'Iraq', global: 'Global' };
+        const WA_MSG = "Hi Ayoub! I saw your portfolio and I'd like to discuss a project (app or website).";
 
-        function arDigits(n) {
-            return String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
-        }
-
-        /* ================= PROJECTS — single source of truth ================= */
+        /* ================= PROJECTS — single source of truth =================
+           kind: 'app' | 'web' · tier: 'featured' (big card) | 'grid' (small tile) */
         const PROJECTS = [
-            /* ---- Featured (feste Reihenfolge) ---- */
+            /* ---- Apps: featured ---- */
             {
-                id: 'bashir', tier: 'featured', order: 1,
-                name: { ar: 'منصّة الشيف بشير فوزي', en: 'Chef Bashir Fawzi Platform' },
-                country: 'iq', mono: 'ب',
-                stat: { ar: '935K متابع', en: '935K followers' },
-                story: {
-                    ar: 'منصّة تعليم طبخ متكاملة من ١٣ نظاماً — ويب وiOS وأندرويد، سُلّمت في ١٦ أسبوعاً.',
-                    en: 'A complete cooking-education platform of 13 systems — web, iOS and Android, delivered in 16 weeks.'
-                },
-                links: {}, /* TODO: Links ergänzen, sobald öffentlich */
-                logo: 'assets/logos/bashir.webp'
-            },
-            {
-                id: 'ysafer', tier: 'featured', order: 2,
-                name: { ar: 'يسافر Ysafer', en: 'Ysafer' },
-                country: 'dz', stat: null,
-                story: {
-                    ar: 'عمرة وحج وتذاكر عبر وكالات موثوقة — تطبيق للعميل، تطبيق للوكالة، ومنصّة ويب.',
-                    en: 'Umrah, Hajj and tickets through trusted agencies — customer app, agency app and web platform.'
-                },
+                id: 'ysafer', kind: 'app', tier: 'featured', order: 1,
+                name: 'Ysafer', country: 'dz', stat: null,
+                story: 'Umrah, Hajj and tickets through trusted agencies — customer app, agency app and web platform.',
                 links: {
                     ios: 'https://apps.apple.com/us/app/ysafer/id6761107182',
                     android: 'https://play.google.com/store/apps/details?id=com.yasfir.customer',
@@ -832,13 +673,9 @@
                 logo: 'assets/logos/ysafer.webp'
             },
             {
-                id: 'fitrigi', tier: 'featured', order: 3,
-                name: { ar: 'فتريجي Fitrigi', en: 'Fitrigi' },
-                country: 'dz', stat: null,
-                story: {
-                    ar: 'منظومة نقل تشاركي كاملة: تطبيق الراكب، تطبيق السائق، والتتبّع اللحظي.',
-                    en: 'A complete ride-sharing system: rider app, driver app and live tracking.'
-                },
+                id: 'fitrigi', kind: 'app', tier: 'featured', order: 2,
+                name: 'Fitrigi', country: 'dz', stat: null,
+                story: 'A complete ride-sharing system: rider app, driver app and live tracking.',
                 links: {
                     ios: 'https://apps.apple.com/us/app/fitrigi/id6756182620',
                     android: 'https://play.google.com/store/apps/details?id=com.fitrigi.Ride'
@@ -846,25 +683,10 @@
                 logo: 'assets/logos/fitrigi.webp'
             },
             {
-                id: 'crido', tier: 'featured', order: 4,
-                name: { ar: 'كريدو Crido', en: 'Crido' },
-                country: 'dz', stat: null, pad: true,
-                story: {
-                    ar: 'منصّة «اشترِ الآن وادفع لاحقاً» — تقسيط ذكي مبني للسوق الجزائرية.',
-                    en: 'A buy-now-pay-later platform — smart installments built for the Algerian market.'
-                },
-                links: { web: 'https://www.cridodz.com/' },
-                logo: 'assets/logos/crido.webp'
-            },
-            {
-                id: 'changedinar', tier: 'featured', order: 5,
-                name: { ar: 'Change Dinar', en: 'Change Dinar' },
-                country: 'dz',
-                stat: { ar: '25K مستخدم', en: '25K users' },
-                story: {
-                    ar: 'أسعار صرف الدينار لحظة بلحظة — iOS وأندرويد وAppGallery.',
-                    en: 'Live dinar exchange rates — iOS, Android and AppGallery.'
-                },
+                id: 'changedinar', kind: 'app', tier: 'featured', order: 3,
+                name: 'Change Dinar', country: 'dz',
+                stat: '25K users',
+                story: 'Live dinar exchange rates — iOS, Android and AppGallery.',
                 links: {
                     ios: 'https://apps.apple.com/us/app/change-dinar/id6742030993',
                     android: 'https://play.google.com/store/apps/details?id=com.zaed.changedinar',
@@ -873,13 +695,9 @@
                 logo: 'assets/logos/changedinar.webp'
             },
             {
-                id: 'smartdoc', tier: 'featured', order: 6,
-                name: { ar: 'SmartDoc', en: 'SmartDoc' },
-                country: 'dz', stat: null,
-                story: {
-                    ar: 'حجز الأطباء أونلاين — تطبيق للمريض، تطبيق للطبيب، ولوحة تحكّم للعيادة.',
-                    en: 'Online doctor booking — patient app, doctor app and clinic dashboard.'
-                },
+                id: 'smartdoc', kind: 'app', tier: 'featured', order: 4,
+                name: 'SmartDoc', country: 'dz', stat: null,
+                story: 'Online doctor booking — patient app, doctor app and clinic dashboard.',
                 links: {
                     android: 'https://play.google.com/store/apps/details?id=com.tizi.client',
                     web: 'https://smartdocdz.com/'
@@ -887,63 +705,70 @@
                 logo: 'assets/logos/smartdoc.webp'
             },
 
-            /* ---- Grid ---- */
-            { id: 'rainsounds', tier: 'grid', order: 10, name: { ar: 'Rain Sounds', en: 'Rain Sounds' }, country: 'global',
+            /* ---- Apps: grid ---- */
+            { id: 'rainsounds', kind: 'app', tier: 'grid', order: 10, name: 'Rain Sounds', country: 'global',
               links: { ios: 'https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177', android: 'https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android' }, logo: 'assets/logos/rainsounds.webp' },
-            { id: 'eggtimer', tier: 'grid', order: 11, name: { ar: 'Egg Timer', en: 'Egg Timer' }, country: 'global',
+            { id: 'eggtimer', kind: 'app', tier: 'grid', order: 11, name: 'Egg Timer', country: 'global',
               links: { ios: 'https://apps.apple.com/us/app/egg-timer-soft-hard-boiled/id6787127960' }, logo: 'assets/logos/eggtimer.webp' },
-            { id: 'athani', tier: 'grid', order: 12, name: { ar: 'Athani Pro', en: 'Athani Pro' }, country: 'global',
+            { id: 'athani', kind: 'app', tier: 'grid', order: 12, name: 'Athani Pro', country: 'global',
               links: { ios: 'https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280' }, logo: 'assets/logos/athani.webp' },
-            { id: 'saf9ty', tier: 'grid', order: 13, name: { ar: 'صفقتي Saf9ty', en: 'Saf9ty' }, country: 'dz',
+            { id: 'saf9ty', kind: 'app', tier: 'grid', order: 13, name: 'Saf9ty', country: 'dz',
               links: { ios: 'https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053', android: 'https://play.google.com/store/apps/details?id=com.saf9ty.app' }, logo: 'assets/logos/saf9ty.webp' },
-            { id: 'faydalik', tier: 'grid', order: 14, name: { ar: 'FaydaLik', en: 'FaydaLik' }, country: 'dz',
+            { id: 'faydalik', kind: 'app', tier: 'grid', order: 14, name: 'FaydaLik', country: 'dz',
               links: { ios: 'https://apps.apple.com/us/app/faydalik/id6753982539' }, logo: 'assets/logos/faydalik.webp' },
-            { id: 'ysafer-agency', tier: 'grid', order: 15, name: { ar: 'Ysafer Agency', en: 'Ysafer Agency' }, country: 'dz',
+            { id: 'ysafer-agency', kind: 'app', tier: 'grid', order: 15, name: 'Ysafer Agency', country: 'dz',
               links: { ios: 'https://apps.apple.com/us/app/ysafer-agency/id6767173790', android: 'https://play.google.com/store/apps/details?id=com.yasfir.agency' }, logo: 'assets/logos/ysafer.webp' },
-            { id: 'smartclinique', tier: 'grid', order: 16, name: { ar: 'Smart Clinique', en: 'Smart Clinique' }, country: 'dz',
+            { id: 'smartclinique', kind: 'app', tier: 'grid', order: 16, name: 'Smart Clinique', country: 'dz',
               links: { android: 'https://play.google.com/store/apps/details?id=com.tizi.doctor' }, logo: 'assets/logos/smartclinique.webp' },
-            { id: 'midofroid', tier: 'grid', order: 17, name: { ar: 'Mido Froid', en: 'Mido Froid' }, country: 'dz',
+            { id: 'midofroid', kind: 'app', tier: 'grid', order: 17, name: 'Mido Froid', country: 'dz',
               links: { android: 'https://play.google.com/store/apps/details?id=dz.midofroid.mido_froid', web: 'https://midoufroid.com/' }, logo: 'assets/logos/midofroid.webp' },
-            { id: 'albabor', tier: 'grid', order: 18, name: { ar: 'AlBabor', en: 'AlBabor' }, country: 'dz',
+            { id: 'albabor', kind: 'app', tier: 'grid', order: 18, name: 'AlBabor', country: 'dz',
               links: { android: 'https://play.google.com/store/apps/details?id=com.albabor.app', web: 'https://albabor.com/' }, logo: 'assets/logos/albabor.webp' },
-            { id: 'yachtei', tier: 'grid', order: 19, name: { ar: 'Yachtei', en: 'Yachtei' }, country: 'dz', pad: true,
+
+            /* ---- Websites: featured ---- */
+            {
+                id: 'crido', kind: 'web', tier: 'featured', order: 1,
+                name: 'Crido', country: 'dz', stat: null, pad: true,
+                story: 'A buy-now-pay-later platform — smart installments built for the Algerian market.',
+                links: { web: 'https://www.cridodz.com/' },
+                logo: 'assets/logos/crido.webp'
+            },
+
+            /* ---- Websites: grid ---- */
+            { id: 'yachtei', kind: 'web', tier: 'grid', order: 10, name: 'Yachtei', country: 'dz', pad: true,
               links: { web: 'https://yachtei.com/' }, logo: 'assets/logos/yachtei.webp' },
-            { id: 'saloni', tier: 'grid', order: 20, name: { ar: 'SALONI', en: 'SALONI' }, country: 'dz', pad: true,
+            { id: 'saloni', kind: 'web', tier: 'grid', order: 11, name: 'SALONI', country: 'dz', pad: true,
               links: { web: 'https://salonidz.com/' }, logo: 'assets/logos/saloni.webp' },
-            { id: 'tabaraati', tier: 'grid', order: 21, name: { ar: 'تبرعاتي', en: 'Tabaraati' }, country: 'dz',
+            { id: 'tabaraati', kind: 'web', tier: 'grid', order: 12, name: 'Tabaraati', country: 'dz',
               links: { web: 'https://tabaraati.com/' }, logo: 'assets/logos/tabaraati.webp' },
-            { id: 'uxbeacon', tier: 'grid', order: 22, name: { ar: 'UX Beacon', en: 'UX Beacon' }, country: 'global',
+            { id: 'uxbeacon', kind: 'web', tier: 'grid', order: 13, name: 'UX Beacon', country: 'global',
               links: { web: 'https://uxbeacon.online/' }, logo: 'assets/logos/uxbeacon.webp' },
-            { id: 'reloadx', tier: 'grid', order: 23, name: { ar: 'ReloadX', en: 'ReloadX' }, country: 'global',
+            { id: 'reloadx', kind: 'web', tier: 'grid', order: 14, name: 'ReloadX', country: 'global',
               links: { web: 'https://reloadx.co/' }, logo: 'assets/logos/reloadx.webp' },
-            { id: 'diline', tier: 'grid', order: 24, name: { ar: 'Diline Academy', en: 'Diline Academy' }, country: 'global', pad: true,
+            { id: 'diline', kind: 'web', tier: 'grid', order: 15, name: 'Diline Academy', country: 'global', pad: true,
               links: { web: 'https://dilin.academy/' }, logo: 'assets/logos/diline.webp' },
-            { id: 'israa', tier: 'grid', order: 25, name: { ar: 'ISRAA Collections', en: 'ISRAA Collections' }, country: 'dz',
+            { id: 'israa', kind: 'web', tier: 'grid', order: 16, name: 'ISRAA Collections', country: 'dz',
               links: { web: 'https://clothes-store-femme.vercel.app/' }, logo: 'assets/logos/israa.webp' },
-            /* TODO: radiant-body.com + poloboissons.com lösen nicht mehr auf (Domains tot) — neue URLs bei Ayoub erfragen */
-            { id: 'radiantbody', tier: 'grid', order: 26, name: { ar: 'Radiant Body', en: 'Radiant Body' }, country: 'global',
+            /* TODO: radiant-body.com + poloboissons.com no longer resolve (dead domains) — ask Ayoub for new URLs */
+            { id: 'radiantbody', kind: 'web', tier: 'grid', order: 17, name: 'Radiant Body', country: 'global',
               links: {}, logo: 'assets/logos/radiantbody.webp' },
-            { id: 'polo', tier: 'grid', order: 27, name: { ar: 'Polo Boissons', en: 'Polo Boissons' }, country: 'dz', pad: true,
+            { id: 'polo', kind: 'web', tier: 'grid', order: 18, name: 'Polo Boissons', country: 'dz', pad: true,
               links: {}, logo: 'assets/logos/polo.webp' },
-            { id: 'smartdocdz', tier: 'grid', order: 28, name: { ar: 'SmartDocDZ', en: 'SmartDocDZ' }, country: 'dz',
+            { id: 'smartdocdz', kind: 'web', tier: 'grid', order: 19, name: 'SmartDocDZ', country: 'dz',
               links: { web: 'https://smartdocdz.com/' }, logo: 'assets/logos/smartdoc.webp' }
         ];
 
-        /* ================= State & Helpers ================= */
+        /* ================= Helpers ================= */
         const $ = s => document.querySelector(s);
-        let lang = document.documentElement.lang === 'en' ? 'en' : 'ar';
-        let booted = false;
-        const t = k => I18N[lang][k];
 
         function esc(s) {
             return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
         function countryChip(p) {
-            const L = I18N[lang];
             return '<span class="chip country lite">' +
                 '<img class="cicon" src="assets/countries/' + p.country + '.png" alt="" width="22" height="22" loading="lazy">' +
-                '<span>' + L.countries[p.country] + '</span></span>';
+                '<span>' + COUNTRIES[p.country] + '</span></span>';
         }
 
         function storeBadges(links) {
@@ -951,16 +776,12 @@
             if (links.ios) b.push('<a class="badge" href="' + links.ios + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>');
             if (links.android) b.push('<a class="badge" href="' + links.android + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>');
             if (links.gallery) b.push('<a class="badge" href="' + links.gallery + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-huawei"/></svg>AppGallery</a>');
-            if (links.web) b.push('<a class="badge" href="' + links.web + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-globe"/></svg>' + t('web') + '</a>');
+            if (links.web) b.push('<a class="badge" href="' + links.web + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-globe"/></svg>Website</a>');
             return b.join('');
         }
 
-        function platformChips() {
-            return t('platforms').map(x => '<span class="plat-chip lite">' + x + '</span>').join('');
-        }
-
         function hookImgFallbacks(scope) {
-            /* Länder-Icons: fehlt die Datei, ersetzt ein neutraler Glas-Kreis das Bild (nie eine Emoji-Flagge) */
+            /* Country icons: if the file is missing, a neutral glass circle replaces the image (never an emoji flag) */
             scope.querySelectorAll('img.cicon').forEach(img => {
                 const swap = () => {
                     const dot = document.createElement('span');
@@ -971,7 +792,7 @@
                 if (img.complete && img.naturalWidth === 0) swap();
                 else img.addEventListener('error', swap, { once: true });
             });
-            /* Projekt-Logos: fehlt die Datei, zeigt die Kachel den Anfangsbuchstaben */
+            /* Project logos: if the file is missing, the tile shows the initial letter */
             scope.querySelectorAll('img.plogo').forEach(img => {
                 const swap = () => {
                     const span = document.createElement('span');
@@ -985,77 +806,47 @@
         }
 
         /* ================= Render ================= */
-        function renderFeed() {
-            const feed = $('#feed');
-            const featured = PROJECTS.filter(p => p.tier === 'featured').sort((a, b) => a.order - b.order);
-            feed.innerHTML = featured.map((p, i) => {
-                const last = i === featured.length - 1;
-                const hasLinks = Object.keys(p.links).length > 0;
-                const monoChar = p.mono || p.name[lang].charAt(0);
-                return '<article class="feed-card" aria-label="' + esc(p.name[lang]) + '">' +
-                    '<div class="glass-card glass reveal">' +
-                        '<div class="logo-tile' + (p.pad ? ' pad' : '') + '">' +
-                            '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(monoChar) + '" alt="" width="68" height="68"' + (i > 0 ? ' loading="lazy"' : '') + '>' +
-                        '</div>' +
-                        '<h2 class="p-name">' + esc(p.name[lang]) + '</h2>' +
-                        (p.id === 'bashir' ? '<p class="feat-label">' + t('featured') + '</p>' : '') +
-                        '<div class="chips">' + countryChip(p) +
-                            (p.stat ? '<span class="chip stat">' + p.stat[lang] + '</span>' : '') +
-                        '</div>' +
-                        '<p class="story">' + p.story[lang] + '</p>' +
-                        '<div class="badges">' + (hasLinks ? storeBadges(p.links) : platformChips()) + '</div>' +
-                    '</div>' +
-                    (!last ? '<div class="swipe-hint" aria-hidden="true"><svg><use href="#i-up"/></svg><span>' + t('swipe') + '</span></div>' : '') +
-                '</article>';
-            }).join('');
-            hookImgFallbacks(feed);
-            if (booted) feed.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
-            else observeReveals(feed);
+        function bigCard(p, lazy) {
+            return '<article class="glass-card glass reveal" aria-label="' + esc(p.name) + '">' +
+                '<div class="logo-tile' + (p.pad ? ' pad' : '') + '">' +
+                    '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.charAt(0)) + '" alt="" width="68" height="68"' + (lazy ? ' loading="lazy"' : '') + '>' +
+                '</div>' +
+                '<h3 class="p-name">' + esc(p.name) + '</h3>' +
+                '<div class="chips">' + countryChip(p) +
+                    (p.stat ? '<span class="chip stat">' + p.stat + '</span>' : '') +
+                '</div>' +
+                '<p class="story">' + p.story + '</p>' +
+                '<div class="badges">' + storeBadges(p.links) + '</div>' +
+            '</article>';
         }
 
-        function renderGrid() {
-            const grid = $('#grid');
-            const items = PROJECTS.filter(p => p.tier === 'grid').sort((a, b) => a.order - b.order);
-            $('#gridCount').textContent = I18N[lang].projectsCount(items.length);
-            grid.innerHTML = items.map(p => {
-                const href = p.links.ios || p.links.android || p.links.web;
-                const label = esc(p.name[lang]) + ' — ' + I18N[lang].countries[p.country];
-                const inner = '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.en.charAt(0)) + '" alt="" width="44" height="44" loading="lazy">' +
-                    '<span class="t-name">' + esc(p.name[lang]) + '</span>' +
-                    '<span class="t-country">' + I18N[lang].countries[p.country] + '</span>';
-                const cls = 'tile lite' + (p.pad ? ' pad' : '');
-                /* Projekte ohne erreichbare URL werden als Nicht-Link-Kachel gerendert */
-                return href
-                    ? '<a class="' + cls + '" href="' + href + '" target="_blank" rel="noopener" aria-label="' + label + '">' + inner + '</a>'
-                    : '<div class="' + cls + '">' + inner + '</div>';
-            }).join('');
-            hookImgFallbacks(grid);
+        function tile(p) {
+            const href = p.links.ios || p.links.android || p.links.web;
+            const inner = '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.charAt(0)) + '" alt="" width="44" height="44" loading="lazy">' +
+                '<span class="t-name">' + esc(p.name) + '</span>' +
+                '<span class="t-country">' + COUNTRIES[p.country] + '</span>';
+            const cls = 'tile lite' + (p.pad ? ' pad' : '');
+            /* Projects without a reachable URL render as a non-link tile */
+            return href
+                ? '<a class="' + cls + '" href="' + href + '" target="_blank" rel="noopener" aria-label="' + esc(p.name) + ' — ' + COUNTRIES[p.country] + '">' + inner + '</a>'
+                : '<div class="' + cls + '">' + inner + '</div>';
         }
 
-        function applyStatics() {
-            document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
-            document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
-            $('#monoTile').textContent = t('mono');
-            $('#waBtn').href = 'https://wa.me/213676085441?text=' + encodeURIComponent(t('waMsg'));
-            document.querySelectorAll('.lang-toggle span').forEach(s => s.classList.toggle('on', s.dataset.l === lang));
+        function renderKind(kind, featSel, gridSel, countSel, navSel, word) {
+            const all = PROJECTS.filter(p => p.kind === kind).sort((a, b) => a.order - b.order);
+            const feat = all.filter(p => p.tier === 'featured');
+            const rest = all.filter(p => p.tier !== 'featured');
+            $(featSel).innerHTML = feat.map((p, i) => bigCard(p, kind !== 'app' || i > 0)).join('');
+            $(gridSel).innerHTML = rest.map(tile).join('');
+            $(countSel).textContent = all.length + ' ' + word;
+            $(navSel).textContent = all.length;
+            hookImgFallbacks($(featSel));
+            hookImgFallbacks($(gridSel));
+            observeReveals($(featSel));
         }
 
-        function applyLang() {
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            try { localStorage.setItem('lang', lang); } catch (e) { }
-            applyStatics();
-            renderFeed();
-            renderGrid();
-        }
-
-        /* ================= Reveal-Animation ================= */
+        /* ================= Reveal animation ================= */
         let io = null;
-
-        function observeReveals(scope) {
-            if (!io) { scope.querySelectorAll('.reveal').forEach(el => el.classList.add('in')); return; }
-            scope.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
-        }
 
         if ('IntersectionObserver' in window) {
             io = new IntersectionObserver(entries => {
@@ -1065,14 +856,18 @@
             }, { threshold: 0.15 });
         }
 
-        /* ================= Boot ================= */
-        applyStatics();
-        renderFeed();
-        renderGrid();
-        observeReveals(document);
-        booted = true;
+        function observeReveals(scope) {
+            if (!io) { scope.querySelectorAll('.reveal').forEach(el => el.classList.add('in')); return; }
+            scope.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+        }
 
-        /* Deep-Links (#projects, #contact): erneut scrollen, nachdem der Feed gerendert wurde */
+        /* ================= Boot ================= */
+        $('#waBtn').href = 'https://wa.me/213676085441?text=' + encodeURIComponent(WA_MSG);
+        renderKind('app', '#appsFeatured', '#appsGrid', '#appsCount', '#navAppsCount', 'apps');
+        renderKind('web', '#webFeatured', '#webGrid', '#webCount', '#navWebCount', 'websites');
+        observeReveals(document);
+
+        /* Deep links (#apps, #websites, #contact): re-scroll after render */
         if (location.hash) {
             requestAnimationFrame(() => {
                 const target = document.querySelector(location.hash);
@@ -1080,21 +875,12 @@
             });
         }
 
-        $('#langToggle').addEventListener('click', () => {
-            lang = lang === 'ar' ? 'en' : 'ar';
-            applyLang();
-        });
-
-        $('#moreBtn').addEventListener('click', () => {
-            $('#grid').classList.add('expanded');
-        });
-
-        /* ================= Sky-Video ================= */
+        /* ================= Sky video ================= */
         (function () {
             const sky = document.getElementById('sky');
             if (!sky) return;
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                sky.remove(); /* Poster (.sky-fallback) bleibt als fester Hintergrund */
+                sky.remove(); /* poster (.sky-fallback) stays as the fixed background */
                 return;
             }
             const kill = () => { if (sky.parentNode) sky.remove(); };
@@ -1110,7 +896,7 @@
                 else sky.play().catch(() => { });
             });
 
-            /* iOS-Energiesparmodus: Autoplay blockiert → beim ersten Touch erneut versuchen */
+            /* iOS Low Power Mode blocks autoplay — retry on first touch */
             const tryPlay = () => { sky.play().catch(() => { }); };
             window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
             window.addEventListener('click', tryPlay, { once: true });
