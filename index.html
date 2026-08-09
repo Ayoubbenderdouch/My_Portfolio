@@ -90,7 +90,6 @@
             -webkit-backdrop-filter: blur(18px) saturate(1.4);
         }
 
-        /* light surface without blur — perf rule: max ~3 blurred surfaces per viewport */
         .lite {
             background: rgba(255, 255, 255, 0.66);
             border: 1px solid var(--glass-border);
@@ -106,49 +105,6 @@
             flex-direction: column;
         }
 
-        /* ---------- Header ---------- */
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 9px 14px;
-            border-left: 0;
-            border-right: 0;
-            border-top: 0;
-            border-radius: 0;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .mono {
-            width: 32px;
-            height: 32px;
-            display: grid;
-            place-items: center;
-            border-radius: 9px;
-            background: rgba(255, 255, 255, 0.72);
-            border: 1.5px solid var(--accent);
-            font-family: var(--fd);
-            font-weight: 600;
-            font-size: 15px;
-            color: var(--accent-text);
-        }
-
-        .brand-name {
-            font-family: var(--fd);
-            font-weight: 500;
-            font-size: 14px;
-            color: var(--ink);
-        }
-
         /* ---------- Hero ---------- */
         .hero {
             display: flex;
@@ -156,8 +112,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 14px;
-            padding: 44px 24px 26px;
+            gap: 18px;
+            padding: 54px 24px 8px;
         }
 
         h1 {
@@ -168,21 +124,12 @@
             color: var(--ink);
         }
 
-        .hero-sub {
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 1.7;
-            color: var(--ink);
-            max-width: 320px;
-        }
-
         /* Zwei klare Sektions-Buttons: Apps / Websites */
         .nav-btns {
             display: flex;
             gap: 10px;
             width: 100%;
             max-width: 350px;
-            margin-top: 6px;
         }
 
         .nav-card {
@@ -227,8 +174,8 @@
 
         /* ---------- Sections ---------- */
         .sect {
-            padding: 34px 20px 0;
-            scroll-margin-top: 58px;
+            padding: 30px 20px 0;
+            scroll-margin-top: 12px;
         }
 
         .sec-head {
@@ -258,16 +205,13 @@
             white-space: nowrap;
         }
 
-        /* Featured stack (big glass cards) */
-        .featured {
+        /* ---------- Cards (alle Projekte gleich groß) ---------- */
+        .cards {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 14px;
+            gap: 14px;
         }
-
-        .featured:empty { display: none; margin: 0; }
 
         .glass-card {
             width: 100%;
@@ -396,53 +340,9 @@
 
         .badge:active { transform: scale(0.97); }
 
-        /* ---------- Tile grid ---------- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .tile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 6px;
-            padding: 13px 6px 11px;
-            border-radius: 18px;
-            text-decoration: none;
-            transition: transform 0.15s ease;
-        }
-
-        .tile:active { transform: scale(0.97); }
-
-        .tile img {
-            width: 44px;
-            height: 44px;
-            border-radius: 11px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .tile.pad img { object-fit: contain; border-radius: 0; }
-
-        .t-name {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--ink);
-            line-height: 1.3;
-        }
-
-        .t-country {
-            font-size: 11px;
-            color: var(--ink-soft);
-            line-height: 1;
-        }
-
         /* ---------- CTA ---------- */
         .cta-wrap {
-            padding: 40px 20px 10px;
+            padding: 36px 20px 10px;
             display: flex;
             justify-content: center;
         }
@@ -526,21 +426,12 @@
             transition: opacity 0.45s ease-out, transform 0.45s ease-out;
         }
 
-        /* ---------- Desktop: phone column, sky full-bleed ---------- */
-        @media (min-width: 520px) {
-            .topbar {
-                margin: 10px 10px 0;
-                border-radius: 14px;
-                border: 1px solid var(--glass-border);
-            }
-        }
-
         /* ---------- Reduced motion ---------- */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .sky-bg { display: none; }
             .reveal { opacity: 1; transform: none; transition: none; }
-            .sky-bg, .tile, .badge, .wa-btn, .nav-card { transition: none; }
+            .sky-bg, .badge, .wa-btn, .nav-card { transition: none; }
         }
     </style>
 </head>
@@ -578,19 +469,10 @@
     </video>
 
     <div class="page">
-        <!-- Header -->
-        <header class="topbar glass">
-            <a class="brand" href="#top">
-                <span class="mono" aria-hidden="true">A</span>
-                <span class="brand-name">Ayoub Benderdouch</span>
-            </a>
-        </header>
-
         <main>
-            <!-- Hero -->
+            <!-- Hero: nur der Name + zwei Buttons -->
             <section class="hero" id="top">
                 <h1>Ayoub Benderdouch</h1>
-                <p class="hero-sub">30 real products on the stores — from Algeria to Iraq</p>
                 <nav class="nav-btns" aria-label="Sections">
                     <a class="nav-card" href="#apps">
                         <svg aria-hidden="true"><use href="#i-apps"/></svg>
@@ -611,8 +493,7 @@
                     <h2>All apps</h2>
                     <span class="count" id="appsCount"></span>
                 </div>
-                <div class="featured" id="appsFeatured"></div>
-                <div class="grid" id="appsGrid"></div>
+                <div class="cards" id="appsCards"></div>
             </section>
 
             <!-- All websites -->
@@ -621,8 +502,7 @@
                     <h2>All websites</h2>
                     <span class="count" id="webCount"></span>
                 </div>
-                <div class="featured" id="webFeatured"></div>
-                <div class="grid" id="webGrid"></div>
+                <div class="cards" id="webCards"></div>
             </section>
 
             <!-- CTA -->
@@ -658,104 +538,110 @@
         const WA_MSG = "Hi Ayoub! I saw your portfolio and I'd like to discuss a project (app or website).";
 
         /* ================= PROJECTS — single source of truth =================
-           kind: 'app' | 'web' · tier: 'featured' (big card) | 'grid' (small tile) */
+           kind: 'app' | 'web' · story optional (featured cases) */
         const PROJECTS = [
-            /* ---- Apps: featured ---- */
-            {
-                id: 'ysafer', kind: 'app', tier: 'featured', order: 1,
-                name: 'Ysafer', country: 'dz', stat: null,
-                story: 'Umrah, Hajj and tickets through trusted agencies — customer app, agency app and web platform.',
-                links: {
-                    ios: 'https://apps.apple.com/us/app/ysafer/id6761107182',
-                    android: 'https://play.google.com/store/apps/details?id=com.yasfir.customer',
-                    web: 'https://ysafer.com/'
-                },
-                logo: 'assets/logos/ysafer.webp'
-            },
-            {
-                id: 'fitrigi', kind: 'app', tier: 'featured', order: 2,
-                name: 'Fitrigi', country: 'dz', stat: null,
-                story: 'A complete ride-sharing system: rider app, driver app and live tracking.',
-                links: {
-                    ios: 'https://apps.apple.com/us/app/fitrigi/id6756182620',
-                    android: 'https://play.google.com/store/apps/details?id=com.fitrigi.Ride'
-                },
-                logo: 'assets/logos/fitrigi.webp'
-            },
-            {
-                id: 'changedinar', kind: 'app', tier: 'featured', order: 3,
-                name: 'Change Dinar', country: 'dz',
-                stat: '25K users',
-                story: 'Live dinar exchange rates — iOS, Android and AppGallery.',
-                links: {
-                    ios: 'https://apps.apple.com/us/app/change-dinar/id6742030993',
-                    android: 'https://play.google.com/store/apps/details?id=com.zaed.changedinar',
-                    gallery: 'https://appgallery.huawei.com/#/app/C116572695'
-                },
-                logo: 'assets/logos/changedinar.webp'
-            },
-            {
-                id: 'smartdoc', kind: 'app', tier: 'featured', order: 4,
-                name: 'SmartDoc', country: 'dz', stat: null,
-                story: 'Online doctor booking — patient app, doctor app and clinic dashboard.',
-                links: {
-                    android: 'https://play.google.com/store/apps/details?id=com.tizi.client',
-                    web: 'https://smartdocdz.com/'
-                },
-                logo: 'assets/logos/smartdoc.webp'
-            },
+            /* ---- Apps (Reihenfolge von Ayoub, 2026-08-09) — nur Store-Badges ---- */
+            { id: 'changedinar', kind: 'app', order: 1, name: 'Change Dinar', country: 'dz', stat: '25K users',
+              story: 'Live dinar exchange rates — iOS, Android and AppGallery.',
+              links: { ios: 'https://apps.apple.com/us/app/change-dinar/id6742030993', android: 'https://play.google.com/store/apps/details?id=com.zaed.changedinar', gallery: 'https://appgallery.huawei.com/#/app/C116572695' },
+              logo: 'assets/logos/changedinar.webp' },
+            { id: 'rainsounds', kind: 'app', order: 2, name: 'Rain Sounds', country: 'global',
+              story: 'Nature sounds for deep sleep.',
+              links: { ios: 'https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177', android: 'https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android' },
+              logo: 'assets/logos/rainsounds.webp' },
+            { id: 'fitrigi', kind: 'app', order: 3, name: 'Fitrigi', country: 'dz',
+              story: 'Ride sharing for Algeria — the rider app.',
+              links: { ios: 'https://apps.apple.com/us/app/fitrigi/id6756182620', android: 'https://play.google.com/store/apps/details?id=com.fitrigi.Ride' },
+              logo: 'assets/logos/fitrigi.webp' },
+            { id: 'fitrigi-driver', kind: 'app', order: 4, name: 'Fitrigi Driver', country: 'dz',
+              story: 'The driver app for Fitrigi.',
+              links: { ios: 'https://apps.apple.com/us/app/fitrigi-chauffeur/id6756183013', android: 'https://play.google.com/store/apps/details?id=com.fitrigi.driver' },
+              logo: 'assets/logos/fitrigi-driver.webp' },
+            { id: 'ysafer', kind: 'app', order: 5, name: 'Ysafer', country: 'dz',
+              story: 'Umrah, Hajj and tickets through trusted agencies.',
+              links: { ios: 'https://apps.apple.com/us/app/ysafer/id6761107182', android: 'https://play.google.com/store/apps/details?id=com.yasfir.customer' },
+              logo: 'assets/logos/ysafer.webp' },
+            { id: 'ysafer-agency', kind: 'app', order: 6, name: 'Ysafer Agency', country: 'dz',
+              story: 'The agency-side app for Ysafer.',
+              links: { ios: 'https://apps.apple.com/us/app/ysafer-agency/id6767173790', android: 'https://play.google.com/store/apps/details?id=com.yasfir.agency' },
+              logo: 'assets/logos/ysafer.webp' },
+            { id: 'smartdoc', kind: 'app', order: 7, name: 'SmartDoc', country: 'dz',
+              story: 'Book doctors online in Algeria.',
+              links: { android: 'https://play.google.com/store/apps/details?id=com.tizi.client' },
+              logo: 'assets/logos/smartdoc.webp' },
+            { id: 'smartclinique', kind: 'app', order: 8, name: 'Smart Clinique', country: 'dz',
+              story: 'The doctor-side app for SmartDoc.',
+              links: { android: 'https://play.google.com/store/apps/details?id=com.tizi.doctor' },
+              logo: 'assets/logos/smartclinique.webp' },
+            { id: 'midofroid', kind: 'app', order: 9, name: 'Mido Froid', country: 'dz',
+              story: 'Home appliances, delivered across 58 wilayas.',
+              links: { android: 'https://play.google.com/store/apps/details?id=dz.midofroid.mido_froid' },
+              logo: 'assets/logos/midofroid.webp' },
+            { id: 'albabor', kind: 'app', order: 10, name: 'AlBabor', country: 'dz',
+              story: 'Buy and sell boats and marine gear.',
+              links: { android: 'https://play.google.com/store/apps/details?id=com.albabor.app' },
+              logo: 'assets/logos/albabor.webp' },
+            { id: 'faydalik', kind: 'app', order: 11, name: 'FaydaLik', country: 'dz',
+              story: 'Share products, earn commissions.',
+              links: { ios: 'https://apps.apple.com/us/app/faydalik/id6753982539' },
+              logo: 'assets/logos/faydalik.webp' },
+            { id: 'saf9ty', kind: 'app', order: 12, name: 'Saf9ty', country: 'dz',
+              story: 'E-commerce and affiliate marketing.',
+              links: { ios: 'https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053', android: 'https://play.google.com/store/apps/details?id=com.saf9ty.app' },
+              logo: 'assets/logos/saf9ty.webp' },
+            { id: 'eggtimer', kind: 'app', order: 13, name: 'Egg Timer', country: 'global',
+              story: 'Perfect eggs, every time.',
+              links: { ios: 'https://apps.apple.com/us/app/egg-timer-soft-hard-boiled/id6787127960' },
+              logo: 'assets/logos/eggtimer.webp' },
+            { id: 'athani', kind: 'app', order: 14, name: 'Athani Pro', country: 'global',
+              story: 'Prayer times, Adhan and Qibla.',
+              links: { ios: 'https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280' },
+              logo: 'assets/logos/athani.webp' },
 
-            /* ---- Apps: grid ---- */
-            { id: 'rainsounds', kind: 'app', tier: 'grid', order: 10, name: 'Rain Sounds', country: 'global',
-              links: { ios: 'https://apps.apple.com/us/app/rain-sounds-sleep-relaxing/id6754724177', android: 'https://play.google.com/store/apps/details?id=com.rainsounds.rain_sounds_android' }, logo: 'assets/logos/rainsounds.webp' },
-            { id: 'eggtimer', kind: 'app', tier: 'grid', order: 11, name: 'Egg Timer', country: 'global',
-              links: { ios: 'https://apps.apple.com/us/app/egg-timer-soft-hard-boiled/id6787127960' }, logo: 'assets/logos/eggtimer.webp' },
-            { id: 'athani', kind: 'app', tier: 'grid', order: 12, name: 'Athani Pro', country: 'global',
-              links: { ios: 'https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280' }, logo: 'assets/logos/athani.webp' },
-            { id: 'saf9ty', kind: 'app', tier: 'grid', order: 13, name: 'Saf9ty', country: 'dz',
-              links: { ios: 'https://apps.apple.com/us/app/saf9ty-%D8%B5%D9%81%D9%82%D8%AA%D9%8A/id6761012053', android: 'https://play.google.com/store/apps/details?id=com.saf9ty.app' }, logo: 'assets/logos/saf9ty.webp' },
-            { id: 'faydalik', kind: 'app', tier: 'grid', order: 14, name: 'FaydaLik', country: 'dz',
-              links: { ios: 'https://apps.apple.com/us/app/faydalik/id6753982539' }, logo: 'assets/logos/faydalik.webp' },
-            { id: 'ysafer-agency', kind: 'app', tier: 'grid', order: 15, name: 'Ysafer Agency', country: 'dz',
-              links: { ios: 'https://apps.apple.com/us/app/ysafer-agency/id6767173790', android: 'https://play.google.com/store/apps/details?id=com.yasfir.agency' }, logo: 'assets/logos/ysafer.webp' },
-            { id: 'smartclinique', kind: 'app', tier: 'grid', order: 16, name: 'Smart Clinique', country: 'dz',
-              links: { android: 'https://play.google.com/store/apps/details?id=com.tizi.doctor' }, logo: 'assets/logos/smartclinique.webp' },
-            { id: 'midofroid', kind: 'app', tier: 'grid', order: 17, name: 'Mido Froid', country: 'dz',
-              links: { android: 'https://play.google.com/store/apps/details?id=dz.midofroid.mido_froid', web: 'https://midoufroid.com/' }, logo: 'assets/logos/midofroid.webp' },
-            { id: 'albabor', kind: 'app', tier: 'grid', order: 18, name: 'AlBabor', country: 'dz',
-              links: { android: 'https://play.google.com/store/apps/details?id=com.albabor.app', web: 'https://albabor.com/' }, logo: 'assets/logos/albabor.webp' },
-
-            /* ---- Websites: featured ---- */
-            {
-                id: 'crido', kind: 'web', tier: 'featured', order: 1,
-                name: 'Crido', country: 'dz', stat: null, pad: true,
-                story: 'A buy-now-pay-later platform — smart installments built for the Algerian market.',
-                links: { web: 'https://www.cridodz.com/' },
-                logo: 'assets/logos/crido.webp'
-            },
-
-            /* ---- Websites: grid ---- */
-            { id: 'yachtei', kind: 'web', tier: 'grid', order: 10, name: 'Yachtei', country: 'dz', pad: true,
-              links: { web: 'https://yachtei.com/' }, logo: 'assets/logos/yachtei.webp' },
-            { id: 'saloni', kind: 'web', tier: 'grid', order: 11, name: 'SALONI', country: 'dz', pad: true,
-              links: { web: 'https://salonidz.com/' }, logo: 'assets/logos/saloni.webp' },
-            { id: 'tabaraati', kind: 'web', tier: 'grid', order: 12, name: 'Tabaraati', country: 'dz',
+            /* ---- Websites (Crido, Tabaraati, ReloadX, AlBabor, Yachtei, dann Rest) — nur Website-Badge ---- */
+            { id: 'crido', kind: 'web', order: 1, name: 'Crido', country: 'dz', pad: true,
+              story: 'A buy-now-pay-later platform — smart installments built for the Algerian market.',
+              links: { web: 'https://www.cridodz.com/' }, logo: 'assets/logos/crido.webp' },
+            { id: 'tabaraati', kind: 'web', order: 2, name: 'Tabaraati', country: 'dz',
+              story: 'Blood donation and community giving in Algeria.',
               links: { web: 'https://tabaraati.com/' }, logo: 'assets/logos/tabaraati.webp' },
-            { id: 'uxbeacon', kind: 'web', tier: 'grid', order: 13, name: 'UX Beacon', country: 'global',
-              links: { web: 'https://uxbeacon.online/' }, logo: 'assets/logos/uxbeacon.webp' },
-            { id: 'reloadx', kind: 'web', tier: 'grid', order: 14, name: 'ReloadX', country: 'global',
+            { id: 'reloadx', kind: 'web', order: 3, name: 'ReloadX', country: 'global',
+              story: 'Game and gift card marketplace.',
               links: { web: 'https://reloadx.co/' }, logo: 'assets/logos/reloadx.webp' },
-            { id: 'diline', kind: 'web', tier: 'grid', order: 15, name: 'Diline Academy', country: 'global', pad: true,
+            { id: 'albabor-web', kind: 'web', order: 4, name: 'AlBabor', country: 'dz',
+              story: 'Algeria\u2019s nautical marketplace.',
+              links: { web: 'https://albabor.com/' }, logo: 'assets/logos/albabor.webp' },
+            { id: 'yachtei', kind: 'web', order: 5, name: 'Yachtei', country: 'dz', pad: true,
+              story: 'Yacht and jet ski rentals.',
+              links: { web: 'https://yachtei.com/' }, logo: 'assets/logos/yachtei.webp' },
+            { id: 'ysafer-web', kind: 'web', order: 6, name: 'Ysafer', country: 'dz',
+              story: 'Umrah, Hajj and travel booking.',
+              links: { web: 'https://ysafer.com/' }, logo: 'assets/logos/ysafer.webp' },
+            { id: 'uxbeacon', kind: 'web', order: 7, name: 'UX Beacon', country: 'global',
+              story: 'AI UX/UI design studio.',
+              links: { web: 'https://uxbeacon.online/' }, logo: 'assets/logos/uxbeacon.webp' },
+            { id: 'smartdocdz', kind: 'web', order: 8, name: 'SmartDocDZ', country: 'dz',
+              story: 'Doctor booking platform.',
+              links: { web: 'https://smartdocdz.com/' }, logo: 'assets/logos/smartdoc.webp' },
+            { id: 'diline', kind: 'web', order: 9, name: 'Diline Academy', country: 'global', pad: true,
+              story: 'Learn Turkish online, A1\u2013C2.',
               links: { web: 'https://dilin.academy/' }, logo: 'assets/logos/diline.webp' },
-            { id: 'israa', kind: 'web', tier: 'grid', order: 16, name: 'ISRAA Collections', country: 'dz',
+            { id: 'midofroid-web', kind: 'web', order: 10, name: 'Mido Froid', country: 'dz',
+              story: 'Appliances shop, cash on delivery.',
+              links: { web: 'https://midoufroid.com/' }, logo: 'assets/logos/midofroid.webp' },
+            { id: 'israa', kind: 'web', order: 11, name: 'ISRAA Collections', country: 'dz',
+              story: 'Online clothing store for women.',
               links: { web: 'https://clothes-store-femme.vercel.app/' }, logo: 'assets/logos/israa.webp' },
-            /* TODO: radiant-body.com + poloboissons.com no longer resolve (dead domains) — ask Ayoub for new URLs */
-            { id: 'radiantbody', kind: 'web', tier: 'grid', order: 17, name: 'Radiant Body', country: 'global',
+            { id: 'saloni', kind: 'web', order: 12, name: 'SALONI', country: 'dz', pad: true,
+              story: 'QR barber booking \u2014 no account needed.',
+              links: { web: 'https://salonidz.com/' }, logo: 'assets/logos/saloni.webp' },
+            /* TODO: radiant-body.com + poloboissons.com loesen nicht mehr auf (Domains tot) — neue URLs bei Ayoub erfragen */
+            { id: 'radiantbody', kind: 'web', order: 13, name: 'Radiant Body', country: 'global',
+              story: 'Health and wellness platform.',
               links: {}, logo: 'assets/logos/radiantbody.webp' },
-            { id: 'polo', kind: 'web', tier: 'grid', order: 18, name: 'Polo Boissons', country: 'dz', pad: true,
-              links: {}, logo: 'assets/logos/polo.webp' },
-            { id: 'smartdocdz', kind: 'web', tier: 'grid', order: 19, name: 'SmartDocDZ', country: 'dz',
-              links: { web: 'https://smartdocdz.com/' }, logo: 'assets/logos/smartdoc.webp' }
+            { id: 'polo', kind: 'web', order: 14, name: 'Polo Boissons', country: 'dz', pad: true,
+              story: 'Premium beverage brand site.',
+              links: {}, logo: 'assets/logos/polo.webp' }
         ];
 
         /* ================= Helpers ================= */
@@ -771,12 +657,16 @@
                 '<span>' + COUNTRIES[p.country] + '</span></span>';
         }
 
-        function storeBadges(links) {
-            const b = [];
-            if (links.ios) b.push('<a class="badge" href="' + links.ios + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>');
-            if (links.android) b.push('<a class="badge" href="' + links.android + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>');
-            if (links.gallery) b.push('<a class="badge" href="' + links.gallery + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-huawei"/></svg>AppGallery</a>');
-            if (links.web) b.push('<a class="badge" href="' + links.web + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-globe"/></svg>Website</a>');
+        function storeBadges(p) {
+            /* App-Karten: nur Stores. Website-Links leben ausschliesslich in der Websites-Sektion. */
+            const links = p.links, b = [];
+            if (p.kind === 'app') {
+                if (links.ios) b.push('<a class="badge" href="' + links.ios + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>');
+                if (links.android) b.push('<a class="badge" href="' + links.android + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>');
+                if (links.gallery) b.push('<a class="badge" href="' + links.gallery + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-huawei"/></svg>AppGallery</a>');
+            } else if (links.web) {
+                b.push('<a class="badge" href="' + links.web + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-globe"/></svg>Website</a>');
+            }
             return b.join('');
         }
 
@@ -806,7 +696,8 @@
         }
 
         /* ================= Render ================= */
-        function bigCard(p, lazy) {
+        function card(p, lazy) {
+            const badges = storeBadges(p);
             return '<article class="glass-card glass reveal" aria-label="' + esc(p.name) + '">' +
                 '<div class="logo-tile' + (p.pad ? ' pad' : '') + '">' +
                     '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.charAt(0)) + '" alt="" width="68" height="68"' + (lazy ? ' loading="lazy"' : '') + '>' +
@@ -815,34 +706,18 @@
                 '<div class="chips">' + countryChip(p) +
                     (p.stat ? '<span class="chip stat">' + p.stat + '</span>' : '') +
                 '</div>' +
-                '<p class="story">' + p.story + '</p>' +
-                '<div class="badges">' + storeBadges(p.links) + '</div>' +
+                (p.story ? '<p class="story">' + p.story + '</p>' : '') +
+                (badges ? '<div class="badges">' + badges + '</div>' : '') +
             '</article>';
         }
 
-        function tile(p) {
-            const href = p.links.ios || p.links.android || p.links.web;
-            const inner = '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.charAt(0)) + '" alt="" width="44" height="44" loading="lazy">' +
-                '<span class="t-name">' + esc(p.name) + '</span>' +
-                '<span class="t-country">' + COUNTRIES[p.country] + '</span>';
-            const cls = 'tile lite' + (p.pad ? ' pad' : '');
-            /* Projects without a reachable URL render as a non-link tile */
-            return href
-                ? '<a class="' + cls + '" href="' + href + '" target="_blank" rel="noopener" aria-label="' + esc(p.name) + ' — ' + COUNTRIES[p.country] + '">' + inner + '</a>'
-                : '<div class="' + cls + '">' + inner + '</div>';
-        }
-
-        function renderKind(kind, featSel, gridSel, countSel, navSel, word) {
+        function renderKind(kind, cardsSel, countSel, navSel, word) {
             const all = PROJECTS.filter(p => p.kind === kind).sort((a, b) => a.order - b.order);
-            const feat = all.filter(p => p.tier === 'featured');
-            const rest = all.filter(p => p.tier !== 'featured');
-            $(featSel).innerHTML = feat.map((p, i) => bigCard(p, kind !== 'app' || i > 0)).join('');
-            $(gridSel).innerHTML = rest.map(tile).join('');
+            $(cardsSel).innerHTML = all.map((p, i) => card(p, kind !== 'app' || i > 0)).join('');
             $(countSel).textContent = all.length + ' ' + word;
             $(navSel).textContent = all.length;
-            hookImgFallbacks($(featSel));
-            hookImgFallbacks($(gridSel));
-            observeReveals($(featSel));
+            hookImgFallbacks($(cardsSel));
+            observeReveals($(cardsSel));
         }
 
         /* ================= Reveal animation ================= */
@@ -863,8 +738,8 @@
 
         /* ================= Boot ================= */
         $('#waBtn').href = 'https://wa.me/213676085441?text=' + encodeURIComponent(WA_MSG);
-        renderKind('app', '#appsFeatured', '#appsGrid', '#appsCount', '#navAppsCount', 'apps');
-        renderKind('web', '#webFeatured', '#webGrid', '#webCount', '#navWebCount', 'websites');
+        renderKind('app', '#appsCards', '#appsCount', '#navAppsCount', 'apps');
+        renderKind('web', '#webCards', '#webCount', '#navWebCount', 'websites');
         observeReveals(document);
 
         /* Deep links (#apps, #websites, #contact): re-scroll after render */
