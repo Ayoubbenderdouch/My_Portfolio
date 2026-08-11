@@ -340,6 +340,19 @@
 
         .badge:active { transform: scale(0.97); }
 
+        /* Out of service: kein Link, gedaempftes Glas-Pill statt dunklem Badge */
+        .badge.dead {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--glass-border);
+            color: var(--ink-soft);
+        }
+
+        .glass-card.offline .logo-tile img,
+        .glass-card.offline .logo-fallback {
+            filter: grayscale(0.85);
+            opacity: 0.72;
+        }
+
         /* ---------- CTA ---------- */
         .cta-wrap {
             padding: 36px 20px 10px;
@@ -390,6 +403,38 @@
             color: var(--ink-soft);
         }
 
+        /* ---------- Floating WhatsApp (bleibt beim Scrollen stehen) ----------
+           right: an der rechten Kante der 480px-Spalte ausgerichtet, nie naeher
+           als 16px am Viewport-Rand (schmale Screens). */
+        .wa-fab {
+            position: fixed;
+            z-index: 20;
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            right: max(16px, calc(50vw - 224px));
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--whatsapp);
+            color: #fff;
+            box-shadow: 0 10px 26px rgba(37, 211, 102, 0.38), 0 2px 8px rgba(18, 54, 92, 0.18);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px) scale(0.85);
+            transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34, 1.28, 0.64, 1), visibility 0.28s;
+        }
+
+        .wa-fab.show {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+        }
+
+        .wa-fab svg { width: 27px; height: 27px; }
+
+        .wa-fab.show:active { transform: scale(0.93); }
+
         /* ---------- Footer ---------- */
         footer {
             margin-top: auto;
@@ -432,6 +477,7 @@
             .sky-bg { display: none; }
             .reveal { opacity: 1; transform: none; transition: none; }
             .sky-bg, .badge, .wa-btn, .nav-card { transition: none; }
+            .wa-fab { transition: none; transform: none; }
         }
     </style>
 </head>
@@ -452,6 +498,9 @@
         </symbol>
         <symbol id="i-apps" viewBox="0 0 24 24">
             <path fill="currentColor" d="M5 4h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m9 0h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1M5 13h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1m9 0h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z"/>
+        </symbol>
+        <symbol id="i-off" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C13.85,4 15.55,4.63 16.9,5.69L5.69,16.9C4.63,15.55 4,13.85 4,12A8,8 0 0,1 12,4M12,20C10.15,20 8.45,19.37 7.1,18.31L18.31,7.1C19.37,8.45 20,10.15 20,12A8,8 0 0,1 12,20Z"/>
         </symbol>
         <symbol id="i-wa" viewBox="0 0 24 24">
             <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.359.101 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.582 0 11.94-5.359 11.943-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -530,6 +579,11 @@
             </a>
         </footer>
     </div>
+
+    <!-- Floating WhatsApp: bleibt beim Scrollen stehen, versteckt sich ueber dem CTA -->
+    <a class="wa-fab" id="waFab" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <svg aria-hidden="true"><use href="#i-wa"/></svg>
+    </a>
 
     <script>
         'use strict';
@@ -641,7 +695,16 @@
               links: {}, logo: 'assets/logos/radiantbody.webp' },
             { id: 'polo', kind: 'web', order: 14, name: 'Polo Boissons', country: 'dz', pad: true,
               story: 'Premium beverage brand site.',
-              links: {}, logo: 'assets/logos/polo.webp' }
+              links: {}, logo: 'assets/logos/polo.webp' },
+            /* ---- Out of service (Ayoub 2026-08-11): bewusst ganz unten, kein Link,
+                    Karte zeigt statt Website-Badge ein "Out of service"-Pill ----
+               saf9ty.com antwortet nur noch mit HTTP 403, thinkxie.com hat kein DNS mehr. */
+            { id: 'saf9ty-web', kind: 'web', order: 15, name: 'Saf9ty', country: 'dz', offline: true,
+              story: 'Merchant and affiliate platform.',
+              links: {}, logo: 'assets/logos/saf9ty.webp' },
+            { id: 'thinkxie', kind: 'web', order: 16, name: 'Thinkxie', country: 'global', pad: true, offline: true,
+              story: 'Digital agency.',
+              links: {}, logo: 'assets/logos/thinkxie.webp' }
         ];
 
         /* ================= Helpers ================= */
@@ -660,6 +723,9 @@
         function storeBadges(p) {
             /* App-Karten: nur Stores. Website-Links leben ausschliesslich in der Websites-Sektion. */
             const links = p.links, b = [];
+            if (p.offline) {
+                return '<span class="badge dead"><svg aria-hidden="true"><use href="#i-off"/></svg>Out of service</span>';
+            }
             if (p.kind === 'app') {
                 if (links.ios) b.push('<a class="badge" href="' + links.ios + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>');
                 if (links.android) b.push('<a class="badge" href="' + links.android + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>');
@@ -698,7 +764,7 @@
         /* ================= Render ================= */
         function card(p, lazy) {
             const badges = storeBadges(p);
-            return '<article class="glass-card glass reveal" aria-label="' + esc(p.name) + '">' +
+            return '<article class="glass-card glass reveal' + (p.offline ? ' offline' : '') + '" aria-label="' + esc(p.name) + '">' +
                 '<div class="logo-tile' + (p.pad ? ' pad' : '') + '">' +
                     '<img class="plogo" src="' + p.logo + '" data-mono="' + esc(p.name.charAt(0)) + '" alt="" width="68" height="68"' + (lazy ? ' loading="lazy"' : '') + '>' +
                 '</div>' +
@@ -736,8 +802,39 @@
             scope.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
         }
 
+        /* ================= Floating WhatsApp =================
+           Erscheint nach dem Hero und blendet sich aus, sobald der grosse
+           CTA-Button sichtbar ist — nie zwei gruene Buttons gleichzeitig. */
+        function initWaFab() {
+            const fab = $('#waFab'), cta = $('#contact');
+            let ctaVisible = false, queued = false;
+
+            const sync = () => {
+                queued = false;
+                fab.classList.toggle('show', window.scrollY > 260 && !ctaVisible);
+            };
+
+            if ('IntersectionObserver' in window && cta) {
+                new IntersectionObserver(entries => {
+                    ctaVisible = entries[0].isIntersecting;
+                    sync();
+                }, { threshold: 0 }).observe(cta);
+            }
+
+            window.addEventListener('scroll', () => {
+                if (queued) return;
+                queued = true;
+                requestAnimationFrame(sync);
+            }, { passive: true });
+
+            sync();
+        }
+
         /* ================= Boot ================= */
-        $('#waBtn').href = 'https://wa.me/213676085441?text=' + encodeURIComponent(WA_MSG);
+        const WA_HREF = 'https://wa.me/213676085441?text=' + encodeURIComponent(WA_MSG);
+        $('#waBtn').href = WA_HREF;
+        $('#waFab').href = WA_HREF;
+        initWaFab();
         renderKind('app', '#appsCards', '#appsCount', '#navAppsCount', 'apps');
         renderKind('web', '#webCards', '#webCount', '#navWebCount', 'websites');
         observeReveals(document);
