@@ -26,7 +26,7 @@
             --accent:       #2E7CD6;
             --ink:          #12365C;
             --ink-soft:     #4A6B8F; /* AA-safe on glass over bright clouds */
-            --glass:        rgba(255,255,255,0.62);
+            --glass:        rgba(255,255,255,0.46);
             --glass-border: rgba(255,255,255,0.95);
             --badge:        #12365C;
             --whatsapp:     #25D366;
@@ -56,8 +56,7 @@
 
         :focus-visible {
             outline: 2px solid var(--accent);
-            outline-offset: 3px;
-            border-radius: 9px;
+            outline-offset: 3px; /* outline folgt dem border-radius des Elements (Kapseln bleiben Kapseln) */
         }
 
         /* ---------- Sky layers ---------- */
@@ -81,18 +80,38 @@
 
         .sky-bg.ready { opacity: 1; }
 
-        /* ---------- Glass primitives ---------- */
+        /* ---------- Liquid Glass primitives ----------
+           Material statt Flaeche: transparenteres Weiss + kraeftige Blur/
+           Saettigung, Kanten aus LICHT (Specular oben-links, weicher Ring,
+           innerer Schein) statt flacher 1px-Border. Nur CSS -> iOS Safari ok. */
         .glass {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            backdrop-filter: blur(18px) saturate(1.4);
-            -webkit-backdrop-filter: blur(18px) saturate(1.4);
+            position: relative;
+            background-color: var(--glass);
+            background-image: linear-gradient(165deg,
+                rgba(255, 255, 255, 0.55) 0%,
+                rgba(255, 255, 255, 0.12) 34%,
+                rgba(255, 255, 255, 0.02) 62%,
+                rgba(255, 255, 255, 0.26) 100%);
+            border-radius: 28px;
+            backdrop-filter: blur(24px) saturate(1.8);
+            -webkit-backdrop-filter: blur(24px) saturate(1.8);
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.50),
+                inset 1.5px 3px 0 -1.5px rgba(255, 255, 255, 0.98),
+                inset -2px -2.5px 0 -1.5px rgba(255, 255, 255, 0.70),
+                inset 0 0 26px 2px rgba(255, 255, 255, 0.24),
+                0 18px 44px rgba(18, 54, 92, 0.16),
+                0 2px 10px rgba(18, 54, 92, 0.07);
         }
 
+        /* Kleine Glas-Pills (Chips): kein eigener Blur (Performance bei ~30
+           Karten), Glas-Look kommt aus Ring + Top-Specular. */
         .lite {
-            background: rgba(255, 255, 255, 0.66);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.60);
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.60),
+                inset 0 1.5px 0 -0.5px rgba(255, 255, 255, 0.95),
+                0 2px 8px rgba(18, 54, 92, 0.07);
         }
 
         /* ---------- Page column ---------- */
@@ -120,8 +139,10 @@
             font-family: var(--fd);
             font-weight: 600;
             font-size: clamp(30px, 8.5vw, 38px);
-            line-height: 1.2;
+            line-height: 1.15;
+            letter-spacing: -0.02em; /* grosses Display-Type: negatives Tracking */
             color: var(--ink);
+            text-shadow: 0 2px 22px rgba(255, 255, 255, 0.60); /* weicher Halo hebt den Namen vom Video ab */
         }
 
         /* Zwei klare Sektions-Buttons: Apps / Websites */
@@ -138,20 +159,35 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 15px 10px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 10px 26px rgba(18, 54, 92, 0.10);
+            padding: 15px 12px;
+            border-radius: 999px; /* schwebende Glas-Kapseln */
+            background-color: rgba(255, 255, 255, 0.50);
+            background-image: linear-gradient(170deg,
+                rgba(255, 255, 255, 0.55) 0%,
+                rgba(255, 255, 255, 0.10) 55%,
+                rgba(255, 255, 255, 0.30) 100%);
+            backdrop-filter: blur(18px) saturate(1.7);
+            -webkit-backdrop-filter: blur(18px) saturate(1.7);
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+                inset 0 2px 0 -0.5px rgba(255, 255, 255, 0.95),
+                inset 0 -1.5px 0 -0.5px rgba(255, 255, 255, 0.55),
+                0 12px 30px rgba(18, 54, 92, 0.14),
+                0 2px 8px rgba(18, 54, 92, 0.07);
             text-decoration: none;
             font-family: var(--fd);
             font-weight: 600;
             font-size: 15px;
             color: var(--ink);
-            transition: transform 0.15s ease;
+            transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
         }
 
-        .nav-card:active { transform: scale(0.97); }
+        .nav-card:active { transform: scale(0.96); }
+
+        @media (hover: hover) {
+            .nav-card:hover { transform: translateY(-2px); }
+            .nav-card:hover:active { transform: scale(0.96); }
+        }
 
         .nav-card svg {
             width: 18px;
@@ -161,10 +197,10 @@
         }
 
         .nav-count {
-            padding: 2px 8px;
-            border-radius: 9px;
+            padding: 2px 9px;
+            border-radius: 999px;
             background: rgba(46, 124, 214, 0.12);
-            border: 1px solid rgba(46, 124, 214, 0.30);
+            box-shadow: inset 0 0 0 1px rgba(46, 124, 214, 0.30);
             color: var(--accent-text);
             font-family: var(--fb);
             font-size: 11px;
@@ -191,14 +227,20 @@
             font-family: var(--fd);
             font-weight: 600;
             font-size: 20px;
+            letter-spacing: -0.01em;
             color: var(--ink);
+            text-shadow: 0 1px 14px rgba(255, 255, 255, 0.55);
         }
 
         .count {
-            padding: 5px 12px;
-            border-radius: 9px;
-            background: rgba(46, 124, 214, 0.12);
-            border: 1px solid rgba(46, 124, 214, 0.30);
+            padding: 5px 13px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.42);
+            backdrop-filter: blur(12px) saturate(1.6);
+            -webkit-backdrop-filter: blur(12px) saturate(1.6);
+            box-shadow:
+                inset 0 0 0 1px rgba(46, 124, 214, 0.28),
+                inset 0 1.5px 0 -0.5px rgba(255, 255, 255, 0.90);
             color: var(--accent-text);
             font-size: 12px;
             font-weight: 500;
@@ -221,25 +263,27 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            box-shadow: 0 18px 40px rgba(18, 54, 92, 0.12);
+            /* Schatten + Kanten kommen komplett aus .glass (Liquid-Glass-Material) */
         }
 
         .logo-tile {
             width: 84px;
             height: 84px;
-            border-radius: 20px;
+            border-radius: 24px; /* konzentrisch zur 28px-Karte */
             display: grid;
             place-items: center;
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 22px rgba(18, 54, 92, 0.10);
+            background: rgba(255, 255, 255, 0.68);
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.70),
+                inset 0 2px 0 -0.5px rgba(255, 255, 255, 0.95),
+                0 8px 22px rgba(18, 54, 92, 0.12);
             overflow: hidden;
         }
 
         .logo-tile img {
             width: 68px;
             height: 68px;
-            border-radius: 15px;
+            border-radius: 16px; /* 24px Tile - 8px Inset */
             object-fit: cover;
             display: block;
         }
@@ -277,8 +321,8 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 6px 12px;
-            border-radius: 9px;
+            padding: 6px 13px;
+            border-radius: 999px; /* Kapsel */
             font-size: 12px;
             font-weight: 500;
             color: var(--ink);
@@ -302,7 +346,9 @@
 
         .chip.stat {
             background: rgba(46, 124, 214, 0.12);
-            border: 1px solid rgba(46, 124, 214, 0.30);
+            box-shadow:
+                inset 0 0 0 1px rgba(46, 124, 214, 0.30),
+                inset 0 1.5px 0 -0.5px rgba(255, 255, 255, 0.60);
             color: var(--accent-text);
         }
 
@@ -326,24 +372,36 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 8px 13px;
-            border-radius: 9px;
-            background: var(--badge);
+            padding: 8px 14px;
+            border-radius: 999px; /* dunkle Glas-Kapsel mit Licht an der Oberkante */
+            background: linear-gradient(180deg, #1E4A7E 0%, var(--badge) 100%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+                0 8px 20px rgba(18, 54, 92, 0.22);
             color: #fff;
             text-decoration: none;
             font-size: 12px;
             font-weight: 500;
             white-space: nowrap;
+            transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
         }
 
         .badge svg { width: 14px; height: 14px; flex: 0 0 14px; }
 
-        .badge:active { transform: scale(0.97); }
+        .badge:active { transform: scale(0.95); }
+
+        @media (hover: hover) {
+            .badge:hover { transform: translateY(-1px); }
+            .badge:hover:active { transform: scale(0.95); }
+        }
 
         /* Out of service: kein Link, gedaempftes Glas-Pill statt dunklem Badge */
         .badge.dead {
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.60);
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.65),
+                inset 0 1.5px 0 -0.5px rgba(255, 255, 255, 0.95);
             color: var(--ink-soft);
         }
 
@@ -383,17 +441,22 @@
             align-items: center;
             gap: 9px;
             margin-top: 16px;
-            padding: 13px 26px;
-            border-radius: 9px;
-            background: var(--whatsapp);
+            padding: 13px 28px;
+            border-radius: 999px; /* glossy Kapsel */
+            background: linear-gradient(180deg, #33DC74 0%, #1EC05A 100%);
             color: #fff;
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
-            box-shadow: 0 10px 24px rgba(37, 211, 102, 0.30);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.40),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 10px 26px rgba(37, 211, 102, 0.35),
+                0 2px 8px rgba(18, 54, 92, 0.10);
+            transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
         }
 
-        .wa-btn:active { transform: scale(0.97); }
+        .wa-btn:active { transform: scale(0.96); }
 
         .wa-btn svg { width: 18px; height: 18px; }
 
@@ -416,9 +479,13 @@
             border-radius: 50%;
             display: grid;
             place-items: center;
-            background: var(--whatsapp);
+            background: linear-gradient(180deg, #33DC74 0%, #1EC05A 100%);
             color: #fff;
-            box-shadow: 0 10px 26px rgba(37, 211, 102, 0.38), 0 2px 8px rgba(18, 54, 92, 0.18);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.40),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 10px 26px rgba(37, 211, 102, 0.38),
+                0 2px 8px rgba(18, 54, 92, 0.18);
             opacity: 0;
             visibility: hidden;
             transform: translateY(12px) scale(0.85);
@@ -459,25 +526,46 @@
 
         .dot-sep { opacity: 0.45; }
 
-        /* ---------- Motion ---------- */
+        /* ---------- Motion ----------
+           Reveal nutzt die `translate`-Property (nicht transform), damit
+           Hover-/Press-Transforms nie mit dem Reveal kollidieren. */
         .reveal {
             opacity: 0;
-            transform: translateY(14px);
+            translate: 0 16px;
         }
 
         .reveal.in {
             opacity: 1;
-            transform: none;
-            transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+            translate: none;
+            transition: opacity 0.5s ease-out, translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* ---------- Reduced motion ---------- */
+        /* ---------- Reduced motion / transparency / contrast ---------- */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .sky-bg { display: none; }
-            .reveal { opacity: 1; transform: none; transition: none; }
+            .reveal { opacity: 1; translate: none; transition: none; }
             .sky-bg, .badge, .wa-btn, .nav-card { transition: none; }
             .wa-fab { transition: none; transform: none; }
+        }
+
+        /* Glas wird frostig/solide, wenn der Nutzer Transparenz reduziert */
+        @media (prefers-reduced-transparency: reduce) {
+            .glass, .nav-card, .lite, .count, .badge.dead {
+                background-color: rgba(255, 255, 255, 0.96);
+                background-image: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+        }
+
+        @media (prefers-contrast: more) {
+            .glass, .nav-card {
+                background-color: rgba(255, 255, 255, 0.97);
+                background-image: none;
+                box-shadow: inset 0 0 0 1.5px rgba(18, 54, 92, 0.55), 0 12px 30px rgba(18, 54, 92, 0.15);
+            }
+            .story { color: #33517A; }
         }
     </style>
 </head>
@@ -652,7 +740,7 @@
               links: { ios: 'https://apps.apple.com/us/app/athani-pro-muslim-prayer/id6745261280' },
               logo: 'assets/logos/athani.webp' },
 
-            /* ---- Websites — nur Website-Badge ---- */
+            /* ---- Websites (Crido, Tabaraati, ReloadX, AlBabor, Yachtei, dann Rest) — nur Website-Badge ---- */
             { id: 'crido', kind: 'web', order: 1, name: 'Crido', country: 'dz', pad: true,
               story: 'A buy-now-pay-later platform — smart installments built for the Algerian market.',
               links: { web: 'https://www.cridodz.com/' }, logo: 'assets/logos/crido.webp' },
@@ -677,35 +765,32 @@
             { id: 'smartdocdz', kind: 'web', order: 8, name: 'SmartDocDZ', country: 'dz',
               story: 'Doctor booking platform.',
               links: { web: 'https://smartdocdz.com/' }, logo: 'assets/logos/smartdoc.webp' },
-            { id: 'lumen', kind: 'web', order: 9, name: 'Lumen', country: 'dz', pad: true,
-              story: 'Medical video courses for Algerian students, organized by year and specialty.',
-              links: { web: 'https://lumendz.com/' }, logo: 'assets/logos/lumen.svg' },
-            { id: 'diline', kind: 'web', order: 10, name: 'Diline Academy', country: 'global', pad: true,
+            { id: 'diline', kind: 'web', order: 9, name: 'Diline Academy', country: 'global', pad: true,
               story: 'Learn Turkish online, A1\u2013C2.',
               links: { web: 'https://dilin.academy/' }, logo: 'assets/logos/diline.webp' },
-            { id: 'midofroid-web', kind: 'web', order: 11, name: 'Mido Froid', country: 'dz',
+            { id: 'midofroid-web', kind: 'web', order: 10, name: 'Mido Froid', country: 'dz',
               story: 'Appliances shop, cash on delivery.',
               links: { web: 'https://midoufroid.com/' }, logo: 'assets/logos/midofroid.webp' },
-            { id: 'israa', kind: 'web', order: 12, name: 'ISRAA Collections', country: 'dz',
+            { id: 'israa', kind: 'web', order: 11, name: 'ISRAA Collections', country: 'dz',
               story: 'Online clothing store for women.',
               links: { web: 'https://clothes-store-femme.vercel.app/' }, logo: 'assets/logos/israa.webp' },
-            { id: 'saloni', kind: 'web', order: 13, name: 'SALONI', country: 'dz', pad: true,
+            { id: 'saloni', kind: 'web', order: 12, name: 'SALONI', country: 'dz', pad: true,
               story: 'QR barber booking \u2014 no account needed.',
               links: { web: 'https://salonidz.com/' }, logo: 'assets/logos/saloni.webp' },
             /* TODO: radiant-body.com + poloboissons.com loesen nicht mehr auf (Domains tot) — neue URLs bei Ayoub erfragen */
-            { id: 'radiantbody', kind: 'web', order: 14, name: 'Radiant Body', country: 'global',
+            { id: 'radiantbody', kind: 'web', order: 13, name: 'Radiant Body', country: 'global',
               story: 'Health and wellness platform.',
               links: {}, logo: 'assets/logos/radiantbody.webp' },
-            { id: 'polo', kind: 'web', order: 15, name: 'Polo Boissons', country: 'dz', pad: true,
+            { id: 'polo', kind: 'web', order: 14, name: 'Polo Boissons', country: 'dz', pad: true,
               story: 'Premium beverage brand site.',
               links: {}, logo: 'assets/logos/polo.webp' },
             /* ---- Out of service (Ayoub 2026-08-11): bewusst ganz unten, kein Link,
                     Karte zeigt statt Website-Badge ein "Out of service"-Pill ----
                saf9ty.com antwortet nur noch mit HTTP 403, thinkxie.com hat kein DNS mehr. */
-            { id: 'saf9ty-web', kind: 'web', order: 16, name: 'Saf9ty', country: 'dz', offline: true,
+            { id: 'saf9ty-web', kind: 'web', order: 15, name: 'Saf9ty', country: 'dz', offline: true,
               story: 'Merchant and affiliate platform.',
               links: {}, logo: 'assets/logos/saf9ty.webp' },
-            { id: 'thinkxie', kind: 'web', order: 17, name: 'Thinkxie', country: 'global', pad: true, offline: true,
+            { id: 'thinkxie', kind: 'web', order: 16, name: 'Thinkxie', country: 'global', pad: true, offline: true,
               story: 'Digital agency.',
               links: {}, logo: 'assets/logos/thinkxie.webp' }
         ];
