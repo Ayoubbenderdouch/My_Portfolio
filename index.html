@@ -387,6 +387,55 @@
             opacity: 0.6;
         }
 
+        /* ---------- Education ---------- */
+        /* Eine einzelne Karte statt einer Reihe: Logo links, Text rechts,
+           damit sie sich klar von den drei Arbeitgeber-Karten absetzt. */
+        .edu-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            border-radius: 24px;
+            background: var(--exp-card-bg);
+            border: 1px solid var(--exp-card-border);
+            backdrop-filter: blur(12px) saturate(1.6);
+            -webkit-backdrop-filter: blur(12px) saturate(1.6);
+            box-shadow: var(--exp-card-shadow);
+        }
+
+        .edu-logo {
+            flex: none;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .edu-logo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .edu-text { min-width: 0; }
+
+        .edu-text .exp-name { margin-top: 0; }
+
+        .edu-cert {
+            margin-top: 12px;
+            padding-inline: 2px;
+        }
+
+        .edu-note {
+            margin-top: 10px;
+            padding-inline: 2px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--exp-meta);
+            opacity: 0.6;
+        }
+
         /* ---------- Cards (alle Projekte gleich groß) ---------- */
         .cards {
             display: flex;
@@ -721,6 +770,9 @@
         <symbol id="i-huawei" viewBox="0 0 24 24">
             <path fill="currentColor" d="M2.133 10.027a1.71 1.71 0 0 1-.073-.123c-.066-.123-.11-.24-.147-.357-.028-.086-.05-.172-.06-.261a1.63 1.63 0 0 1-.015-.222c0-.377.104-.748.29-1.072.118-.208.27-.399.436-.567a4.37 4.37 0 0 1 .623-.526c.258-.185.534-.352.813-.505a14.27 14.27 0 0 1 1.74-.816c.49-.19.991-.36 1.503-.503.67-.19 1.35-.339 2.038-.453.09-.015.18-.03.27-.042a23.32 23.32 0 0 1 3.43-.239c1.19 0 2.376.082 3.546.247.09.012.18.027.27.042a15.88 15.88 0 0 1 2.037.453c.512.144 1.014.314 1.503.503.602.227 1.182.503 1.74.816.28.153.555.32.814.505.224.161.432.338.623.526.165.168.317.36.435.567.187.324.291.695.291 1.072 0 .074-.005.148-.015.222a1.55 1.55 0 0 1-.06.261 1.88 1.88 0 0 1-.147.357 1.71 1.71 0 0 1-.073.123c-.02.031-.041.062-.063.091a2.66 2.66 0 0 1-.22.261l-.018.018a4.87 4.87 0 0 1-.548.47c-.259.194-.535.367-.82.526-.485.27-.999.496-1.528.686-.605.217-1.232.391-1.871.52-.848.172-1.715.281-2.59.324-.3.015-.601.023-.903.023-.302 0-.603-.008-.903-.023a17.54 17.54 0 0 1-2.59-.324 13.35 13.35 0 0 1-1.871-.52 10.03 10.03 0 0 1-1.528-.686 7.82 7.82 0 0 1-.82-.526 4.87 4.87 0 0 1-.548-.47l-.018-.018a2.66 2.66 0 0 1-.22-.261 1.06 1.06 0 0 1-.063-.091zm9.858 8.128c3.625 0 6.564-2.94 6.564-6.564 0-1.092-.267-2.122-.739-3.027-1.612.727-3.64 1.153-5.825 1.153-2.185 0-4.213-.426-5.825-1.153a6.53 6.53 0 0 0-.739 3.027c0 3.625 2.94 6.564 6.564 6.564z"/>
         </symbol>
+        <symbol id="i-cap" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 3 1 9l11 6 9-4.91V17h2V9zM5 13.18v4L12 21l7-3.82v-4L12 17z"/>
+        </symbol>
         <symbol id="i-globe" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m6.93 6H15.9a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8M12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.7 13.7 0 0 1 12 4.04M4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2zm.81 2h3.03c.33 1.29.8 2.5 1.38 3.56A8.03 8.03 0 0 1 5.07 16m3.03-8H5.07a8.03 8.03 0 0 1 4.41-3.56A15.7 15.7 0 0 0 8.1 8M12 19.96a13.7 13.7 0 0 1-1.91-3.96h3.82A13.7 13.7 0 0 1 12 19.96M14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2m.25 5.56c.58-1.06 1.05-2.27 1.38-3.56h3.03a8.03 8.03 0 0 1-4.41 3.56M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2z"/>
         </symbol>
@@ -801,6 +853,32 @@
                 </div>
 
                 <p class="exp-note">Former employers &mdash; not client logos.</p>
+            </section>
+
+            <!-- Education -->
+            <section class="sect" id="education">
+                <div class="sec-head">
+                    <h2>Education</h2>
+                </div>
+
+                <article class="edu-card reveal">
+                    <div class="edu-logo">
+                        <img src="assets/logos/rub.webp" alt="Ruhr-Universität Bochum" width="56" height="56" loading="lazy">
+                    </div>
+                    <div class="edu-text">
+                        <h3 class="exp-name">Ruhr-Universität Bochum</h3>
+                        <p class="exp-meta">B.Sc. Computer Science &middot; 2022</p>
+                    </div>
+                </article>
+
+                <div class="badges edu-cert">
+                    <a class="badge" href="assets/certificates/bsc-informatik-rub.webp" target="_blank" rel="noopener">
+                        <svg aria-hidden="true"><use href="#i-cap"/></svg>
+                        <span>View certificate</span>
+                    </a>
+                </div>
+
+                <p class="edu-note">Date and place of birth are blacked out on the scan.</p>
             </section>
 
             <!-- All apps -->
