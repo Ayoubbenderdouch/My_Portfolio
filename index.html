@@ -247,181 +247,6 @@
             white-space: nowrap;
         }
 
-        /* ---------- Where I worked (Germany) ---------- */
-        :root {
-            --exp-card-bg:     rgba(255, 255, 255, 0.46);
-            --exp-card-border: rgba(255, 255, 255, 0.55);
-            --exp-card-shadow: 0 12px 30px rgba(18, 54, 92, 0.14);
-            --exp-name:        #12365C;
-            --exp-meta:        #4A6B8F;
-        }
-
-        /* Dark mode: der Himmel dahinter bleibt hell -> Karten werden nur
-           fester und kontrastreicher, nicht dunkel (sonst Bruch zum Video). */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --exp-card-bg:     rgba(255, 255, 255, 0.60);
-                --exp-card-border: rgba(255, 255, 255, 0.75);
-                --exp-card-shadow: 0 14px 34px rgba(9, 28, 49, 0.28);
-                --exp-name:        #0E2B49;
-                --exp-meta:        #3B5C82;
-            }
-        }
-
-        #experience .sec-head { margin-bottom: 6px; }
-
-        .exp-sub {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            margin-bottom: 16px;
-            padding-inline: 2px;
-            font-size: 13px;
-            line-height: 1.5;
-            color: var(--exp-meta);
-        }
-
-        .exp-flag {
-            flex: none;
-            display: block;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-        }
-
-        /* Eine Reihe, horizontal gesnappt: die Seite ist ueberall eine
-           480px-Spalte, ein 3er-Grid haette hier keine Breite. */
-        .exp-row {
-            display: flex;
-            gap: 24px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-padding-inline: max(20px, env(safe-area-inset-left, 0px))
-                                   max(20px, env(safe-area-inset-right, 0px));
-            margin-inline: -20px;
-            /* unten Platz fuer den Karten-Schatten, sonst schneidet der
-               Scroll-Container ihn als harte Kante ab */
-            padding: 6px max(20px, env(safe-area-inset-right, 0px))
-                     32px max(20px, env(safe-area-inset-left, 0px));
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior-x: contain;
-        }
-
-        .exp-row::-webkit-scrollbar { display: none; }
-
-        .exp-card {
-            flex: 0 0 78%;
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 20px 18px 18px;
-            border-radius: 24px;
-            background: var(--exp-card-bg);
-            border: 1px solid var(--exp-card-border);
-            backdrop-filter: blur(12px) saturate(1.6);
-            -webkit-backdrop-filter: blur(12px) saturate(1.6);
-            box-shadow: var(--exp-card-shadow);
-        }
-
-        /* Feste Hoehe, Breite frei: die drei Logos haben verschiedene
-           Seitenverhaeltnisse und sollen trotzdem auf einer Linie sitzen. */
-        .exp-logo {
-            height: 48px;
-            display: grid;
-            place-items: center;
-        }
-
-        .exp-logo img {
-            display: block;
-            height: 48px;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-            border-radius: 6px;
-        }
-
-        /* Graustufen nur dort, wo es echtes Hover gibt — auf dem iPhone
-           (IG-Traffic) blieben die Logos sonst dauerhaft grau. */
-        @media (hover: hover) {
-            .exp-logo img {
-                filter: grayscale(1);
-                opacity: 0.65;
-                transition: filter 0.2s ease, opacity 0.2s ease;
-            }
-
-            .exp-card:hover .exp-logo img {
-                filter: none;
-                opacity: 1;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .exp-logo img { transition: none; }
-        }
-
-        .exp-name {
-            margin-top: 14px;
-            font-family: var(--fd);
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 1.3;
-            color: var(--exp-name);
-        }
-
-        .exp-meta {
-            margin-top: 5px;
-            font-size: 12.5px;
-            line-height: 1.5;
-            color: var(--exp-meta);
-        }
-
-        .exp-note {
-            margin-top: -8px;
-            padding-inline: 2px;
-            font-size: 12px;
-            line-height: 1.5;
-            color: var(--exp-meta);
-            opacity: 0.6;
-        }
-
-        /* ---------- Education ---------- */
-        /* Eine einzelne Karte statt einer Reihe: Logo links, Text rechts,
-           damit sie sich klar von den drei Arbeitgeber-Karten absetzt. */
-        .edu-card {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 18px;
-            border-radius: 24px;
-            background: var(--exp-card-bg);
-            border: 1px solid var(--exp-card-border);
-            backdrop-filter: blur(12px) saturate(1.6);
-            -webkit-backdrop-filter: blur(12px) saturate(1.6);
-            box-shadow: var(--exp-card-shadow);
-        }
-
-        .edu-logo {
-            flex: none;
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .edu-logo img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .edu-text { min-width: 0; }
-
-        .edu-text .exp-name { margin-top: 0; }
-
         /* ---------- Cards (alle Projekte gleich groß) ---------- */
         .cards {
             display: flex;
@@ -726,7 +551,7 @@
 
         /* Glas wird frostig/solide, wenn der Nutzer Transparenz reduziert */
         @media (prefers-reduced-transparency: reduce) {
-            .glass, .nav-card, .lite, .count, .badge.dead, .exp-card {
+            .glass, .nav-card, .lite, .count, .badge.dead {
                 background-color: rgba(255, 255, 255, 0.96);
                 background-image: none;
                 backdrop-filter: none;
@@ -735,7 +560,7 @@
         }
 
         @media (prefers-contrast: more) {
-            .glass, .nav-card, .exp-card {
+            .glass, .nav-card {
                 background-color: rgba(255, 255, 255, 0.97);
                 background-image: none;
                 box-shadow: inset 0 0 0 1.5px rgba(18, 54, 92, 0.55), 0 12px 30px rgba(18, 54, 92, 0.15);
@@ -797,62 +622,6 @@
                         <span class="nav-count" id="navWebCount"></span>
                     </a>
                 </nav>
-            </section>
-
-            <!-- Where I worked (Germany) -->
-            <section class="sect" id="experience">
-                <div class="sec-head">
-                    <h2>Where I worked</h2>
-                </div>
-                <p class="exp-sub">
-                    Full stack development in Germany
-                    <img class="exp-flag" src="assets/countries/de.png" alt="" width="18" height="18">
-                </p>
-
-                <div class="exp-row reveal" tabindex="0" role="group" aria-label="Former employers">
-                    <article class="exp-card">
-                        <div class="exp-logo">
-                            <img src="assets/logos/rewe.png" alt="REWE" width="139" height="48" fetchpriority="high">
-                        </div>
-                        <h3 class="exp-name">REWE</h3>
-                        <p class="exp-meta">Full Stack Developer &middot; Gevelsberg</p>
-                    </article>
-
-                    <article class="exp-card">
-                        <div class="exp-logo">
-                            <img src="assets/logos/pundc.png" alt="Peek &amp; Cloppenburg" width="38" height="48" loading="lazy">
-                        </div>
-                        <h3 class="exp-name">Peek &amp; Cloppenburg</h3>
-                        <p class="exp-meta">Full Stack Developer &middot; Hagen</p>
-                    </article>
-
-                    <article class="exp-card">
-                        <div class="exp-logo">
-                            <img src="assets/logos/hensel.webp" alt="Bäckerei Hensel" width="111" height="48" loading="lazy">
-                        </div>
-                        <h3 class="exp-name">Bäckerei Hensel</h3>
-                        <p class="exp-meta">Full Stack Developer &middot; Herford</p>
-                    </article>
-                </div>
-
-                <p class="exp-note">Former employers &mdash; not client logos.</p>
-            </section>
-
-            <!-- Education -->
-            <section class="sect" id="education">
-                <div class="sec-head">
-                    <h2>Education</h2>
-                </div>
-
-                <article class="edu-card reveal">
-                    <div class="edu-logo">
-                        <img src="assets/logos/rub.webp" alt="Ruhr-Universität Bochum" width="56" height="56" loading="lazy">
-                    </div>
-                    <div class="edu-text">
-                        <h3 class="exp-name">Ruhr-Universität Bochum</h3>
-                        <p class="exp-meta">B.Sc. Computer Science &middot; 2022</p>
-                    </div>
-                </article>
             </section>
 
             <!-- All apps -->
