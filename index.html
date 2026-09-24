@@ -145,16 +145,23 @@
             text-shadow: 0 2px 22px rgba(255, 255, 255, 0.60); /* weicher Halo hebt den Namen vom Video ab */
         }
 
-        /* Zwei klare Sektions-Buttons: Apps / Websites */
+        /* Drei Sektions-Buttons: Games zentriert oben, darunter Apps / Websites —
+           drei in einer Reihe passen mit Icon + Zaehler nicht in die Handy-Spalte */
         .nav-btns {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
             width: 100%;
             max-width: 350px;
         }
 
+        .nav-btns .nav-card:first-child {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: calc(50% - 5px);
+        }
+
         .nav-card {
-            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -584,6 +591,9 @@
         <symbol id="i-globe" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20m6.93 6H15.9a15.7 15.7 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8M12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.7 13.7 0 0 1 12 4.04M4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2zm.81 2h3.03c.33 1.29.8 2.5 1.38 3.56A8.03 8.03 0 0 1 5.07 16m3.03-8H5.07a8.03 8.03 0 0 1 4.41-3.56A15.7 15.7 0 0 0 8.1 8M12 19.96a13.7 13.7 0 0 1-1.91-3.96h3.82A13.7 13.7 0 0 1 12 19.96M14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2m.25 5.56c.58-1.06 1.05-2.27 1.38-3.56h3.03a8.03 8.03 0 0 1-4.41 3.56M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2z"/>
         </symbol>
+        <symbol id="i-game" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7,6H17A6,6 0 0,1 23,12A6,6 0 0,1 17,18C15.22,18 13.63,17.23 12.53,16H11.47C10.37,17.23 8.78,18 7,18A6,6 0 0,1 1,12A6,6 0 0,1 7,6M6,9V11H4V13H6V15H8V13H10V11H8V9H6M15.5,12A1.5,1.5 0 0,0 14,13.5A1.5,1.5 0 0,0 15.5,15A1.5,1.5 0 0,0 17,13.5A1.5,1.5 0 0,0 15.5,12M18.5,9A1.5,1.5 0 0,0 17,10.5A1.5,1.5 0 0,0 18.5,12A1.5,1.5 0 0,0 20,10.5A1.5,1.5 0 0,0 18.5,9Z"/>
+        </symbol>
         <symbol id="i-apps" viewBox="0 0 24 24">
             <path fill="currentColor" d="M5 4h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m9 0h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1M5 13h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1m9 0h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1z"/>
         </symbol>
@@ -607,10 +617,15 @@
 
     <div class="page">
         <main>
-            <!-- Hero: nur der Name + zwei Buttons -->
+            <!-- Hero: nur der Name + drei Buttons -->
             <section class="hero" id="top">
                 <h1>Ayoub Benderdouch</h1>
                 <nav class="nav-btns" aria-label="Sections">
+                    <a class="nav-card" href="#games">
+                        <svg aria-hidden="true"><use href="#i-game"/></svg>
+                        Games
+                        <span class="nav-count" id="navGamesCount"></span>
+                    </a>
                     <a class="nav-card" href="#apps">
                         <svg aria-hidden="true"><use href="#i-apps"/></svg>
                         Apps
@@ -622,6 +637,15 @@
                         <span class="nav-count" id="navWebCount"></span>
                     </a>
                 </nav>
+            </section>
+
+            <!-- Games (Ayoub 2026-09-24: vor den Apps) -->
+            <section class="sect" id="games">
+                <div class="sec-head">
+                    <h2>Games</h2>
+                    <span class="count" id="gamesCount"></span>
+                </div>
+                <div class="cards" id="gamesCards"></div>
             </section>
 
             <!-- All apps -->
@@ -680,8 +704,14 @@
         const WA_MSG = "Hi Ayoub! I saw your portfolio and I'd like to discuss a project (app or website).";
 
         /* ================= PROJECTS — single source of truth =================
-           kind: 'app' | 'web' · story optional (featured cases) */
+           kind: 'game' | 'app' | 'web' · story optional (featured cases) */
         const PROJECTS = [
+            /* ---- Games (eigene Sektion vor den Apps, Ayoub 2026-09-24) — nur Store-Badges ---- */
+            { id: 'bastionkeep', kind: 'game', order: 1, name: 'Bastion Keep', country: 'global',
+              story: 'Offline castle defense — 50 hand-built missions, no ads.',
+              links: { ios: 'https://apps.apple.com/us/app/bastion-keep-tower-defense/id6809839112' },
+              logo: 'assets/logos/bastionkeep.webp' },
+
             /* ---- Apps (Reihenfolge von Ayoub, 2026-08-09) — nur Store-Badges ---- */
             { id: 'changedinar', kind: 'app', order: 1, name: 'Change Dinar', country: 'dz', stat: '25K users',
               story: 'Live dinar exchange rates — iOS, Android and AppGallery.',
@@ -821,12 +851,12 @@
         }
 
         function storeBadges(p) {
-            /* App-Karten: nur Stores. Website-Links leben ausschliesslich in der Websites-Sektion. */
+            /* App- und Game-Karten: nur Stores. Website-Links leben ausschliesslich in der Websites-Sektion. */
             const links = p.links, b = [];
             if (p.offline) {
                 return '<span class="badge dead"><svg aria-hidden="true"><use href="#i-off"/></svg>Out of service</span>';
             }
-            if (p.kind === 'app') {
+            if (p.kind !== 'web') {
                 if (links.ios) b.push('<a class="badge" href="' + links.ios + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-apple"/></svg>App Store</a>');
                 if (links.android) b.push('<a class="badge" href="' + links.android + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg>Google Play</a>');
                 if (links.gallery) b.push('<a class="badge" href="' + links.gallery + '" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-huawei"/></svg>AppGallery</a>');
@@ -879,8 +909,9 @@
 
         function renderKind(kind, cardsSel, countSel, navSel, word) {
             const all = PROJECTS.filter(p => p.kind === kind).sort((a, b) => a.order - b.order);
-            $(cardsSel).innerHTML = all.map((p, i) => card(p, kind !== 'app' || i > 0)).join('');
-            $(countSel).textContent = all.length + ' ' + word;
+            /* nur die allererste Karte der Seite (erstes Game) laedt eager */
+            $(cardsSel).innerHTML = all.map((p, i) => card(p, kind !== 'game' || i > 0)).join('');
+            $(countSel).textContent = all.length + ' ' + (all.length === 1 ? word.replace(/s$/, '') : word);
             $(navSel).textContent = all.length;
             hookImgFallbacks($(cardsSel));
             observeReveals($(cardsSel));
@@ -935,11 +966,12 @@
         $('#waBtn').href = WA_HREF;
         $('#waFab').href = WA_HREF;
         initWaFab();
+        renderKind('game', '#gamesCards', '#gamesCount', '#navGamesCount', 'games');
         renderKind('app', '#appsCards', '#appsCount', '#navAppsCount', 'apps');
         renderKind('web', '#webCards', '#webCount', '#navWebCount', 'websites');
         observeReveals(document);
 
-        /* Deep links (#apps, #websites, #contact): re-scroll after render */
+        /* Deep links (#games, #apps, #websites, #contact): re-scroll after render */
         if (location.hash) {
             requestAnimationFrame(() => {
                 const target = document.querySelector(location.hash);
