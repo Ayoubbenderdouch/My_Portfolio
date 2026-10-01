@@ -140,8 +140,8 @@
             top: max(12px, env(safe-area-inset-top, 0px));
             right: max(16px, env(safe-area-inset-right, 0px));
             z-index: 30;
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             border: 0;
             border-radius: 50%;
             color: var(--ink);
@@ -149,8 +149,9 @@
         }
 
         .sky-toggle:not([hidden]) { display: grid; place-items: center; }
+        .sky-toggle::before { content: ''; position: absolute; inset: -4px; }
         .sky-toggle:hover { background-color: rgba(255, 255, 255, 0.85); }
-        .sky-toggle svg { width: 20px; height: 20px; }
+        .sky-toggle svg { width: 16px; height: 16px; }
         .sky-toggle[data-paused="true"] .sky-pause,
         .sky-toggle[data-paused="false"] .sky-play { display: none; }
 
