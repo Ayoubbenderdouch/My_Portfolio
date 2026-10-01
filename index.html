@@ -135,6 +135,25 @@
             padding: 54px 24px 8px;
         }
 
+        .sky-toggle {
+            position: fixed;
+            top: max(12px, env(safe-area-inset-top, 0px));
+            right: max(16px, env(safe-area-inset-right, 0px));
+            z-index: 30;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 50%;
+            color: var(--ink);
+            cursor: pointer;
+        }
+
+        .sky-toggle:not([hidden]) { display: grid; place-items: center; }
+        .sky-toggle:hover { background-color: rgba(255, 255, 255, 0.85); }
+        .sky-toggle svg { width: 20px; height: 20px; }
+        .sky-toggle[data-paused="true"] .sky-pause,
+        .sky-toggle[data-paused="false"] .sky-play { display: none; }
+
         h1 {
             font-family: var(--fd);
             font-weight: 600;
@@ -550,7 +569,6 @@
         /* ---------- Reduced motion / transparency / contrast ---------- */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .sky-bg { display: none; }
             .reveal { opacity: 1; translate: none; transition: none; }
             .sky-bg, .badge, .wa-btn, .nav-card { transition: none; }
             .wa-fab { transition: none; transform: none; }
@@ -610,16 +628,25 @@
 
     <!-- Sky: poster paints first, video fades in -->
     <div class="sky-fallback" aria-hidden="true"></div>
-    <video id="sky" class="sky-bg" autoplay muted loop playsinline
+    <video id="sky" class="sky-bg" muted loop playsinline
            preload="metadata" poster="assets/sky-poster.jpg" aria-hidden="true" tabindex="-1">
         <source src="assets/clouds_bg.mp4" type="video/mp4">
     </video>
 
     <div class="page">
         <main>
-            <!-- Hero: nur der Name + drei Buttons -->
+            <!-- Hero: name, sky control and section links -->
             <section class="hero" id="top">
                 <h1>Ayoub Benderdouch</h1>
+                <button id="skyToggle" class="sky-toggle lite" type="button" hidden
+                        aria-controls="sky" aria-label="Play sky animation" title="Play sky animation" data-paused="true">
+                    <svg class="sky-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+                    </svg>
+                    <svg class="sky-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
                 <nav class="nav-btns" aria-label="Sections">
                     <a class="nav-card" href="#games">
                         <svg aria-hidden="true"><use href="#i-game"/></svg>
@@ -985,28 +1012,78 @@
         /* ================= Sky video ================= */
         (function () {
             const sky = document.getElementById('sky');
-            if (!sky) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                sky.remove(); /* poster (.sky-fallback) stays as the fixed background */
+            const toggle = document.getElementById('skyToggle');
+            if (!sky || !toggle) return;
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            const preferenceKey = 'portfolio-sky-motion';
+            let savedPreference = null;
+            try { savedPreference = localStorage.getItem(preferenceKey); } catch (_) { }
+            let pauseRequested = reducedMotion.matches || savedPreference === 'paused';
+            let unavailable = false;
+
+            const syncButton = () => {
+                const label = sky.paused ? 'Play sky animation' : 'Pause sky animation';
+                toggle.dataset.paused = String(sky.paused);
+                toggle.setAttribute('aria-label', label);
+                toggle.title = label;
+            };
+
+            const applyPlayback = () => {
+                if (unavailable) return;
+                if (pauseRequested || document.hidden) sky.pause();
+                else sky.play().catch(syncButton);
+                syncButton();
+            };
+
+            const usePoster = () => {
+                unavailable = true;
+                sky.pause();
+                sky.remove();
+                toggle.hidden = true;
+            };
+            sky.addEventListener('error', usePoster);
+            const srcEl = sky.querySelector('source');
+            if (srcEl) srcEl.addEventListener('error', usePoster);
+            if (sky.error) {
+                usePoster();
                 return;
             }
-            const kill = () => { if (sky.parentNode) sky.remove(); };
-            sky.addEventListener('error', kill);
-            const srcEl = sky.querySelector('source');
-            if (srcEl) srcEl.addEventListener('error', kill);
 
-            sky.addEventListener('playing', () => sky.classList.add('ready'));
+            sky.addEventListener('playing', () => {
+                if (pauseRequested || document.hidden) {
+                    sky.pause();
+                    return;
+                }
+                sky.classList.add('ready');
+                syncButton();
+            });
+            sky.addEventListener('pause', syncButton);
+            sky.addEventListener('play', syncButton);
 
-            document.addEventListener('visibilitychange', () => {
-                if (!sky.parentNode) return;
-                if (document.hidden) sky.pause();
-                else sky.play().catch(() => { });
+            toggle.addEventListener('click', () => {
+                pauseRequested = !sky.paused;
+                try { localStorage.setItem(preferenceKey, pauseRequested ? 'paused' : 'playing'); } catch (_) { }
+                applyPlayback();
+            });
+
+            document.addEventListener('visibilitychange', applyPlayback);
+            reducedMotion.addEventListener('change', event => {
+                if (event.matches) {
+                    pauseRequested = true;
+                    applyPlayback();
+                }
             });
 
             /* iOS Low Power Mode blocks autoplay — retry on first touch */
-            const tryPlay = () => { sky.play().catch(() => { }); };
+            const tryPlay = event => {
+                if (event.target instanceof Element && event.target.closest('#skyToggle')) return;
+                applyPlayback();
+            };
             window.addEventListener('touchstart', tryPlay, { once: true, passive: true });
             window.addEventListener('click', tryPlay, { once: true });
+            toggle.hidden = false;
+            applyPlayback();
         })();
     </script>
 </body>
