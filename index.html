@@ -728,7 +728,7 @@
     <script>
         'use strict';
 
-        const COUNTRIES = { dz: 'Algeria', iq: 'Iraq', global: 'Global' };
+        const COUNTRIES = { dz: 'Algeria', iq: 'Iraq', sa: 'Saudi Arabia', global: 'Global' };
         const WA_MSG = "Hi Ayoub! I saw your portfolio and I'd like to discuss a project (app or website).";
 
         /* ================= PROJECTS — single source of truth =================
@@ -739,6 +739,11 @@
               story: 'Offline castle defense — 50 hand-built missions, no ads.',
               links: { ios: 'https://apps.apple.com/us/app/bastion-keep-tower-defense/id6809839112', android: 'https://play.google.com/store/apps/details?id=com.bastionkeep.towerdefense' },
               logo: 'assets/logos/bastionkeep.webp' },
+            { id: 'bridgekingdoms', kind: 'game', order: 2, name: 'Bridge Kingdoms', country: 'global',
+              story: 'One-finger island strategy — 80 hand-built missions and ranked online matches.',
+              links: { android: 'https://play.google.com/store/apps/details?id=com.thinkxie.bridgekingdoms' },
+              logo: 'assets/logos/bridgekingdoms.webp' },
+            /* TODO: iOS-Link nachtragen, sobald Bridge Kingdoms im App Store ist (Ayoub, 2026-11-12) */
 
             /* ---- Apps (Reihenfolge von Ayoub, 2026-08-09) — nur Store-Badges ---- */
             { id: 'changedinar', kind: 'app', order: 1, name: 'Change Dinar', country: 'dz', stat: '25K users',
@@ -858,29 +863,33 @@
             { id: 'innogym-web', kind: 'web', order: 14, name: 'InnoGym', country: 'dz',
               story: 'Fitness club in Chlef — classes, coaching and member bookings.',
               links: { web: 'https://innogymdz.com/' }, logo: 'assets/logos/innogym.webp' },
+            /* Rally (Ayoub 2026-11-12): erste Karte mit Land 'sa' → assets/countries/sa.png */
+            { id: 'rally', kind: 'web', order: 15, name: 'Rally', country: 'sa',
+              story: 'Book padel courts and coaches, split the bill — and run your club from one dashboard.',
+              links: { web: 'https://rallyarabia.com/' }, logo: 'assets/logos/rally.webp' },
             /* TODO: radiant-body.com + poloboissons.com loesen nicht mehr auf (Domains tot) — neue URLs bei Ayoub erfragen */
-            { id: 'radiantbody', kind: 'web', order: 15, name: 'Radiant Body', country: 'global',
+            { id: 'radiantbody', kind: 'web', order: 16, name: 'Radiant Body', country: 'global',
               story: 'Health and wellness platform.',
               links: {}, logo: 'assets/logos/radiantbody.webp' },
-            { id: 'polo', kind: 'web', order: 16, name: 'Polo Boissons', country: 'dz', pad: true,
+            { id: 'polo', kind: 'web', order: 17, name: 'Polo Boissons', country: 'dz', pad: true,
               story: 'Premium beverage brand site.',
               links: {}, logo: 'assets/logos/polo.webp' },
-            { id: 'israa', kind: 'web', order: 17, name: 'ISRAA Collections', country: 'dz',
+            { id: 'israa', kind: 'web', order: 18, name: 'ISRAA Collections', country: 'dz',
               story: 'Online clothing store for women.',
               links: { web: 'https://clothes-store-femme.vercel.app/' }, logo: 'assets/logos/israa.webp' },
             /* ---- Out of service (Ayoub 2026-08-11): bewusst ganz unten, kein Link,
                     Karte zeigt statt Website-Badge ein "Out of service"-Pill ----
                saf9ty.com antwortet nur noch mit HTTP 403, thinkxie.com hat kein DNS mehr. */
-            { id: 'saf9ty-web', kind: 'web', order: 18, name: 'Saf9ty', country: 'dz', offline: true,
+            { id: 'saf9ty-web', kind: 'web', order: 19, name: 'Saf9ty', country: 'dz', offline: true,
               story: 'Merchant and affiliate platform.',
               links: {}, logo: 'assets/logos/saf9ty.webp' },
-            { id: 'thinkxie', kind: 'web', order: 19, name: 'Thinkxie', country: 'global', pad: true, offline: true,
+            { id: 'thinkxie', kind: 'web', order: 20, name: 'Thinkxie', country: 'global', pad: true, offline: true,
               story: 'Digital agency.',
               links: {}, logo: 'assets/logos/thinkxie.webp' },
-            { id: 'tabaraati', kind: 'web', order: 20, name: 'Tabaraati', country: 'dz', offline: true,
+            { id: 'tabaraati', kind: 'web', order: 21, name: 'Tabaraati', country: 'dz', offline: true,
               story: 'Blood donation and community giving in Algeria.',
               links: {}, logo: 'assets/logos/tabaraati.webp' },
-            { id: 'uxbeacon', kind: 'web', order: 21, name: 'UX Beacon', country: 'global', offline: true,
+            { id: 'uxbeacon', kind: 'web', order: 22, name: 'UX Beacon', country: 'global', offline: true,
               story: 'AI UX/UI design studio.',
               links: {}, logo: 'assets/logos/uxbeacon.webp' }
         ];
